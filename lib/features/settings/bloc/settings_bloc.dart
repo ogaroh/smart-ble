@@ -8,6 +8,7 @@ import 'settings_state.dart';
 /// BLoC for managing app settings
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   late final SharedPreferences _prefs;
+  bool _isInitialized = false;
   
   SettingsBloc() : super(const SettingsInitial()) {
     on<LoadSettingsEvent>(_onLoadSettings);
@@ -19,9 +20,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<UpdateRssiThresholdEvent>(_onUpdateRssiThreshold);
     on<UpdateShowUnknownDevicesEvent>(_onUpdateShowUnknownDevices);
     on<ResetSettingsEvent>(_onResetSettings);
-    
-    // Load settings on initialization
-    _initializeSettings();
   }
   
   /// Keys for SharedPreferences
@@ -35,14 +33,19 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   
   /// Public method to initialize settings
   Future<void> initializeSettings() async {
-    await _initializeSettings();
+    if (!_isInitialized) {
+      await _initializeSettings();
+    }
   }
 
   /// Initialize SharedPreferences
   Future<void> _initializeSettings() async {
     try {
-      _prefs = await SharedPreferences.getInstance();
-      add(const LoadSettingsEvent());
+      if (!_isInitialized) {
+        _prefs = await SharedPreferences.getInstance();
+        _isInitialized = true;
+        add(const LoadSettingsEvent());
+      }
     } catch (e) {
       // Handle initialization error in the event handler instead
       rethrow;
