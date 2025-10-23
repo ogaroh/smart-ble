@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_ble/core/theme/app_theme.dart';
 import '../../../core/models/ble_device.dart';
 import '../../device_detail/view/device_detail_screen.dart';
 import '../../settings/view/settings_screen.dart';
@@ -151,7 +152,9 @@ class _BleScanViewState extends State<BleScanView> {
             : (canScan ? 'Start Scan' : 'Check Bluetooth')),
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              isScanning ? Colors.red : (canScan ? Colors.blue : Colors.orange),
+              isScanning
+              ? Colors.red
+              : (canScan ? AppColors.primaryBlue : AppColors.warning),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 12),
         ),
@@ -226,7 +229,7 @@ class _BleScanViewState extends State<BleScanView> {
           // Device type filter
           Row(
             children: [
-              const Text('Filter by type:',
+              const Text('Type:',
                   style: TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(width: 8),
               Expanded(

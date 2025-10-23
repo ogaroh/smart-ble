@@ -220,8 +220,8 @@ class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: colorScheme.surfaceContainerHighest,
-        selectedColor: colorScheme.primary,
+        backgroundColor: AppColors.lightOnSurfaceVariant,
+        selectedColor: AppColors.primaryBlue,
         labelStyle: GoogleFonts.lato(
           fontSize: 12,
           fontWeight: FontWeight.w500,
@@ -229,6 +229,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+        checkmarkColor: colorScheme.surface,
       ),
       listTileTheme: ListTileThemeData(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -375,7 +376,7 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: colorScheme.surfaceContainerHighest,
-        selectedColor: colorScheme.primary,
+        selectedColor: AppColors.primaryBlue,
         labelStyle: GoogleFonts.lato(
           fontSize: 12,
           fontWeight: FontWeight.w500,
