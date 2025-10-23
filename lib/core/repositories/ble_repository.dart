@@ -225,8 +225,6 @@ class BleRepository {
 
       final services = await _connectedDevice!.discoverServices();
 
-      log("Discovered ${services.length} services");
-
       final bleServices = <BleServiceModel>[];
 
       for (int i = 0; i < services.length; i++) {

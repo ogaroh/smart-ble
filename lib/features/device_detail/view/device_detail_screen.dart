@@ -451,27 +451,57 @@ class DeviceDetailView extends StatelessWidget {
 
   IconData _getDeviceTypeIcon(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Icons.headphones;
-      case BleDeviceType.smartwatch:
+      case BleDeviceType.watch:
         return Icons.watch;
       case BleDeviceType.other:
         return Icons.device_unknown;
       case BleDeviceType.unknown:
         return Icons.bluetooth;
+      case BleDeviceType.computer:
+        return Icons.computer;
+      case BleDeviceType.sportsWatch:
+        return Icons.fitness_center;
+      case BleDeviceType.clock:
+        return Icons.access_time;
+      case BleDeviceType.display:
+        return Icons.monitor;
+      case BleDeviceType.remoteControl:
+        return Icons.settings_remote;
+      case BleDeviceType.glasses:
+        return Icons.visibility;
+      case BleDeviceType.tag:
+        return Icons.local_offer;
+      case BleDeviceType.keyring:
+        return Icons.vpn_key;
+      case BleDeviceType.phone:
+        return Icons.smartphone;
     }
   }
 
   Color _getDeviceTypeColor(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Colors.purple;
-      case BleDeviceType.smartwatch:
+      case BleDeviceType.watch:
         return Colors.blue;
       case BleDeviceType.other:
         return Colors.orange;
       case BleDeviceType.unknown:
         return Colors.grey;
+      case BleDeviceType.computer:
+        return Colors.pink;
+      case BleDeviceType.sportsWatch:
+        return Colors.green;
+      case BleDeviceType.clock:
+        return Colors.teal;
+      case BleDeviceType.display:
+        return Colors.indigo;
+      case BleDeviceType.remoteControl:
+        return Colors.deepPurpleAccent;
+      default:
+        return Colors.pink;
     }
   }
 }

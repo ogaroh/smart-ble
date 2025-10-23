@@ -191,7 +191,7 @@ class _BleScanViewState extends State<BleScanView> {
     } else if (state is BleScanReady) {
       final deviceCount = state.filteredDevices.length;
       statusText = '$deviceCount device${deviceCount != 1 ? 's' : ''} found';
-      statusColor = Colors.green;
+      statusColor = Colors.pinkAccent;
     } else if (state is BleScanError) {
       statusText = 'Error: ${state.message}';
       statusColor = AppColors.error;
@@ -209,7 +209,7 @@ class _BleScanViewState extends State<BleScanView> {
           statusText,
           style: TextStyle(
             color: statusColor,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
@@ -259,10 +259,10 @@ class _BleScanViewState extends State<BleScanView> {
                     FilterChip(
                       label: const Text('Audio'),
                       selected:
-                          _selectedDeviceType == BleDeviceType.audioDevice,
+                          _selectedDeviceType == BleDeviceType.audio,
                       onSelected: (selected) {
                         final deviceType =
-                            selected ? BleDeviceType.audioDevice : null;
+                            selected ? BleDeviceType.audio : null;
                         setState(() => _selectedDeviceType = deviceType);
                         context
                             .read<BleScanBloc>()
@@ -271,10 +271,10 @@ class _BleScanViewState extends State<BleScanView> {
                     ),
                     FilterChip(
                       label: const Text('Smartwatch'),
-                      selected: _selectedDeviceType == BleDeviceType.smartwatch,
+                      selected: _selectedDeviceType == BleDeviceType.watch,
                       onSelected: (selected) {
                         final deviceType =
-                            selected ? BleDeviceType.smartwatch : null;
+                            selected ? BleDeviceType.watch : null;
                         setState(() => _selectedDeviceType = deviceType);
                         context
                             .read<BleScanBloc>()
@@ -465,27 +465,63 @@ class _BleScanViewState extends State<BleScanView> {
 
   IconData _getDeviceTypeIcon(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Icons.headphones;
-      case BleDeviceType.smartwatch:
+      case BleDeviceType.watch:
         return Icons.watch;
       case BleDeviceType.other:
         return Icons.device_unknown;
       case BleDeviceType.unknown:
         return Icons.bluetooth;
+      case BleDeviceType.computer:
+        return Icons.computer;
+      case BleDeviceType.sportsWatch:
+        return Icons.fitness_center;
+      case BleDeviceType.clock:
+        return Icons.access_time;
+      case BleDeviceType.display:
+        return Icons.monitor;
+      case BleDeviceType.remoteControl:
+        return Icons.settings_remote;
+      case BleDeviceType.glasses:
+        return Icons.visibility;
+      case BleDeviceType.tag:
+        return Icons.local_offer;
+      case BleDeviceType.keyring:
+        return Icons.vpn_key;
+      case BleDeviceType.phone:
+        return Icons.smartphone;
     }
   }
 
   Color _getDeviceTypeColor(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Colors.purple;
-      case BleDeviceType.smartwatch:
+      case BleDeviceType.watch:
         return Colors.blue;
       case BleDeviceType.other:
         return Colors.orange;
       case BleDeviceType.unknown:
         return Colors.grey;
+      case BleDeviceType.computer:
+        return Colors.teal;
+      case BleDeviceType.sportsWatch:
+        return Colors.green;
+      case BleDeviceType.clock:
+        return Colors.indigo;
+      case BleDeviceType.display:
+        return Colors.cyan;
+      case BleDeviceType.remoteControl:
+        return Colors.deepPurple;
+      case BleDeviceType.glasses:
+        return Colors.amber;
+      case BleDeviceType.tag:
+        return Colors.pink;
+      case BleDeviceType.keyring:
+        return Colors.brown;
+      case BleDeviceType.phone:
+        return Colors.red;
     }
   }
 
