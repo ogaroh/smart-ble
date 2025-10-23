@@ -50,7 +50,9 @@ class BleServiceModel extends Equatable {
     if (uuidLower.contains('110b')) return 'Audio Sink';
     if (uuidLower.contains('110a')) return 'Audio Source';
     
-    return 'Service ${uuid.substring(0, 8)}...'; // Show first 8 characters
+    // Safely get UUID prefix - handle short UUIDs
+    final displayUuid = uuid.length >= 8 ? uuid.substring(0, 8) : uuid;
+    return 'Service $displayUuid...';
   }
 
   @override
@@ -103,7 +105,9 @@ class BleCharacteristicModel extends Equatable {
     if (uuidLower.contains('2a00')) return 'Device Name';
     if (uuidLower.contains('2a01')) return 'Appearance';
     
-    return 'Characteristic ${uuid.substring(0, 8)}...'; // Show first 8 characters
+    // Safely get UUID prefix - handle short UUIDs
+    final displayUuid = uuid.length >= 8 ? uuid.substring(0, 8) : uuid;
+    return 'Characteristic $displayUuid...';
   }
 
   /// Create a copy with updated value

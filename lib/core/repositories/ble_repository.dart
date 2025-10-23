@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -223,10 +224,31 @@ class BleRepository {
       }
 
       final services = await _connectedDevice!.discoverServices();
-      return services
-          .map((service) => BleServiceModel.fromBluetoothService(service))
-          .toList();
+
+      log("Discovered ${services.length} services");
+
+      final bleServices = <BleServiceModel>[];
+
+      for (int i = 0; i < services.length; i++) {
+        try {
+          final service = services[i];
+          log("Processing service $i: ${service.uuid}");
+
+          final bleService = BleServiceModel.fromBluetoothService(service);
+          bleServices.add(bleService);
+
+          log("Successfully processed service: ${bleService.displayName}");
+        } catch (e) {
+          log("Error processing service $i: $e");
+          // Continue processing other services even if one fails
+          continue;
+        }
+      }
+
+      log("Successfully processed ${bleServices.length} out of ${services.length} services");
+      return bleServices;
     } catch (e) {
+      log("Failed to discover services: $e");
       throw Exception('Failed to discover services: $e');
     }
   }
@@ -270,12 +292,14 @@ class BleRepository {
         return BleConnectionState.disconnected;
       case BluetoothConnectionState.connected:
         return BleConnectionState.connected;
+      // Note: connecting and disconnecting states are deprecated in flutter_blue_plus
+      // They don't stream these states on Android & iOS, but we still need to handle them
+      // ignore: deprecated_member_use
       case BluetoothConnectionState.connecting:
         return BleConnectionState.connecting;
+      // ignore: deprecated_member_use  
       case BluetoothConnectionState.disconnecting:
         return BleConnectionState.disconnecting;
-      default:
-        return BleConnectionState.disconnected;
     }
   }
 
