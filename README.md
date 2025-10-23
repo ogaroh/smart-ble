@@ -74,24 +74,24 @@ flutter pub get
 
 **For development flavor:**
 ```bash
-flutter run --flavor dev
+flutter run --flavor dev --target lib/main_dev.dart
 ```
 
 **For staging flavor:**
 ```bash
-flutter run --flavor stag
+flutter run --flavor stag --target lib/main_stag.dart
 ```
 
 **For production flavor:**
 ```bash
-flutter run --flavor prod
+flutter run --flavor prod --target lib/main_prod.dart
 ```
 
 **Build APK:**
 ```bash
-flutter build apk --flavor dev --debug
+flutter build apk --flavor dev --debug --target lib/main_dev.dart
 # or for release
-flutter build apk --flavor prod --release
+flutter build apk --flavor prod --release --target lib/main_prod.dart
 ```
 
 ### 📖 Usage Guide
