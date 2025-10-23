@@ -119,6 +119,7 @@ class _BleScanViewState extends State<BleScanView> {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildScanButton(context, state),
           const SizedBox(height: 8),
