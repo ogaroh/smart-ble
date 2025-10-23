@@ -174,9 +174,12 @@ class BleRepository {
         throw Exception('Invalid device - no platform device available');
       }
 
+      // Cancel any existing connection subscription
+      await _connectionSubscription?.cancel();
+      
       _connectionStateController.add(BleConnectionState.connecting);
 
-      // Listen to connection state changes
+      // Listen to connection state changes for this specific device
       _connectionSubscription = device.platformDevice!.connectionState.listen(
         (state) {
           final bleState = _mapConnectionState(state);

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import '../../../core/models/ble_device.dart';
+import '../../../core/models/ble_models.dart';
 
 /// Events for device connection and service discovery
 abstract class DeviceDetailEvent extends Equatable {
@@ -47,7 +48,7 @@ class ReadCharacteristicEvent extends DeviceDetailEvent {
 
 /// Event when connection state changes
 class ConnectionStateChangedEvent extends DeviceDetailEvent {
-  final String connectionState;
+  final BleConnectionState connectionState;
   
   const ConnectionStateChangedEvent(this.connectionState);
   
