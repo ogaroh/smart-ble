@@ -2,6 +2,14 @@ import 'package:equatable/equatable.dart';
 import '../../../core/models/ble_device.dart';
 import '../../../core/models/ble_models.dart';
 
+/// Enum for manufacturer information status
+enum ManufacturerInfoStatus {
+  unavailable, // Not connected or service not found
+  loading, // Currently reading manufacturer info
+  available, // Successfully read manufacturer info
+  error, // Error occurred while reading
+}
+
 /// States for device connection and service discovery
 abstract class DeviceDetailState extends Equatable {
   const DeviceDetailState();
@@ -21,29 +29,47 @@ class DeviceDetailLoaded extends DeviceDetailState {
   final BleConnectionState connectionState;
   final List<BleServiceModel> services;
   final String? errorMessage;
+  final ManufacturerInfoStatus manufacturerStatus;
+  final String? manufacturerName;
   
   const DeviceDetailLoaded({
     required this.device,
     this.connectionState = BleConnectionState.disconnected,
     this.services = const [],
     this.errorMessage,
+    this.manufacturerStatus = ManufacturerInfoStatus.unavailable,
+    this.manufacturerName,
   });
   
   @override
-  List<Object?> get props => [device, connectionState, services, errorMessage];
+  List<Object?> get props => [
+        device,
+        connectionState,
+        services,
+        errorMessage,
+        manufacturerStatus,
+        manufacturerName
+      ];
   
   DeviceDetailLoaded copyWith({
     BleDevice? device,
     BleConnectionState? connectionState,
     List<BleServiceModel>? services,
     String? errorMessage,
+    ManufacturerInfoStatus? manufacturerStatus,
+    String? manufacturerName,
     bool clearError = false,
+    bool clearManufacturer = false,
   }) {
     return DeviceDetailLoaded(
       device: device ?? this.device,
       connectionState: connectionState ?? this.connectionState,
       services: services ?? this.services,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      manufacturerStatus: manufacturerStatus ?? this.manufacturerStatus,
+      manufacturerName: clearManufacturer
+          ? null
+          : (manufacturerName ?? this.manufacturerName),
     );
   }
 }
@@ -55,6 +81,8 @@ class DeviceDetailConnecting extends DeviceDetailLoaded {
     super.connectionState = BleConnectionState.connecting,
     super.services,
     super.errorMessage,
+    super.manufacturerStatus,
+    super.manufacturerName,
   });
   
   @override
@@ -63,13 +91,20 @@ class DeviceDetailConnecting extends DeviceDetailLoaded {
     BleConnectionState? connectionState,
     List<BleServiceModel>? services,
     String? errorMessage,
+    ManufacturerInfoStatus? manufacturerStatus,
+    String? manufacturerName,
     bool clearError = false,
+    bool clearManufacturer = false,
   }) {
     return DeviceDetailConnecting(
       device: device ?? this.device,
       connectionState: connectionState ?? this.connectionState,
       services: services ?? this.services,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      manufacturerStatus: manufacturerStatus ?? this.manufacturerStatus,
+      manufacturerName: clearManufacturer
+          ? null
+          : (manufacturerName ?? this.manufacturerName),
     );
   }
 }
@@ -81,6 +116,8 @@ class DeviceDetailConnected extends DeviceDetailLoaded {
     super.connectionState = BleConnectionState.connected,
     super.services,
     super.errorMessage,
+    super.manufacturerStatus,
+    super.manufacturerName,
   });
   
   @override
@@ -89,13 +126,20 @@ class DeviceDetailConnected extends DeviceDetailLoaded {
     BleConnectionState? connectionState,
     List<BleServiceModel>? services,
     String? errorMessage,
+    ManufacturerInfoStatus? manufacturerStatus,
+    String? manufacturerName,
     bool clearError = false,
+    bool clearManufacturer = false,
   }) {
     return DeviceDetailConnected(
       device: device ?? this.device,
       connectionState: connectionState ?? this.connectionState,
       services: services ?? this.services,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      manufacturerStatus: manufacturerStatus ?? this.manufacturerStatus,
+      manufacturerName: clearManufacturer
+          ? null
+          : (manufacturerName ?? this.manufacturerName),
     );
   }
 }
@@ -107,6 +151,8 @@ class DeviceDetailDisconnecting extends DeviceDetailLoaded {
     super.connectionState = BleConnectionState.disconnecting,
     super.services,
     super.errorMessage,
+    super.manufacturerStatus,
+    super.manufacturerName,
   });
   
   @override
@@ -115,13 +161,20 @@ class DeviceDetailDisconnecting extends DeviceDetailLoaded {
     BleConnectionState? connectionState,
     List<BleServiceModel>? services,
     String? errorMessage,
+    ManufacturerInfoStatus? manufacturerStatus,
+    String? manufacturerName,
     bool clearError = false,
+    bool clearManufacturer = false,
   }) {
     return DeviceDetailDisconnecting(
       device: device ?? this.device,
       connectionState: connectionState ?? this.connectionState,
       services: services ?? this.services,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      manufacturerStatus: manufacturerStatus ?? this.manufacturerStatus,
+      manufacturerName: clearManufacturer
+          ? null
+          : (manufacturerName ?? this.manufacturerName),
     );
   }
 }
@@ -133,6 +186,8 @@ class DeviceDetailDiscoveringServices extends DeviceDetailConnected {
     super.connectionState,
     super.services,
     super.errorMessage,
+    super.manufacturerStatus,
+    super.manufacturerName,
   });
   
   @override
@@ -141,13 +196,20 @@ class DeviceDetailDiscoveringServices extends DeviceDetailConnected {
     BleConnectionState? connectionState,
     List<BleServiceModel>? services,
     String? errorMessage,
+    ManufacturerInfoStatus? manufacturerStatus,
+    String? manufacturerName,
     bool clearError = false,
+    bool clearManufacturer = false,
   }) {
     return DeviceDetailDiscoveringServices(
       device: device ?? this.device,
       connectionState: connectionState ?? this.connectionState,
       services: services ?? this.services,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      manufacturerStatus: manufacturerStatus ?? this.manufacturerStatus,
+      manufacturerName: clearManufacturer
+          ? null
+          : (manufacturerName ?? this.manufacturerName),
     );
   }
 }

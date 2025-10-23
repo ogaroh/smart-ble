@@ -56,6 +56,11 @@ class ConnectionStateChangedEvent extends DeviceDetailEvent {
   List<Object> get props => [connectionState];
 }
 
+/// Event to read manufacturer information
+class ReadManufacturerInfoEvent extends DeviceDetailEvent {
+  const ReadManufacturerInfoEvent();
+}
+
 /// Event to refresh device information (RSSI, etc.)
 class RefreshDeviceInfoEvent extends DeviceDetailEvent {
   const RefreshDeviceInfoEvent();

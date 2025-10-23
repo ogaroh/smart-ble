@@ -20,6 +20,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     on<DiscoverServicesEvent>(_onDiscoverServices);
     on<ReadCharacteristicEvent>(_onReadCharacteristic);
     on<ConnectionStateChangedEvent>(_onConnectionStateChanged);
+    on<ReadManufacturerInfoEvent>(_onReadManufacturerInfo);
     on<RefreshDeviceInfoEvent>(_onRefreshDeviceInfo);
   }
 
@@ -49,8 +50,18 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
 
     final currentState = state as DeviceDetailLoaded;
 
+    // Immediately emit connecting state for instant UI feedback
+    emit(DeviceDetailConnecting(
+      device: currentState.device,
+      connectionState: BleConnectionState.connecting,
+      services: currentState.services,
+      errorMessage: currentState.errorMessage,
+      manufacturerStatus: currentState.manufacturerStatus,
+      manufacturerName: currentState.manufacturerName,
+    ));
+
     try {
-      // Connect to device - the connection state stream will handle state updates
+      // Connect to device - the connection state stream will handle further updates
       await _bleRepository.connectToDevice(currentState.device);
     } catch (e) {
       emit(DeviceDetailError(
@@ -67,8 +78,18 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     if (state is! DeviceDetailLoaded) return;
     final currentState = state as DeviceDetailLoaded;
 
+    // Immediately emit disconnecting state for instant UI feedback
+    emit(DeviceDetailDisconnecting(
+      device: currentState.device,
+      connectionState: BleConnectionState.disconnecting,
+      services: currentState.services,
+      errorMessage: currentState.errorMessage,
+      manufacturerStatus: currentState.manufacturerStatus,
+      manufacturerName: currentState.manufacturerName,
+    ));
+
     try {
-      // Disconnect from device - the connection state stream will handle state updates
+      // Disconnect from device - the connection state stream will handle further updates
       await _bleRepository.disconnectFromDevice();
     } catch (e) {
       emit(DeviceDetailError(
@@ -106,7 +127,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
       ));
 
       // Try to read manufacturer name if available
-      _tryReadManufacturerName(services);
+      add(const ReadManufacturerInfoEvent());
     } catch (e) {
       emit(DeviceDetailError(
         'Failed to discover services: $e',
@@ -211,6 +232,8 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
           device: currentState.device,
           connectionState: connectionState,
           services: [], // Clear services when disconnected
+          manufacturerStatus: ManufacturerInfoStatus.unavailable,
+          manufacturerName: null,
         ));
         break;
     }
@@ -234,11 +257,21 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     }
   }
 
-  /// Try to automatically read manufacturer name from Device Information service
-  void _tryReadManufacturerName(List<BleServiceModel> services) {
+  /// Handle read manufacturer info event
+  Future<void> _onReadManufacturerInfo(
+      ReadManufacturerInfoEvent event, Emitter<DeviceDetailState> emit) async {
+    if (state is! DeviceDetailLoaded) return;
+
+    final currentState = state as DeviceDetailLoaded;
+
     try {
+      // Set loading status
+      emit(currentState.copyWith(
+        manufacturerStatus: ManufacturerInfoStatus.loading,
+      ));
+
       // Look for Device Information Service (0x180A)
-      final deviceInfoService = services.firstWhere(
+      final deviceInfoService = currentState.services.firstWhere(
         (service) => service.uuid.toLowerCase().contains('180a'),
       );
 
@@ -249,11 +282,33 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
       );
 
       // Read the characteristic
-      add(ReadCharacteristicEvent(
-          deviceInfoService.uuid, manufacturerCharacteristic.uuid));
+      final value = await _bleRepository.readCharacteristic(
+        deviceInfoService.uuid,
+        manufacturerCharacteristic.uuid,
+      );
+
+      // Convert bytes to string (assuming UTF-8 encoding)
+      final manufacturerName = String.fromCharCodes(value);
+
+      // Update state with manufacturer name
+      emit(currentState.copyWith(
+        manufacturerStatus: ManufacturerInfoStatus.available,
+        manufacturerName: manufacturerName,
+      ));
     } catch (e) {
-      // Service or characteristic not found - this is normal for many devices
-      // Don't emit an error for this
+      // Check if it's a "not found" error or actual read error
+      if (e.toString().contains('not found') ||
+          e.toString().contains('No element')) {
+        // Service or characteristic not found - this is normal for many devices
+        emit(currentState.copyWith(
+          manufacturerStatus: ManufacturerInfoStatus.unavailable,
+        ));
+      } else {
+        // Actual error occurred while reading
+        emit(currentState.copyWith(
+          manufacturerStatus: ManufacturerInfoStatus.error,
+        ));
+      }
     }
   }
 
