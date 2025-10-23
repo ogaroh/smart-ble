@@ -1,0 +1,456 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/models/ble_device.dart';
+import '../../../core/models/ble_models.dart';
+import '../bloc/device_detail_bloc.dart';
+import '../bloc/device_detail_event.dart';
+import '../bloc/device_detail_state.dart';
+
+/// Screen for displaying device details, connection, and services
+class DeviceDetailScreen extends StatelessWidget {
+  final BleDevice device;
+
+  const DeviceDetailScreen({
+    super.key,
+    required this.device,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => DeviceDetailBloc()..add(InitializeDeviceEvent(device)),
+      child: const DeviceDetailView(),
+    );
+  }
+}
+
+class DeviceDetailView extends StatelessWidget {
+  const DeviceDetailView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Device Details'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: BlocConsumer<DeviceDetailBloc, DeviceDetailState>(
+        listener: (context, state) {
+          if (state is DeviceDetailError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
+                backgroundColor: Colors.red,
+              ),
+            );
+          } else if (state is DeviceDetailLoaded && state.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage!),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is DeviceDetailInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is DeviceDetailError) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    size: 64,
+                    color: Colors.red[300],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Error: ${state.message}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Go Back'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          final deviceState = state as DeviceDetailLoaded;
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildDeviceInfo(context, deviceState),
+                const SizedBox(height: 16),
+                _buildConnectionCard(context, deviceState),
+                const SizedBox(height: 16),
+                _buildServicesSection(context, deviceState),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildDeviceInfo(BuildContext context, DeviceDetailLoaded state) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: _getDeviceTypeColor(state.device.deviceType),
+                  child: Icon(
+                    _getDeviceTypeIcon(state.device.deviceType),
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        state.device.name,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        state.device.deviceType.displayName,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.grey[600],
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+            _buildInfoRow('Address', state.device.address),
+            _buildInfoRow('RSSI', '${state.device.rssi} dBm'),
+            if (state.device.serviceUuids.isNotEmpty)
+              _buildInfoRow('Advertised Services', '${state.device.serviceUuids.length} service(s)'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 100,
+            child: Text(
+              '$label:',
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ),
+          Expanded(
+            child: Text(value),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildConnectionCard(BuildContext context, DeviceDetailLoaded state) {
+    final isConnected = state.connectionState == BleConnectionState.connected;
+    final isConnecting = state.connectionState == BleConnectionState.connecting;
+    final isDisconnecting = state.connectionState == BleConnectionState.disconnecting;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Connection',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Icon(
+                  isConnected
+                      ? Icons.bluetooth_connected
+                      : isConnecting || isDisconnecting
+                          ? Icons.bluetooth_searching
+                          : Icons.bluetooth_disabled,
+                  color: isConnected
+                      ? Colors.green
+                      : isConnecting || isDisconnecting
+                          ? Colors.orange
+                          : Colors.grey,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    state.connectionState.displayName,
+                    style: TextStyle(
+                      color: isConnected
+                          ? Colors.green
+                          : isConnecting || isDisconnecting
+                              ? Colors.orange
+                              : Colors.grey,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                if (isConnecting || isDisconnecting)
+                  const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: isConnecting || isDisconnecting
+                    ? null
+                    : () {
+                        if (isConnected) {
+                          context.read<DeviceDetailBloc>().add(const DisconnectFromDeviceEvent());
+                        } else {
+                          context.read<DeviceDetailBloc>().add(const ConnectToDeviceEvent());
+                        }
+                      },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: isConnected ? Colors.red : Colors.blue,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text(isConnected ? 'Disconnect' : 'Connect'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServicesSection(BuildContext context, DeviceDetailLoaded state) {
+    if (state.connectionState != BleConnectionState.connected) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Icon(
+                Icons.info_outline,
+                size: 48,
+                color: Colors.grey[400],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Connect to this device to discover its services and characteristics',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (state is DeviceDetailDiscoveringServices) {
+      return const Card(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 16),
+              Text('Discovering services...'),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (state.services.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Icon(
+                Icons.search_off,
+                size: 48,
+                color: Colors.grey[400],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'No services found on this device',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Services & Characteristics',
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        const SizedBox(height: 8),
+        ...state.services.map((service) => _buildServiceCard(context, service)),
+      ],
+    );
+  }
+
+  Widget _buildServiceCard(BuildContext context, BleServiceModel service) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: ExpansionTile(
+        leading: Icon(
+          Icons.settings_bluetooth,
+          color: service.isPrimary ? Colors.blue : Colors.grey,
+        ),
+        title: Text(
+          service.displayName,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
+        subtitle: Text(
+          service.uuid,
+          style: const TextStyle(fontSize: 12, color: Colors.grey),
+        ),
+        children: [
+          if (service.characteristics.isEmpty)
+            const ListTile(
+              leading: Icon(Icons.info_outline, color: Colors.grey),
+              title: Text(
+                'No characteristics available',
+                style: TextStyle(color: Colors.grey),
+              ),
+            )
+          else
+            ...service.characteristics.map((characteristic) => 
+                _buildCharacteristicTile(context, service, characteristic)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCharacteristicTile(BuildContext context, BleServiceModel service, BleCharacteristicModel characteristic) {
+    return ListTile(
+      leading: const Icon(Icons.data_object, color: Colors.green),
+      title: Text(characteristic.displayName),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            characteristic.uuid,
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
+          ),
+          const SizedBox(height: 4),
+          Wrap(
+            spacing: 4,
+            children: characteristic.properties.map((property) => 
+                Chip(
+                  label: Text(
+                    property.displayName,
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                )).toList(),
+          ),
+          if (characteristic.value != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              'Value: ${_formatCharacteristicValue(characteristic.value!)}',
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            ),
+          ],
+        ],
+      ),
+      trailing: characteristic.properties.contains(BleCharacteristicProperty.read)
+          ? IconButton(
+              icon: const Icon(Icons.download),
+              onPressed: () {
+                context.read<DeviceDetailBloc>().add(
+                  ReadCharacteristicEvent(service.uuid, characteristic.uuid),
+                );
+              },
+            )
+          : null,
+    );
+  }
+
+  String _formatCharacteristicValue(List<int> value) {
+    if (value.isEmpty) return 'Empty';
+    
+    // Try to decode as UTF-8 string first
+    try {
+      final string = String.fromCharCodes(value);
+      if (string.isNotEmpty && !string.contains('\u0000')) {
+        return '"$string"';
+      }
+    } catch (e) {
+      // Fall back to hex representation
+    }
+    
+    // Show as hex bytes
+    return value.map((byte) => byte.toRadixString(16).padLeft(2, '0').toUpperCase()).join(' ');
+  }
+
+  IconData _getDeviceTypeIcon(BleDeviceType deviceType) {
+    switch (deviceType) {
+      case BleDeviceType.audioDevice:
+        return Icons.headphones;
+      case BleDeviceType.smartwatch:
+        return Icons.watch;
+      case BleDeviceType.other:
+        return Icons.device_unknown;
+      case BleDeviceType.unknown:
+        return Icons.bluetooth;
+    }
+  }
+
+  Color _getDeviceTypeColor(BleDeviceType deviceType) {
+    switch (deviceType) {
+      case BleDeviceType.audioDevice:
+        return Colors.purple;
+      case BleDeviceType.smartwatch:
+        return Colors.blue;
+      case BleDeviceType.other:
+        return Colors.orange;
+      case BleDeviceType.unknown:
+        return Colors.grey;
+    }
+  }
+}

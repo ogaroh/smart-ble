@@ -1,0 +1,461 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/models/ble_device.dart';
+import '../../device_detail/view/device_detail_screen.dart';
+import '../bloc/ble_scan_bloc.dart';
+import '../bloc/ble_scan_event.dart';
+import '../bloc/ble_scan_state.dart';
+
+/// Main screen for scanning and displaying BLE devices
+class BleScanScreen extends StatelessWidget {
+  const BleScanScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => BleScanBloc(),
+      child: const BleScanView(),
+    );
+  }
+}
+
+class BleScanView extends StatefulWidget {
+  const BleScanView({super.key});
+
+  @override
+  State<BleScanView> createState() => _BleScanViewState();
+}
+
+class _BleScanViewState extends State<BleScanView> {
+  final TextEditingController _filterController = TextEditingController();
+  BleDeviceType? _selectedDeviceType;
+
+  @override
+  void initState() {
+    super.initState();
+    _filterController.addListener(_onFilterChanged);
+  }
+
+  @override
+  void dispose() {
+    _filterController.removeListener(_onFilterChanged);
+    _filterController.dispose();
+    super.dispose();
+  }
+
+  void _onFilterChanged() {
+    context.read<BleScanBloc>().add(UpdateFilterEvent(_filterController.text));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('SmartBLE'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: BlocConsumer<BleScanBloc, BleScanState>(
+        listener: (context, state) {
+          if (state is BleScanError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          return Column(
+            children: [
+              _buildHeader(context, state),
+              _buildFilters(context, state),
+              Expanded(
+                child: _buildBody(context, state),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context, BleScanState state) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          _buildScanButton(context, state),
+          const SizedBox(height: 8),
+          _buildStatusText(context, state),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScanButton(BuildContext context, BleScanState state) {
+    final isScanning = state is BleScanScanning;
+    final canScan = state is BleScanReady;
+    
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        onPressed: canScan || isScanning ? () {
+          if (isScanning) {
+            context.read<BleScanBloc>().add(const StopScanEvent());
+          } else {
+            context.read<BleScanBloc>().add(const StartScanEvent());
+          }
+        } : () {
+          context.read<BleScanBloc>().add(const RefreshBluetoothStatusEvent());
+        },
+        icon: isScanning 
+            ? const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+              )
+            : Icon(canScan ? Icons.search : Icons.bluetooth_disabled),
+        label: Text(isScanning ? 'Stop Scan' : (canScan ? 'Start Scan' : 'Check Bluetooth')),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isScanning ? Colors.red : (canScan ? Colors.blue : Colors.orange),
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 12),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatusText(BuildContext context, BleScanState state) {
+    String statusText;
+    Color statusColor;
+    
+    if (state is BleScanCheckingPermissions) {
+      statusText = 'Checking Bluetooth permissions...';
+      statusColor = Colors.orange;
+    } else if (state is BleScanPermissionsDenied) {
+      statusText = 'Bluetooth permissions required';
+      statusColor = Colors.red;
+    } else if (state is BleScanBluetoothUnavailable) {
+      statusText = state.message;
+      statusColor = Colors.red;
+    } else if (state is BleScanScanning) {
+      final deviceCount = state.filteredDevices.length;
+      statusText = 'Scanning... ($deviceCount device${deviceCount != 1 ? 's' : ''} found)';
+      statusColor = Colors.blue;
+    } else if (state is BleScanReady) {
+      final deviceCount = state.filteredDevices.length;
+      statusText = '$deviceCount device${deviceCount != 1 ? 's' : ''} found';
+      statusColor = Colors.green;
+    } else if (state is BleScanError) {
+      statusText = 'Error: ${state.message}';
+      statusColor = Colors.red;
+    } else {
+      statusText = 'Ready to scan';
+      statusColor = Colors.grey;
+    }
+    
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.circle, size: 8, color: statusColor),
+        const SizedBox(width: 8),
+        Text(
+          statusText,
+          style: TextStyle(
+            color: statusColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFilters(BuildContext context, BleScanState state) {
+    if (state is! BleScanReady) return const SizedBox.shrink();
+    
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          // Name filter
+          TextField(
+            controller: _filterController,
+            decoration: const InputDecoration(
+              labelText: 'Filter by name',
+              hintText: 'Enter device name...',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(),
+              isDense: true,
+            ),
+          ),
+          const SizedBox(height: 12),
+          
+          // Device type filter
+          Row(
+            children: [
+              const Text('Filter by type:', style: TextStyle(fontWeight: FontWeight.w500)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    FilterChip(
+                      label: const Text('All'),
+                      selected: _selectedDeviceType == null,
+                      onSelected: (selected) {
+                        if (selected) {
+                          setState(() => _selectedDeviceType = null);
+                          context.read<BleScanBloc>().add(const UpdateDeviceTypeFilterEvent(null));
+                        }
+                      },
+                    ),
+                    FilterChip(
+                      label: const Text('Audio'),
+                      selected: _selectedDeviceType == BleDeviceType.audioDevice,
+                      onSelected: (selected) {
+                        final deviceType = selected ? BleDeviceType.audioDevice : null;
+                        setState(() => _selectedDeviceType = deviceType);
+                        context.read<BleScanBloc>().add(UpdateDeviceTypeFilterEvent(deviceType));
+                      },
+                    ),
+                    FilterChip(
+                      label: const Text('Smartwatch'),
+                      selected: _selectedDeviceType == BleDeviceType.smartwatch,
+                      onSelected: (selected) {
+                        final deviceType = selected ? BleDeviceType.smartwatch : null;
+                        setState(() => _selectedDeviceType = deviceType);
+                        context.read<BleScanBloc>().add(UpdateDeviceTypeFilterEvent(deviceType));
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBody(BuildContext context, BleScanState state) {
+    if (state is BleScanInitial || state is BleScanCheckingPermissions) {
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 16),
+            Text('Initializing Bluetooth...'),
+          ],
+        ),
+      );
+    }
+    
+    if (state is BleScanPermissionsDenied || state is BleScanBluetoothUnavailable) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.bluetooth_disabled,
+              size: 64,
+              color: Colors.grey[400],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              state is BleScanPermissionsDenied ? state.message : (state as BleScanBluetoothUnavailable).message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                context.read<BleScanBloc>().add(const RefreshBluetoothStatusEvent());
+              },
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+    
+    if (state is BleScanReady) {
+      if (state.filteredDevices.isEmpty) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.bluetooth_searching,
+                size: 64,
+                color: Colors.grey[400],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                state is BleScanScanning ? 'Scanning for devices...' : 'No devices found',
+                style: const TextStyle(fontSize: 16),
+              ),
+              if (state is! BleScanScanning) ...[
+                const SizedBox(height: 8),
+                const Text(
+                  'Tap "Start Scan" to discover nearby BLE devices',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ],
+          ),
+        );
+      }
+      
+      return RefreshIndicator(
+        onRefresh: () async {
+          context.read<BleScanBloc>().add(const ClearDevicesEvent());
+          context.read<BleScanBloc>().add(const StartScanEvent());
+        },
+        child: ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: state.filteredDevices.length,
+          itemBuilder: (context, index) {
+            final device = state.filteredDevices[index];
+            return _buildDeviceCard(context, device);
+          },
+        ),
+      );
+    }
+    
+    return const SizedBox.shrink();
+  }
+
+  Widget _buildDeviceCard(BuildContext context, BleDevice device) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: _getDeviceTypeColor(device.deviceType),
+          child: Icon(
+            _getDeviceTypeIcon(device.deviceType),
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          device.name,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(device.address),
+            Text(
+              '${device.deviceType.displayName} • RSSI: ${device.rssi} dBm',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: _getRssiColor(device.rssi).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: _getRssiColor(device.rssi).withOpacity(0.3),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _getRssiIcon(device.rssi),
+                    size: 16,
+                    color: _getRssiColor(device.rssi),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    _getRssiText(device.rssi),
+                    style: TextStyle(
+                      color: _getRssiColor(device.rssi),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Icon(Icons.chevron_right),
+          ],
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DeviceDetailScreen(device: device),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  IconData _getDeviceTypeIcon(BleDeviceType deviceType) {
+    switch (deviceType) {
+      case BleDeviceType.audioDevice:
+        return Icons.headphones;
+      case BleDeviceType.smartwatch:
+        return Icons.watch;
+      case BleDeviceType.other:
+        return Icons.device_unknown;
+      case BleDeviceType.unknown:
+        return Icons.bluetooth;
+    }
+  }
+
+  Color _getDeviceTypeColor(BleDeviceType deviceType) {
+    switch (deviceType) {
+      case BleDeviceType.audioDevice:
+        return Colors.purple;
+      case BleDeviceType.smartwatch:
+        return Colors.blue;
+      case BleDeviceType.other:
+        return Colors.orange;
+      case BleDeviceType.unknown:
+        return Colors.grey;
+    }
+  }
+
+  IconData _getRssiIcon(int rssi) {
+    if (rssi >= -50) return Icons.network_cell;
+    if (rssi >= -70) return Icons.network_cell;
+    if (rssi >= -85) return Icons.network_cell;
+    return Icons.network_cell;
+  }
+
+  Color _getRssiColor(int rssi) {
+    if (rssi >= -50) return Colors.green;
+    if (rssi >= -70) return Colors.orange;
+    return Colors.red;
+  }
+
+  String _getRssiText(int rssi) {
+    if (rssi >= -50) return 'Strong';
+    if (rssi >= -70) return 'Good';
+    if (rssi >= -85) return 'Fair';
+    return 'Weak';
+  }
+}
