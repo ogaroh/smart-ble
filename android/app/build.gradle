@@ -44,6 +44,25 @@ android {
         versionName = flutter.versionName
     }
 
+    flavorDimensions "flavor-type"
+
+    productFlavors {
+        dev {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble.dev"
+            versionNameSuffix "-dev"
+        }
+        stag {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble.stag"
+            versionNameSuffix "-stag"
+        }
+        prod {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

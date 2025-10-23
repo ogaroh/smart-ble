@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:smart_ble/flavors.dart' show F;
 import 'package:smart_ble/l10n/l10n.dart';
 import 'package:flutter/services.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Smart Ble',
+      title: 'SmartBLE',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Smart Ble'),
       builder: (context, child) {
         return Banner(
-          message: 'Codika',
+          message: F.appFlavor?.name ?? "SmartBLE",
           location: BannerLocation.topEnd,
           color: pinkColor,
           shadow: const BoxShadow(
