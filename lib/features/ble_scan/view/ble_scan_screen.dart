@@ -54,12 +54,11 @@ class _BleScanViewState extends State<BleScanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        leading: Container(
+          margin: const EdgeInsets.only(left: 5.0),
+          decoration: BoxDecoration(color: AppColors.lightBackground),
           child: Image.asset(
-            'assets/images/app_icon/app_icon.png',
-            height: 30.0,
-            width: 30.0,
+            'assets/images/app_icon/android_app_icon_adaptive_foreground.png',
             fit: BoxFit.contain,
           ),
         ),
