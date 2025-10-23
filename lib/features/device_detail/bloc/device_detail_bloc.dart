@@ -13,7 +13,6 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   DeviceDetailBloc({BleRepository? bleRepository})
       : _bleRepository = bleRepository ?? BleRepository(),
         super(const DeviceDetailInitial()) {
-    
     // Register event handlers
     on<InitializeDeviceEvent>(_onInitializeDevice);
     on<ConnectToDeviceEvent>(_onConnectToDevice);
@@ -25,9 +24,10 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle device initialization
-  void _onInitializeDevice(InitializeDeviceEvent event, Emitter<DeviceDetailState> emit) {
+  void _onInitializeDevice(
+      InitializeDeviceEvent event, Emitter<DeviceDetailState> emit) {
     emit(DeviceDetailLoaded(device: event.device));
-    
+
     // Listen to connection state changes
     _connectionSubscription = _bleRepository.connectionState.listen(
       (connectionState) {
@@ -43,21 +43,15 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle connect to device event
-  Future<void> _onConnectToDevice(ConnectToDeviceEvent event, Emitter<DeviceDetailState> emit) async {
+  Future<void> _onConnectToDevice(
+      ConnectToDeviceEvent event, Emitter<DeviceDetailState> emit) async {
     if (state is! DeviceDetailLoaded) return;
-    
+
     final currentState = state as DeviceDetailLoaded;
-    
+
     try {
-      // Emit connecting state
-      emit(DeviceDetailConnecting(
-        device: currentState.device,
-        services: currentState.services,
-      ));
-
-      // Connect to device
+      // Connect to device - the connection state stream will handle state updates
       await _bleRepository.connectToDevice(currentState.device);
-
     } catch (e) {
       emit(DeviceDetailError(
         'Failed to connect: $e',
@@ -68,21 +62,14 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle disconnect from device event
-  Future<void> _onDisconnectFromDevice(DisconnectFromDeviceEvent event, Emitter<DeviceDetailState> emit) async {
+  Future<void> _onDisconnectFromDevice(
+      DisconnectFromDeviceEvent event, Emitter<DeviceDetailState> emit) async {
     if (state is! DeviceDetailLoaded) return;
-    
     final currentState = state as DeviceDetailLoaded;
-    
+
     try {
-      // Emit disconnecting state
-      emit(DeviceDetailDisconnecting(
-        device: currentState.device,
-        services: currentState.services,
-      ));
-
-      // Disconnect from device
+      // Disconnect from device - the connection state stream will handle state updates
       await _bleRepository.disconnectFromDevice();
-
     } catch (e) {
       emit(DeviceDetailError(
         'Failed to disconnect: $e',
@@ -94,11 +81,12 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle discover services event
-  Future<void> _onDiscoverServices(DiscoverServicesEvent event, Emitter<DeviceDetailState> emit) async {
+  Future<void> _onDiscoverServices(
+      DiscoverServicesEvent event, Emitter<DeviceDetailState> emit) async {
     if (state is! DeviceDetailConnected) return;
-    
+
     final currentState = state as DeviceDetailConnected;
-    
+
     try {
       // Emit discovering services state
       emit(DeviceDetailDiscoveringServices(
@@ -109,7 +97,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
 
       // Discover services
       final services = await _bleRepository.discoverServices();
-      
+
       // Emit connected state with discovered services
       emit(DeviceDetailConnected(
         device: currentState.device,
@@ -119,7 +107,6 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
 
       // Try to read manufacturer name if available
       _tryReadManufacturerName(services);
-
     } catch (e) {
       emit(DeviceDetailError(
         'Failed to discover services: $e',
@@ -131,27 +118,30 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle read characteristic event
-  Future<void> _onReadCharacteristic(ReadCharacteristicEvent event, Emitter<DeviceDetailState> emit) async {
+  Future<void> _onReadCharacteristic(
+      ReadCharacteristicEvent event, Emitter<DeviceDetailState> emit) async {
     if (state is! DeviceDetailLoaded) return;
-    
+
     final currentState = state as DeviceDetailLoaded;
-    
+
     try {
       final value = await _bleRepository.readCharacteristic(
         event.serviceUuid,
         event.characteristicUuid,
       );
-      
+
       // Update the characteristic with the read value
       final updatedServices = currentState.services.map((service) {
         if (service.uuid.toLowerCase() == event.serviceUuid.toLowerCase()) {
-          final updatedCharacteristics = service.characteristics.map((characteristic) {
-            if (characteristic.uuid.toLowerCase() == event.characteristicUuid.toLowerCase()) {
+          final updatedCharacteristics =
+              service.characteristics.map((characteristic) {
+            if (characteristic.uuid.toLowerCase() ==
+                event.characteristicUuid.toLowerCase()) {
               return characteristic.copyWith(value: value);
             }
             return characteristic;
           }).toList();
-          
+
           return BleServiceModel(
             uuid: service.uuid,
             displayName: service.displayName,
@@ -161,14 +151,15 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
         }
         return service;
       }).toList();
-      
+
       // Emit updated state
       if (currentState is DeviceDetailConnected) {
-        emit(currentState.copyWith(services: updatedServices, clearError: true));
+        emit(
+            currentState.copyWith(services: updatedServices, clearError: true));
       } else {
-        emit(currentState.copyWith(services: updatedServices, clearError: true));
+        emit(
+            currentState.copyWith(services: updatedServices, clearError: true));
       }
-
     } catch (e) {
       emit(currentState.copyWith(
         errorMessage: 'Failed to read characteristic: $e',
@@ -177,11 +168,12 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle connection state changed event
-  void _onConnectionStateChanged(ConnectionStateChangedEvent event, Emitter<DeviceDetailState> emit) {
+  void _onConnectionStateChanged(
+      ConnectionStateChangedEvent event, Emitter<DeviceDetailState> emit) {
     if (state is! DeviceDetailLoaded) return;
-    
+
     final currentState = state as DeviceDetailLoaded;
-    
+
     // Map string back to enum
     BleConnectionState connectionState;
     switch (event.connectionState) {
@@ -197,7 +189,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
       default:
         connectionState = BleConnectionState.disconnected;
     }
-    
+
     // Emit appropriate state based on connection state
     switch (connectionState) {
       case BleConnectionState.connected:
@@ -206,13 +198,13 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
           connectionState: connectionState,
           services: currentState.services,
         ));
-        
+
         // Auto-discover services when connected
         if (currentState.services.isEmpty) {
           add(const DiscoverServicesEvent());
         }
         break;
-        
+
       case BleConnectionState.connecting:
         emit(DeviceDetailConnecting(
           device: currentState.device,
@@ -220,7 +212,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
           services: currentState.services,
         ));
         break;
-        
+
       case BleConnectionState.disconnecting:
         emit(DeviceDetailDisconnecting(
           device: currentState.device,
@@ -228,7 +220,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
           services: currentState.services,
         ));
         break;
-        
+
       case BleConnectionState.disconnected:
         emit(DeviceDetailLoaded(
           device: currentState.device,
@@ -240,11 +232,12 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
   }
 
   /// Handle refresh device info event
-  void _onRefreshDeviceInfo(RefreshDeviceInfoEvent event, Emitter<DeviceDetailState> emit) {
+  void _onRefreshDeviceInfo(
+      RefreshDeviceInfoEvent event, Emitter<DeviceDetailState> emit) {
     if (state is! DeviceDetailLoaded) return;
-    
+
     final currentState = state as DeviceDetailLoaded;
-    
+
     // For now, just clear any error messages
     // In a real app, you might want to refresh RSSI or other device info
     if (currentState.errorMessage != null) {
@@ -263,14 +256,16 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
       final deviceInfoService = services.firstWhere(
         (service) => service.uuid.toLowerCase().contains('180a'),
       );
-      
+
       // Look for Manufacturer Name String characteristic (0x2A29)
-      final manufacturerCharacteristic = deviceInfoService.characteristics.firstWhere(
+      final manufacturerCharacteristic =
+          deviceInfoService.characteristics.firstWhere(
         (characteristic) => characteristic.uuid.toLowerCase().contains('2a29'),
       );
-      
+
       // Read the characteristic
-      add(ReadCharacteristicEvent(deviceInfoService.uuid, manufacturerCharacteristic.uuid));
+      add(ReadCharacteristicEvent(
+          deviceInfoService.uuid, manufacturerCharacteristic.uuid));
     } catch (e) {
       // Service or characteristic not found - this is normal for many devices
       // Don't emit an error for this
