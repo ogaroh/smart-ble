@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/models/ble_device.dart';
 import '../../device_detail/view/device_detail_screen.dart';
+import '../../settings/view/settings_screen.dart';
 import '../bloc/ble_scan_bloc.dart';
 import '../bloc/ble_scan_event.dart';
 import '../bloc/ble_scan_state.dart';
@@ -53,6 +55,18 @@ class _BleScanViewState extends State<BleScanView> {
       appBar: AppBar(
         title: const Text('SmartBLE'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: BlocConsumer<BleScanBloc, BleScanState>(
         listener: (context, state) {
@@ -189,14 +203,13 @@ class _BleScanViewState extends State<BleScanView> {
       child: Column(
         children: [
           // Name filter
-          TextField(
+          CupertinoSearchTextField(
             controller: _filterController,
-            decoration: const InputDecoration(
-              labelText: 'Filter by name',
-              hintText: 'Enter device name...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
-              isDense: true,
+            placeholder: 'Search devices by name...',
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           const SizedBox(height: 12),
