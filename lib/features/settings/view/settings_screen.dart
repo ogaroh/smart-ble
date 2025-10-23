@@ -35,7 +35,10 @@ class SettingsView extends StatelessWidget {
           if (state is SettingsError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
+                content: Text(
+                  state.message,
+                  style: TextStyle(color: AppColors.lightSurface),
+                ),
                 backgroundColor: AppColors.error,
               ),
             );
@@ -108,7 +111,9 @@ class SettingsView extends StatelessWidget {
           value: state.connectionTimeoutSeconds,
           unit: 'seconds',
           onChanged: (value) {
-            context.read<SettingsBloc>().add(UpdateConnectionTimeoutEvent(value));
+            context
+                .read<SettingsBloc>()
+                .add(UpdateConnectionTimeoutEvent(value));
           },
         ),
       ],
@@ -136,7 +141,9 @@ class SettingsView extends StatelessWidget {
           subtitle: 'Display devices without advertised names',
           value: state.showUnknownDevices,
           onChanged: (value) {
-            context.read<SettingsBloc>().add(UpdateShowUnknownDevicesEvent(value));
+            context
+                .read<SettingsBloc>()
+                .add(UpdateShowUnknownDevicesEvent(value));
           },
         ),
         _buildSliderTile(
@@ -148,7 +155,9 @@ class SettingsView extends StatelessWidget {
           max: -30,
           divisions: 70,
           onChanged: (value) {
-            context.read<SettingsBloc>().add(UpdateRssiThresholdEvent(value.round()));
+            context
+                .read<SettingsBloc>()
+                .add(UpdateRssiThresholdEvent(value.round()));
           },
         ),
       ],
@@ -339,7 +348,7 @@ class SettingsView extends StatelessWidget {
     Color? color,
   }) {
     final effectiveColor = color ?? Theme.of(context).colorScheme.primary;
-    
+
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon, color: effectiveColor),

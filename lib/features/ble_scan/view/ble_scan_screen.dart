@@ -82,8 +82,11 @@ class _BleScanViewState extends State<BleScanView> {
           if (state is BleScanError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
+                content: Text(
+                  state.message,
+                  style: TextStyle(color: AppColors.lightSurface),
+                ),
+                backgroundColor: AppColors.error,
               ),
             );
           }
@@ -159,7 +162,7 @@ class _BleScanViewState extends State<BleScanView> {
             : (canScan ? 'Start Scan' : 'Check Bluetooth')),
         style: ElevatedButton.styleFrom(
           backgroundColor: isScanning
-              ? Colors.red
+              ? AppColors.error
               : (canScan ? AppColors.primaryBlue : AppColors.warning),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -177,10 +180,10 @@ class _BleScanViewState extends State<BleScanView> {
       statusColor = Colors.orange;
     } else if (state is BleScanPermissionsDenied) {
       statusText = 'Bluetooth permissions required';
-      statusColor = Colors.red;
+      statusColor = AppColors.error;
     } else if (state is BleScanBluetoothUnavailable) {
       statusText = state.message;
-      statusColor = Colors.red;
+      statusColor = AppColors.error;
     } else if (state is BleScanScanning) {
       final deviceCount = state.filteredDevices.length;
       statusText =
@@ -192,7 +195,7 @@ class _BleScanViewState extends State<BleScanView> {
       statusColor = Colors.green;
     } else if (state is BleScanError) {
       statusText = 'Error: ${state.message}';
-      statusColor = Colors.red;
+      statusColor = AppColors.error;
     } else {
       statusText = 'Ready to scan';
       statusColor = Colors.grey;
@@ -497,7 +500,7 @@ class _BleScanViewState extends State<BleScanView> {
   Color _getRssiColor(int rssi) {
     if (rssi >= -50) return Colors.green;
     if (rssi >= -70) return Colors.orange;
-    return Colors.red;
+    return AppColors.error;
   }
 
   String _getRssiText(int rssi) {
