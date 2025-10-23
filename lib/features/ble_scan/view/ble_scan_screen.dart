@@ -187,7 +187,7 @@ class _BleScanViewState extends State<BleScanView> {
       final deviceCount = state.filteredDevices.length;
       statusText =
           'Scanning... ($deviceCount device${deviceCount != 1 ? 's' : ''} found)';
-      statusColor = Colors.blue;
+      statusColor = AppColors.primaryBlue;
     } else if (state is BleScanReady) {
       final deviceCount = state.filteredDevices.length;
       statusText = '$deviceCount device${deviceCount != 1 ? 's' : ''} found';
@@ -241,47 +241,33 @@ class _BleScanViewState extends State<BleScanView> {
                   style: TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(width: 8),
               Expanded(
-                child: Wrap(
-                  spacing: 8,
-                  children: [
-                    FilterChip(
-                      label: const Text('All'),
-                      selected: _selectedDeviceType == null,
-                      onSelected: (selected) {
-                        if (selected) {
-                          setState(() => _selectedDeviceType = null);
-                          context
-                              .read<BleScanBloc>()
-                              .add(const UpdateDeviceTypeFilterEvent(null));
-                        }
-                      },
-                    ),
-                    FilterChip(
-                      label: const Text('Audio'),
-                      selected:
-                          _selectedDeviceType == BleDeviceType.audio,
-                      onSelected: (selected) {
-                        final deviceType =
-                            selected ? BleDeviceType.audio : null;
-                        setState(() => _selectedDeviceType = deviceType);
-                        context
-                            .read<BleScanBloc>()
-                            .add(UpdateDeviceTypeFilterEvent(deviceType));
-                      },
-                    ),
-                    FilterChip(
-                      label: const Text('Smartwatch'),
-                      selected: _selectedDeviceType == BleDeviceType.watch,
-                      onSelected: (selected) {
-                        final deviceType =
-                            selected ? BleDeviceType.watch : null;
-                        setState(() => _selectedDeviceType = deviceType);
-                        context
-                            .read<BleScanBloc>()
-                            .add(UpdateDeviceTypeFilterEvent(deviceType));
-                      },
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      FilterChip(
+                        label: const Text('All'),
+                        selected: _selectedDeviceType == null,
+                        onSelected: (selected) {
+                          if (selected) {
+                            setState(() => _selectedDeviceType = null);
+                            context
+                                .read<BleScanBloc>()
+                                .add(const UpdateDeviceTypeFilterEvent(null));
+                          }
+                        },
+                      ),
+                      const SizedBox(width: 3),
+                      ...BleDeviceType.values
+                          .where((type) =>
+                              type != BleDeviceType.unknown &&
+                              type != BleDeviceType.other)
+                          .map((deviceType) => Padding(
+                                padding: const EdgeInsets.only(right: 3),
+                                child: _buildDeviceTypeFilterChip(deviceType),
+                              )),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -400,7 +386,7 @@ class _BleScanViewState extends State<BleScanView> {
         ),
         title: Text(
           device.name,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -499,7 +485,7 @@ class _BleScanViewState extends State<BleScanView> {
       case BleDeviceType.audio:
         return Colors.purple;
       case BleDeviceType.watch:
-        return Colors.blue;
+        return AppColors.primaryBlue;
       case BleDeviceType.other:
         return Colors.orange;
       case BleDeviceType.unknown:
@@ -543,5 +529,19 @@ class _BleScanViewState extends State<BleScanView> {
     if (rssi >= -70) return 'Good';
     if (rssi >= -85) return 'Fair';
     return 'Weak';
+  }
+
+  Widget _buildDeviceTypeFilterChip(BleDeviceType deviceType) {
+    return FilterChip(
+      label: Text(deviceType.displayName),
+      selected: _selectedDeviceType == deviceType,
+      onSelected: (selected) {
+        final selectedType = selected ? deviceType : null;
+        setState(() => _selectedDeviceType = selectedType);
+        context
+            .read<BleScanBloc>()
+            .add(UpdateDeviceTypeFilterEvent(selectedType));
+      },
+    );
   }
 }

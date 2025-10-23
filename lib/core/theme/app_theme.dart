@@ -6,7 +6,7 @@ class AppColors {
   // Brand colors
   static const Color primaryBlue = Color(0xFF6139F7);
   static const Color primaryPink = Color(0xFFDA79E5);
-  
+
   // Light theme colors
   static const Color lightBackground = Color(0xFFFAFAFA);
   static const Color lightSurface = Color(0xFFFFFFFF);
@@ -14,7 +14,7 @@ class AppColors {
   static const Color lightOnBackground = Color(0xFF1A1A1A);
   static const Color lightOnSurface = Color(0xFF2D2D2D);
   static const Color lightOnSurfaceVariant = Color(0xFF6B6B6B);
-  
+
   // Dark theme colors
   static const Color darkBackground = Color(0xFF0D0D0F);
   static const Color darkSurface = Color(0xFF1C1C1E);
@@ -22,19 +22,19 @@ class AppColors {
   static const Color darkOnBackground = Color(0xFFF2F2F7);
   static const Color darkOnSurface = Color(0xFFE5E5EA);
   static const Color darkOnSurfaceVariant = Color(0xFF8E8E93);
-  
+
   // Status colors
   static const Color success = Color(0xFF30D158);
   static const Color warning = Color(0xFFFF9F0A);
   static const Color error = Color(0xFFFF453A);
   static const Color info = Color(0xFF007AFF);
-  
+
   // BLE device type colors
   static const Color audioDevice = Color(0xFF9F44D3);
   static const Color smartwatch = Color(0xFF0077BE);
   static const Color otherDevice = Color(0xFFFF8C00);
   static const Color unknownDevice = Color(0xFF8E8E93);
-  
+
   // Signal strength colors
   static const Color signalStrong = Color(0xFF30D158);
   static const Color signalGood = Color(0xFFFF9F0A);
@@ -222,20 +222,26 @@ class AppTheme {
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.lightOnSurfaceVariant,
         selectedColor: AppColors.primaryBlue,
+        elevation: 0,
         labelStyle: GoogleFonts.lato(
           fontSize: 12,
           fontWeight: FontWeight.w500,
+          color: AppColors.lightSurface,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         checkmarkColor: colorScheme.surface,
+        shadowColor: Colors.transparent,
       ),
       listTileTheme: ListTileThemeData(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
+        dense: true,
+        visualDensity: VisualDensity.compact,
+        isThreeLine: false,
       ),
     );
   }

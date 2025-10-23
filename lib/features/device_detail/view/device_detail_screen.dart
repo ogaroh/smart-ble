@@ -258,7 +258,8 @@ class DeviceDetailView extends StatelessWidget {
                         }
                       },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isConnected ? AppColors.error : Colors.blue,
+                  backgroundColor:
+                      isConnected ? AppColors.error : AppColors.primaryBlue,
                   foregroundColor: Colors.white,
                 ),
                 child: Text(isConnected ? 'Disconnect' : 'Connect'),
@@ -351,13 +352,15 @@ class DeviceDetailView extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: ExpansionTile(
+        dense: true,
+        visualDensity: VisualDensity.compact,
         leading: Icon(
           Icons.settings_bluetooth,
-          color: service.isPrimary ? Colors.blue : Colors.grey,
+          color: service.isPrimary ? AppColors.primaryBlue : Colors.grey,
         ),
         title: Text(
           service.displayName,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
           service.uuid,
@@ -418,7 +421,10 @@ class DeviceDetailView extends StatelessWidget {
       trailing:
           characteristic.properties.contains(BleCharacteristicProperty.read)
               ? IconButton(
-                  icon: const Icon(Icons.download),
+                  icon: const Icon(
+                    Icons.download,
+                    color: AppColors.primaryBlue,
+                  ),
                   onPressed: () {
                     context.read<DeviceDetailBloc>().add(
                           ReadCharacteristicEvent(
@@ -485,7 +491,7 @@ class DeviceDetailView extends StatelessWidget {
       case BleDeviceType.audio:
         return Colors.purple;
       case BleDeviceType.watch:
-        return Colors.blue;
+        return AppColors.primaryBlue;
       case BleDeviceType.other:
         return Colors.orange;
       case BleDeviceType.unknown:
