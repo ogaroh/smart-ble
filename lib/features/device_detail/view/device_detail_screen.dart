@@ -145,6 +145,8 @@ class DeviceDetailView extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                       ),
+                      const SizedBox(height: 4),
+                      _buildManufacturerInfo(context, state),
                     ],
                   ),
                 ),
@@ -412,8 +414,8 @@ class DeviceDetailView extends StatelessWidget {
           if (characteristic.value != null) ...[
             const SizedBox(height: 4),
             Text(
-              'Value: ${_formatCharacteristicValue(characteristic.value!)}',
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              'Bytes: ${_formatCharacteristicValue(characteristic.value!)}',
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
             ),
           ],
         ],
@@ -508,6 +510,90 @@ class DeviceDetailView extends StatelessWidget {
         return Colors.deepPurpleAccent;
       default:
         return Colors.pink;
+    }
+  }
+
+  Widget _buildManufacturerInfo(
+      BuildContext context, DeviceDetailLoaded state) {
+    switch (state.manufacturerStatus) {
+      case ManufacturerInfoStatus.unavailable:
+        return Row(
+          children: [
+            Icon(
+              Icons.business,
+              size: 14,
+              color: Colors.grey[500],
+            ),
+            const SizedBox(width: 4),
+            Text(
+              'Manufacturer: Unavailable',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.grey[500],
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
+          ],
+        );
+      case ManufacturerInfoStatus.loading:
+        return Row(
+          children: [
+            SizedBox(
+              width: 12,
+              height: 12,
+              child: CircularProgressIndicator(
+                strokeWidth: 1.5,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.orange[600]!),
+              ),
+            ),
+            const SizedBox(width: 6),
+            Text(
+              'Reading manufacturer...',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.orange[600],
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
+          ],
+        );
+      case ManufacturerInfoStatus.available:
+        return Row(
+          children: [
+            Icon(
+              Icons.business,
+              size: 14,
+              color: Colors.green[600],
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                'Manufacturer: ${state.manufacturerName}',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.green[600],
+                      fontWeight: FontWeight.w500,
+                    ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        );
+      case ManufacturerInfoStatus.error:
+        return Row(
+          children: [
+            Icon(
+              Icons.error_outline,
+              size: 14,
+              color: Colors.red[600],
+            ),
+            const SizedBox(width: 4),
+            Text(
+              'Manufacturer: Error reading',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.red[600],
+                    fontStyle: FontStyle.italic,
+                  ),
+            ),
+          ],
+        );
     }
   }
 }
