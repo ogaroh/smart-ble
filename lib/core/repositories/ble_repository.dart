@@ -31,7 +31,7 @@ class BleRepository {
   /// Check if Bluetooth is available and enabled
   Future<bool> isBluetoothAvailable() async {
     try {
-      return await FlutterBluePlus.isAvailable;
+      return await FlutterBluePlus.isSupported;
     } catch (e) {
       return false;
     }
@@ -40,7 +40,8 @@ class BleRepository {
   /// Check if Bluetooth is turned on
   Future<bool> isBluetoothOn() async {
     try {
-      return await FlutterBluePlus.isOn;
+      return await FlutterBluePlus.adapterState.first ==
+          BluetoothAdapterState.on;
     } catch (e) {
       return false;
     }
@@ -264,10 +265,10 @@ class BleRepository {
         return BleConnectionState.disconnected;
       case BluetoothConnectionState.connected:
         return BleConnectionState.connected;
-      case BluetoothConnectionState.connecting:
-        return BleConnectionState.connecting;
-      case BluetoothConnectionState.disconnecting:
-        return BleConnectionState.disconnecting;
+      // Note: connecting and disconnecting states are deprecated in flutter_blue_plus
+      // as Android & iOS don't stream these intermediate states reliably
+      default:
+        return BleConnectionState.disconnected;
     }
   }
 

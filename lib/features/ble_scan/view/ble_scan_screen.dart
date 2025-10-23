@@ -87,7 +87,7 @@ class _BleScanViewState extends State<BleScanView> {
         color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -371,10 +371,10 @@ class _BleScanViewState extends State<BleScanView> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: _getRssiColor(device.rssi).withOpacity(0.1),
+                color: _getRssiColor(device.rssi).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: _getRssiColor(device.rssi).withOpacity(0.3),
+                  color: _getRssiColor(device.rssi).withValues(alpha: 0.3),
                 ),
               ),
               child: Row(
