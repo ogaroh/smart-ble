@@ -100,7 +100,77 @@ The project is configured with three flavors for different environments:
 
 ## State Management
 
-[To be documented based on implementation choice - Provider, Riverpod, BLoC, etc.]
+The application uses **Flutter BLoC (Business Logic Component)** pattern for state management, providing a predictable and testable architecture for handling complex BLE operations.
+
+### Architecture Overview
+
+The app follows a feature-based architecture with clear separation of concerns:
+
+```
+lib/
+├── core/
+│   ├── models/           # Domain models (BLE devices, services, characteristics)
+│   └── repositories/     # Data access layer (BLE repository)
+├── features/
+│   ├── ble_scan/        # BLE scanning feature
+│   │   ├── bloc/        # State management (BleScanBloc)
+│   │   └── view/        # UI components (BleScanScreen)
+│   └── device_detail/   # Device connection feature  
+│       ├── bloc/        # State management (DeviceDetailBloc)
+│       └── view/        # UI components (DeviceDetailScreen)
+└── app.dart            # App configuration
+```
+
+### BLoC Implementation
+
+#### 1. BLE Scan BLoC (`BleScanBloc`)
+- **Purpose**: Manages device discovery, filtering, and scanning state
+- **Key Events**:
+  - `StartScanEvent` - Initiates BLE scanning
+  - `StopScanEvent` - Stops BLE scanning  
+  - `UpdateFilterEvent` - Updates name-based filtering
+  - `UpdateDeviceTypeFilterEvent` - Updates device type filtering
+  - `RefreshBluetoothStatusEvent` - Checks permissions and BT status
+- **Key States**:
+  - `BleScanReady` - Ready to scan with discovered devices
+  - `BleScanScanning` - Actively scanning for devices
+  - `BleScanPermissionsDenied` - Missing required permissions
+  - `BleScanError` - Error occurred during scanning
+
+#### 2. Device Detail BLoC (`DeviceDetailBloc`) 
+- **Purpose**: Manages device connection, service discovery, and characteristic operations
+- **Key Events**:
+  - `ConnectToDeviceEvent` - Connects to selected device
+  - `DisconnectFromDeviceEvent` - Disconnects from device
+  - `DiscoverServicesEvent` - Discovers device services/characteristics
+  - `ReadCharacteristicEvent` - Reads characteristic values
+- **Key States**:
+  - `DeviceDetailLoaded` - Device loaded, disconnected
+  - `DeviceDetailConnecting` - Connection in progress
+  - `DeviceDetailConnected` - Connected with services available
+  - `DeviceDetailDiscoveringServices` - Discovering services
+
+### Repository Pattern
+
+#### BLE Repository (`BleRepository`)
+- **Singleton**: Single source of truth for BLE operations
+- **Responsibilities**:
+  - Permission management (Android 12+ and iOS)
+  - Bluetooth status monitoring
+  - Device scanning with real-time updates
+  - Connection management
+  - Service discovery and characteristic operations
+- **Streams**: Provides reactive streams for scan results and connection state
+- **Error Handling**: Comprehensive error handling with meaningful error messages
+
+### Key Benefits
+
+1. **Predictable State**: BLoC pattern ensures predictable state transitions
+2. **Testability**: Clear separation allows easy unit and widget testing
+3. **Reactive UI**: Streams provide real-time UI updates
+4. **Error Handling**: Robust error handling at all levels
+5. **Platform Compatibility**: Handles Android 12+ permissions and iOS requirements
+6. **Performance**: Efficient state management prevents unnecessary rebuilds
 
 ## Recent Fixes
 
@@ -118,12 +188,54 @@ The app implements robust error handling for:
 - Bluetooth adapter state changes
 - Unexpected disconnections
 
-## Architecture
+## Implementation Approach
 
-- Clean separation between UI and BLE logic
-- Reactive state management for real-time updates
-- Proper handling of platform-specific requirements
-- Graceful error states and loading indicators
+### Development Strategy
+This BLE scanner was implemented following modern Flutter best practices:
+
+1. **Feature-First Architecture**: Each major feature (scanning, device details) is self-contained with its own BLoC, UI, and models
+2. **Domain-Driven Design**: Core business logic separated from UI concerns through repository pattern
+3. **Reactive Programming**: Leverages Dart streams for real-time BLE events and state updates
+4. **Material 3 Design**: Modern, accessible UI following Google's latest design guidelines
+5. **Platform Integration**: Proper handling of native Android and iOS BLE requirements
+
+### Technical Decisions
+
+#### State Management Choice: Flutter BLoC
+- **Why BLoC?** Provides excellent separation of concerns, testability, and handles complex async operations well
+- **Event-Driven**: Natural fit for BLE operations which are inherently event-driven (scan results, connection changes)
+- **Stream-Based**: Aligns perfectly with flutter_blue_plus's stream-based API
+- **Testing**: Easy to test business logic independently of UI components
+
+#### Repository Pattern
+- **Single Source of Truth**: BleRepository manages all flutter_blue_plus interactions
+- **Abstraction**: UI components don't directly depend on flutter_blue_plus
+- **Error Handling**: Centralized error handling and permission management
+- **Caching**: Maintains discovered devices list and connection state
+
+#### Permission Handling
+- **Android 12+ Support**: Properly handles new BLUETOOTH_SCAN and BLUETOOTH_CONNECT permissions
+- **iOS Compatibility**: Includes required usage descriptions and handles iOS-specific requirements
+- **User Experience**: Clear messaging when permissions are denied with retry functionality
+
+### Code Organization
+
+```
+Features follow a consistent structure:
+feature/
+├── bloc/           # State management
+│   ├── feature_bloc.dart
+│   ├── feature_event.dart  
+│   └── feature_state.dart
+└── view/           # UI components
+    └── feature_screen.dart
+```
+
+This approach ensures:
+- **Scalability**: Easy to add new features without affecting existing code
+- **Maintainability**: Clear boundaries between different concerns
+- **Testability**: Each layer can be tested independently
+- **Reusability**: Core models and repository can be shared across features
 
 ## Contributing
 

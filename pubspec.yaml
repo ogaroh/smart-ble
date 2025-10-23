@@ -38,6 +38,16 @@ dependencies:
   intl: ^0.20.2
   flutter_localizations:
     sdk: flutter
+    
+  # BLE functionality
+  flutter_blue_plus: ^1.32.12
+  
+  # State management
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+  
+  # Permissions
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
