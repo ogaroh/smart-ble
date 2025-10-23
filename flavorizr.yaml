@@ -1,0 +1,52 @@
+app:
+  android:
+    flavorDimensions: "flavor-type"
+flavors:
+  dev:
+    app:
+      name: "SmartBLE Dev"
+    android:
+      applicationId: "dev.ogaroh.smart_ble.dev"
+      # icon: "assets/envs/dev/app-icon.png"
+      # adaptiveIcon:
+      #   foreground: "assets/envs/dev/app-icon-foreground.png"
+      #   background: "assets/envs/dev/app-icon-background.png"
+    ios:
+      bundleId: "dev.ogaroh.smartBle.dev"
+      # icon: "assets/envs/dev/app-icon.png"
+    macos:
+      bundleId: "dev.ogaroh.smartBle.dev"
+      # icon: "assets/envs/dev/app-icon.png"
+  
+  stag:
+    app:
+      name: "SmartBLE Stag"
+    android:
+      applicationId: "dev.ogaroh.smart_ble.stag"  
+      # icon: "assets/envs/stag/app-icon.png"
+      # adaptiveIcon:
+      #   foreground: "assets/envs/stag/app-icon-foreground.png"
+      #   background: "assets/envs/stag/app-icon-background.png"
+    ios:
+      bundleId: "dev.ogaroh.smartBle.stag"
+      # icon: "assets/envs/stag/app-icon.png"
+    macos:
+      bundleId: "dev.ogaroh.smartBle.stag"
+      # icon: "assets/envs/stag/app-icon.png"
+  
+  
+  prod:
+    app:
+      name: "SmartBLE"
+    android:
+      applicationId: "dev.ogaroh.smart_ble"  
+      # icon: "assets/envs/prod/app-icon.png"
+      # adaptiveIcon:
+      #   foreground: "assets/envs/prod/app-icon-foreground.png"
+      #   background: "assets/envs/prod/app-icon-background.png"
+    ios:
+      bundleId: "dev.ogaroh.smartBle"
+      # icon: "assets/envs/prod/app-icon.png"
+    macos:
+      bundleId: "dev.ogaroh.smartBle"
+      # icon: "assets/envs/prod/app-icon.png"

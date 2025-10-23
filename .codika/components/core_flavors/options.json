@@ -1,0 +1,1 @@
+{"project_name":"smart_ble","environments":["dev","prod","stag"],"app_name":"SmartBLE","ios_bundle_id":"dev.ogaroh.smartBle","android_package_name":"dev.ogaroh.smart_ble"}
