@@ -13,7 +13,6 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   BleScanBloc({BleRepository? bleRepository})
       : _bleRepository = bleRepository ?? BleRepository(),
         super(const BleScanInitial()) {
-    
     // Register event handlers
     on<StartScanEvent>(_onStartScan);
     on<StopScanEvent>(_onStopScan);
@@ -28,7 +27,8 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   }
 
   /// Handle start scan event
-  Future<void> _onStartScan(StartScanEvent event, Emitter<BleScanState> emit) async {
+  Future<void> _onStartScan(
+      StartScanEvent event, Emitter<BleScanState> emit) async {
     try {
       // Check if we're in a ready state
       if (state is! BleScanReady) {
@@ -37,7 +37,7 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
       }
 
       final currentState = state as BleScanReady;
-      
+
       // Emit scanning state
       emit(BleScanScanning(
         devices: currentState.devices,
@@ -64,7 +64,6 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
 
       // Start scanning
       await _bleRepository.startScan(timeout: event.timeout);
-
     } catch (e) {
       final currentState = state;
       if (currentState is BleScanReady) {
@@ -82,11 +81,12 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   }
 
   /// Handle stop scan event
-  Future<void> _onStopScan(StopScanEvent event, Emitter<BleScanState> emit) async {
+  Future<void> _onStopScan(
+      StopScanEvent event, Emitter<BleScanState> emit) async {
     try {
       await _scanSubscription?.cancel();
       _scanSubscription = null;
-      
+
       await _bleRepository.stopScan();
 
       // Return to ready state if we were scanning
@@ -140,7 +140,8 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   }
 
   /// Handle device type filter update event
-  void _onUpdateDeviceTypeFilter(UpdateDeviceTypeFilterEvent event, Emitter<BleScanState> emit) {
+  void _onUpdateDeviceTypeFilter(
+      UpdateDeviceTypeFilterEvent event, Emitter<BleScanState> emit) {
     if (state is BleScanReady) {
       final currentState = state as BleScanReady;
       final filteredDevices = _applyFilters(
@@ -166,7 +167,8 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   }
 
   /// Handle devices discovered event
-  void _onDevicesDiscovered(DevicesDiscoveredEvent event, Emitter<BleScanState> emit) {
+  void _onDevicesDiscovered(
+      DevicesDiscoveredEvent event, Emitter<BleScanState> emit) {
     if (state is BleScanReady) {
       final currentState = state as BleScanReady;
       final filteredDevices = _applyFilters(
@@ -192,10 +194,10 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   /// Handle clear devices event
   void _onClearDevices(ClearDevicesEvent event, Emitter<BleScanState> emit) {
     _bleRepository.clearDiscoveredDevices();
-    
+
     if (state is BleScanReady) {
       final currentState = state as BleScanReady;
-      
+
       if (currentState is BleScanScanning) {
         emit(currentState.copyWith(
           devices: [],
@@ -211,29 +213,32 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
   }
 
   /// Handle refresh Bluetooth status event
-  Future<void> _onRefreshBluetoothStatus(RefreshBluetoothStatusEvent event, Emitter<BleScanState> emit) async {
+  Future<void> _onRefreshBluetoothStatus(
+      RefreshBluetoothStatusEvent event, Emitter<BleScanState> emit) async {
     emit(const BleScanCheckingPermissions());
 
     try {
       // Check if Bluetooth is available
       final isAvailable = await _bleRepository.isBluetoothAvailable();
       if (!isAvailable) {
-        emit(const BleScanBluetoothUnavailable('Bluetooth is not available on this device'));
+        emit(const BleScanBluetoothUnavailable(
+            'Bluetooth is not available on this device'));
         return;
       }
 
       // Check permissions
       final hasPermissions = await _bleRepository.requestPermissions();
       if (!hasPermissions) {
-        emit(const BleScanPermissionsDenied('Bluetooth permissions are required to scan for devices'));
+        emit(const BleScanPermissionsDenied(
+            'Bluetooth permissions are required to scan for devices'));
         return;
       }
 
       // Check if Bluetooth is enabled
       final isOn = await _bleRepository.isBluetoothOn();
       if (!isOn) {
-        emit(const BleScanBluetoothUnavailable('Please turn on Bluetooth to scan for devices'));
-        return;
+        await _bleRepository.turnOnBluetooth();
+        _onRefreshBluetoothStatus(event, emit);
       }
 
       // All checks passed - ready to scan
@@ -242,7 +247,6 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
         devices: devices,
         filteredDevices: devices,
       ));
-
     } catch (e) {
       emit(BleScanError('Failed to check Bluetooth status: $e'));
     }
@@ -258,14 +262,16 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
 
     // Apply name filter
     if (nameFilter.isNotEmpty) {
-      filtered = filtered.where((device) =>
-          device.name.toLowerCase().contains(nameFilter.toLowerCase())
-      ).toList();
+      filtered = filtered
+          .where((device) =>
+              device.name.toLowerCase().contains(nameFilter.toLowerCase()))
+          .toList();
     }
 
     // Apply type filter
     if (typeFilter != null) {
-      filtered = filtered.where((device) => device.deviceType == typeFilter).toList();
+      filtered =
+          filtered.where((device) => device.deviceType == typeFilter).toList();
     }
 
     return filtered;

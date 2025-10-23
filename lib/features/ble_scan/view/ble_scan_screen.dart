@@ -119,6 +119,7 @@ class _BleScanViewState extends State<BleScanView> {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildScanButton(context, state),
           const SizedBox(height: 8),
@@ -205,11 +206,14 @@ class _BleScanViewState extends State<BleScanView> {
       children: [
         Icon(Icons.circle, size: 8, color: statusColor),
         const SizedBox(width: 8),
-        Text(
-          statusText,
-          style: TextStyle(
-            color: statusColor,
-            fontWeight: FontWeight.w600,
+        Expanded(
+          child: Text(
+            statusText,
+            style: TextStyle(
+              color: statusColor,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.start,
           ),
         ),
       ],

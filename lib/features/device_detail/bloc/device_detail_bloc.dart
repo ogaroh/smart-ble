@@ -31,7 +31,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     // Listen to connection state changes
     _connectionSubscription = _bleRepository.connectionState.listen(
       (connectionState) {
-        add(ConnectionStateChangedEvent(connectionState.displayName));
+        add(ConnectionStateChangedEvent(connectionState));
       },
       onError: (error) {
         if (state is DeviceDetailLoaded) {
@@ -173,22 +173,7 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     if (state is! DeviceDetailLoaded) return;
 
     final currentState = state as DeviceDetailLoaded;
-
-    // Map string back to enum
-    BleConnectionState connectionState;
-    switch (event.connectionState) {
-      case 'Connected':
-        connectionState = BleConnectionState.connected;
-        break;
-      case 'Connecting...':
-        connectionState = BleConnectionState.connecting;
-        break;
-      case 'Disconnecting...':
-        connectionState = BleConnectionState.disconnecting;
-        break;
-      default:
-        connectionState = BleConnectionState.disconnected;
-    }
+    final connectionState = event.connectionState;
 
     // Emit appropriate state based on connection state
     switch (connectionState) {
