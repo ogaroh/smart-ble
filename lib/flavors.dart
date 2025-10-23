@@ -5,7 +5,6 @@ enum Flavor {
   dev,
   stag,
   prod,
-  
 }
 
 class F {
@@ -23,7 +22,6 @@ Flavor getFlavor() {
     'dev' => Flavor.dev,
     'prod' => Flavor.prod,
     'stag' => Flavor.stag,
-    
     null || '' => Flavor.values.first,
     _ => throw UnsupportedError('Invalid flavor: $flavor'),
   };

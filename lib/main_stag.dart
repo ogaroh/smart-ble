@@ -5,7 +5,7 @@ import 'main.dart';
 void main() async {
   // Add environnement dependent code here
   // ...
-  
+
   F.appFlavor = Flavor.stag;
   await runMainApp();
 }

@@ -5,6 +5,20 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+def dartDefines = [:];
+if (project.hasProperty('dart-defines')) {
+    // Decode dart-defines, which are comma-separated and encoded in Base64, and store them in a variable.
+    dartDefines = dartDefines + project.property('dart-defines')
+        .split(',')
+        .collectEntries { entry ->
+            def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+            [(pair.first()): pair.last()]
+        }
+}
+
+
+
+
 android {
     namespace = "dev.ogaroh.smart_ble"
     compileSdk = flutter.compileSdkVersion

@@ -10,7 +10,7 @@ Future<void> runMainApp() async {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
   );
-  
+
   ErrorWidget.builder = errorBuilderWidget;
 
   // Add your initialization code here
