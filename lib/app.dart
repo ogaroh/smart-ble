@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             home: const BleScanScreen(),
             builder: (context, child) {
               return Banner(
-                message: F.appFlavor?.name ?? "SmartBLE",
+                message: F.appFlavor.name,
                 location: BannerLocation.topEnd,
                 color: pinkColor,
                 shadow: const BoxShadow(

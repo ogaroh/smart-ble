@@ -53,8 +53,9 @@ class _BleScanViewState extends State<BleScanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Image.asset(
+            'assets/images/app_icon/android_app_icon_adaptive_foreground.png'),
         title: const Text('SmartBLE'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -120,29 +121,37 @@ class _BleScanViewState extends State<BleScanView> {
   Widget _buildScanButton(BuildContext context, BleScanState state) {
     final isScanning = state is BleScanScanning;
     final canScan = state is BleScanReady;
-    
+
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: canScan || isScanning ? () {
-          if (isScanning) {
-            context.read<BleScanBloc>().add(const StopScanEvent());
-          } else {
-            context.read<BleScanBloc>().add(const StartScanEvent());
-          }
-        } : () {
-          context.read<BleScanBloc>().add(const RefreshBluetoothStatusEvent());
-        },
-        icon: isScanning 
+        onPressed: canScan || isScanning
+            ? () {
+                if (isScanning) {
+                  context.read<BleScanBloc>().add(const StopScanEvent());
+                } else {
+                  context.read<BleScanBloc>().add(const StartScanEvent());
+                }
+              }
+            : () {
+                context
+                    .read<BleScanBloc>()
+                    .add(const RefreshBluetoothStatusEvent());
+              },
+        icon: isScanning
             ? const SizedBox(
                 width: 16,
                 height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                child: CircularProgressIndicator(
+                    strokeWidth: 2, color: Colors.white),
               )
             : Icon(canScan ? Icons.search : Icons.bluetooth_disabled),
-        label: Text(isScanning ? 'Stop Scan' : (canScan ? 'Start Scan' : 'Check Bluetooth')),
+        label: Text(isScanning
+            ? 'Stop Scan'
+            : (canScan ? 'Start Scan' : 'Check Bluetooth')),
         style: ElevatedButton.styleFrom(
-          backgroundColor: isScanning ? Colors.red : (canScan ? Colors.blue : Colors.orange),
+          backgroundColor:
+              isScanning ? Colors.red : (canScan ? Colors.blue : Colors.orange),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 12),
         ),
@@ -153,7 +162,7 @@ class _BleScanViewState extends State<BleScanView> {
   Widget _buildStatusText(BuildContext context, BleScanState state) {
     String statusText;
     Color statusColor;
-    
+
     if (state is BleScanCheckingPermissions) {
       statusText = 'Checking Bluetooth permissions...';
       statusColor = Colors.orange;
@@ -165,7 +174,8 @@ class _BleScanViewState extends State<BleScanView> {
       statusColor = Colors.red;
     } else if (state is BleScanScanning) {
       final deviceCount = state.filteredDevices.length;
-      statusText = 'Scanning... ($deviceCount device${deviceCount != 1 ? 's' : ''} found)';
+      statusText =
+          'Scanning... ($deviceCount device${deviceCount != 1 ? 's' : ''} found)';
       statusColor = Colors.blue;
     } else if (state is BleScanReady) {
       final deviceCount = state.filteredDevices.length;
@@ -178,7 +188,7 @@ class _BleScanViewState extends State<BleScanView> {
       statusText = 'Ready to scan';
       statusColor = Colors.grey;
     }
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -197,7 +207,7 @@ class _BleScanViewState extends State<BleScanView> {
 
   Widget _buildFilters(BuildContext context, BleScanState state) {
     if (state is! BleScanReady) return const SizedBox.shrink();
-    
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -206,18 +216,18 @@ class _BleScanViewState extends State<BleScanView> {
           CupertinoSearchTextField(
             controller: _filterController,
             placeholder: 'Search devices by name...',
-            backgroundColor: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(12),
             style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           const SizedBox(height: 12),
-          
+
           // Device type filter
           Row(
             children: [
-              const Text('Filter by type:', style: TextStyle(fontWeight: FontWeight.w500)),
+              const Text('Filter by type:',
+                  style: TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(width: 8),
               Expanded(
                 child: Wrap(
@@ -229,26 +239,35 @@ class _BleScanViewState extends State<BleScanView> {
                       onSelected: (selected) {
                         if (selected) {
                           setState(() => _selectedDeviceType = null);
-                          context.read<BleScanBloc>().add(const UpdateDeviceTypeFilterEvent(null));
+                          context
+                              .read<BleScanBloc>()
+                              .add(const UpdateDeviceTypeFilterEvent(null));
                         }
                       },
                     ),
                     FilterChip(
                       label: const Text('Audio'),
-                      selected: _selectedDeviceType == BleDeviceType.audioDevice,
+                      selected:
+                          _selectedDeviceType == BleDeviceType.audioDevice,
                       onSelected: (selected) {
-                        final deviceType = selected ? BleDeviceType.audioDevice : null;
+                        final deviceType =
+                            selected ? BleDeviceType.audioDevice : null;
                         setState(() => _selectedDeviceType = deviceType);
-                        context.read<BleScanBloc>().add(UpdateDeviceTypeFilterEvent(deviceType));
+                        context
+                            .read<BleScanBloc>()
+                            .add(UpdateDeviceTypeFilterEvent(deviceType));
                       },
                     ),
                     FilterChip(
                       label: const Text('Smartwatch'),
                       selected: _selectedDeviceType == BleDeviceType.smartwatch,
                       onSelected: (selected) {
-                        final deviceType = selected ? BleDeviceType.smartwatch : null;
+                        final deviceType =
+                            selected ? BleDeviceType.smartwatch : null;
                         setState(() => _selectedDeviceType = deviceType);
-                        context.read<BleScanBloc>().add(UpdateDeviceTypeFilterEvent(deviceType));
+                        context
+                            .read<BleScanBloc>()
+                            .add(UpdateDeviceTypeFilterEvent(deviceType));
                       },
                     ),
                   ],
@@ -274,8 +293,9 @@ class _BleScanViewState extends State<BleScanView> {
         ),
       );
     }
-    
-    if (state is BleScanPermissionsDenied || state is BleScanBluetoothUnavailable) {
+
+    if (state is BleScanPermissionsDenied ||
+        state is BleScanBluetoothUnavailable) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -287,14 +307,18 @@ class _BleScanViewState extends State<BleScanView> {
             ),
             const SizedBox(height: 16),
             Text(
-              state is BleScanPermissionsDenied ? state.message : (state as BleScanBluetoothUnavailable).message,
+              state is BleScanPermissionsDenied
+                  ? state.message
+                  : (state as BleScanBluetoothUnavailable).message,
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                context.read<BleScanBloc>().add(const RefreshBluetoothStatusEvent());
+                context
+                    .read<BleScanBloc>()
+                    .add(const RefreshBluetoothStatusEvent());
               },
               child: const Text('Retry'),
             ),
@@ -302,7 +326,7 @@ class _BleScanViewState extends State<BleScanView> {
         ),
       );
     }
-    
+
     if (state is BleScanReady) {
       if (state.filteredDevices.isEmpty) {
         return Center(
@@ -316,7 +340,9 @@ class _BleScanViewState extends State<BleScanView> {
               ),
               const SizedBox(height: 16),
               Text(
-                state is BleScanScanning ? 'Scanning for devices...' : 'No devices found',
+                state is BleScanScanning
+                    ? 'Scanning for devices...'
+                    : 'No devices found',
                 style: const TextStyle(fontSize: 16),
               ),
               if (state is! BleScanScanning) ...[
@@ -330,7 +356,7 @@ class _BleScanViewState extends State<BleScanView> {
           ),
         );
       }
-      
+
       return RefreshIndicator(
         onRefresh: () async {
           context.read<BleScanBloc>().add(const ClearDevicesEvent());
@@ -346,7 +372,7 @@ class _BleScanViewState extends State<BleScanView> {
         ),
       );
     }
-    
+
     return const SizedBox.shrink();
   }
 
