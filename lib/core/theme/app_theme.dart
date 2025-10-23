@@ -91,9 +91,7 @@ class AppTheme {
       brightness: Brightness.light,
       surface: AppColors.lightSurface,
       onSurface: AppColors.lightOnSurface,
-      background: AppColors.lightBackground,
-      onBackground: AppColors.lightOnBackground,
-      surfaceVariant: AppColors.lightSurfaceVariant,
+      surfaceContainerHighest: AppColors.lightSurfaceVariant,
       onSurfaceVariant: AppColors.lightOnSurfaceVariant,
     );
 
@@ -106,19 +104,19 @@ class AppTheme {
           fontSize: 32,
           fontWeight: FontWeight.w700,
           letterSpacing: -0.25,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         headlineMedium: GoogleFonts.lato(
           fontSize: 28,
           fontWeight: FontWeight.w600,
           letterSpacing: -0.15,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         headlineSmall: GoogleFonts.lato(
           fontSize: 24,
           fontWeight: FontWeight.w600,
           letterSpacing: 0,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         // Titles
         titleLarge: GoogleFonts.lato(
@@ -222,7 +220,7 @@ class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: colorScheme.surfaceVariant,
+        backgroundColor: colorScheme.surfaceContainerHighest,
         selectedColor: colorScheme.primary,
         labelStyle: GoogleFonts.lato(
           fontSize: 12,
@@ -247,9 +245,7 @@ class AppTheme {
       brightness: Brightness.dark,
       surface: AppColors.darkSurface,
       onSurface: AppColors.darkOnSurface,
-      background: AppColors.darkBackground,
-      onBackground: AppColors.darkOnBackground,
-      surfaceVariant: AppColors.darkSurfaceVariant,
+      surfaceContainerHighest: AppColors.darkSurfaceVariant,
       onSurfaceVariant: AppColors.darkOnSurfaceVariant,
     );
 
@@ -262,19 +258,19 @@ class AppTheme {
           fontSize: 32,
           fontWeight: FontWeight.w700,
           letterSpacing: -0.25,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         headlineMedium: GoogleFonts.lato(
           fontSize: 28,
           fontWeight: FontWeight.w600,
           letterSpacing: -0.15,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         headlineSmall: GoogleFonts.lato(
           fontSize: 24,
           fontWeight: FontWeight.w600,
           letterSpacing: 0,
-          color: colorScheme.onBackground,
+          color: colorScheme.onSurface,
         ),
         // Titles
         titleLarge: GoogleFonts.lato(
@@ -378,7 +374,7 @@ class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: colorScheme.surfaceVariant,
+        backgroundColor: colorScheme.surfaceContainerHighest,
         selectedColor: colorScheme.primary,
         labelStyle: GoogleFonts.lato(
           fontSize: 12,
