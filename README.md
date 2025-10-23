@@ -1,12 +1,12 @@
-# Smart BLE - IoT Flutter Application (BLE)
+# SmartBLE - IoT Flutter Application (BLE)
 
-## 📱 Application Overview
+## Mobile Application Overview
 
 A comprehensive Flutter application for Bluetooth Low Energy (BLE) device scanning, connection, and interaction with Material 3 design principles.
 
 ---
 
-## 🚀 Instructions on How to Run the Application
+## Instructions on How to Run the Application
 
 ### Prerequisites
 
@@ -244,7 +244,7 @@ Services Found → DeviceDetailConnected (with services)
 
 ### 🔗 **Functional APK**
 
-[Download Smart BLE APK](https://drive.google.com/drive/folders/your-apk-folder-id)
+[Download Smart BLE APK](https://github.com/ogaroh/smart-ble/releases/download/v1.0.0/smart-ble-app-prod-release.apk)
 _Production build with release optimizations_
 
 ### 🎥 **Demo Video**
