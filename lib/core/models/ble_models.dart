@@ -78,16 +78,21 @@ class BleCharacteristicModel extends Equatable {
       BluetoothCharacteristic characteristic) {
     final properties = <BleCharacteristicProperty>[];
 
-    if (characteristic.properties.read)
+    if (characteristic.properties.read) {
       properties.add(BleCharacteristicProperty.read);
-    if (characteristic.properties.write)
+    }
+    if (characteristic.properties.write) {
       properties.add(BleCharacteristicProperty.write);
-    if (characteristic.properties.writeWithoutResponse)
+    }
+    if (characteristic.properties.writeWithoutResponse) {
       properties.add(BleCharacteristicProperty.writeWithoutResponse);
-    if (characteristic.properties.notify)
+    }
+    if (characteristic.properties.notify) {
       properties.add(BleCharacteristicProperty.notify);
-    if (characteristic.properties.indicate)
+    }
+    if (characteristic.properties.indicate) {
       properties.add(BleCharacteristicProperty.indicate);
+    }
 
     return BleCharacteristicModel(
       uuid: characteristic.uuid.toString(),
