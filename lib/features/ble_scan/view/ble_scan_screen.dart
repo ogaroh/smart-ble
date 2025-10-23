@@ -54,8 +54,15 @@ class _BleScanViewState extends State<BleScanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset(
-            'assets/images/app_icon/android_app_icon_adaptive_foreground.png'),
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Image.asset(
+            'assets/images/app_icon/app_icon.png',
+            height: 30.0,
+            width: 30.0,
+            fit: BoxFit.contain,
+          ),
+        ),
         title: const Text('SmartBLE'),
         actions: [
           IconButton(
@@ -151,8 +158,7 @@ class _BleScanViewState extends State<BleScanView> {
             ? 'Stop Scan'
             : (canScan ? 'Start Scan' : 'Check Bluetooth')),
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isScanning
+          backgroundColor: isScanning
               ? Colors.red
               : (canScan ? AppColors.primaryBlue : AppColors.warning),
           foregroundColor: Colors.white,
