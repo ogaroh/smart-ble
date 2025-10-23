@@ -1,53 +1,76 @@
 # SmartBLE
 
-A Flutter application for scanning and connecting to Bluetooth Low Energy (BLE) smart devices. This app provides a clean, modern interface for discovering nearby BLE devices, viewing their information, and exploring their services and characteristics.
+A modern Flutter application for scanning and connecting to Bluetooth Low Energy (BLE) smart devices. This app provides a clean, intuitive interface with comprehensive theming support for discovering nearby BLE devices, managing connections, and exploring device services.
 
-## Features
+## ✨ Features
 
-### BLE Scan Screen
+### 🔍 BLE Scan Screen
 - **Permission Management**: Automatically requests and handles Bluetooth and Location permissions (including Android 12+ BLUETOOTH_SCAN and BLUETOOTH_CONNECT permissions)
 - **Bluetooth Status Detection**: Detects and prompts users to enable Bluetooth when disabled
 - **Real-time Device Scanning**: Start/stop BLE scanning with real-time device discovery
 - **Comprehensive Device Information**: Displays device name, MAC address/UUID, and signal strength (RSSI)
+- **Modern Search Interface**: iOS-style Cupertino search field for enhanced UX
 - **Smart Filtering**: 
-  - Text-based filtering by device name
+  - Text-based filtering by device name with real-time results
   - Predefined filters for device types (Audio Devices, Smartwatches)
+  - RSSI-based signal strength filtering
 - **Intuitive Navigation**: Tap any device to view detailed information
 
-### Device Detail Screen
+### 📱 Device Detail Screen
 - **Device Information**: Shows selected device's name, address, and current RSSI
 - **Connection Management**: Connect/disconnect with real-time connection state updates
 - **Service Discovery**: Automatic discovery of device services and characteristics upon connection
 - **Service/Characteristic Explorer**: Expandable list showing all services with their characteristics and properties (Read, Write, Notify)
 
-## Technical Stack
+### ⚙️ Settings & Customization
+- **Theme Management**: Light, Dark, and System theme modes with instant switching
+- **BLE Configuration**: Customizable scan and connection timeouts
+- **Scanning Preferences**: 
+  - Auto-scan on startup toggle
+  - Show/hide unknown devices
+  - Adjustable RSSI threshold slider
+- **Advanced Options**: Auto-connect to last device, reset to defaults
+- **Persistent Storage**: All settings saved using SharedPreferences
 
-- **Framework**: Flutter & Dart (stable version)
-- **BLE Integration**: flutter_blue_plus package
-- **UI Design**: Material 3 design principles
+### 🎨 Modern UI/UX
+- **Material 3 Design**: Latest Material Design principles with custom theming
+- **Google Fonts Integration**: Lato font family for consistent, professional typography
+- **Custom Color Scheme**: Brand-aligned purple/pink color palette
+- **Responsive Layout**: Optimized for various screen sizes
+- **Smooth Animations**: Polished transitions and interactions
+
+## 🛠 Technical Stack
+
+- **Framework**: Flutter & Dart (stable version) with Material 3
+- **State Management**: BLoC pattern for predictable state handling
+- **BLE Integration**: flutter_blue_plus ^1.32.12 for robust BLE operations
+- **Fonts**: google_fonts ^6.2.1 for enhanced typography
+- **Storage**: shared_preferences ^2.3.2 for settings persistence
+- **Permissions**: permission_handler ^11.3.1 for platform permissions
+- **Architecture**: Clean Architecture with feature-based organization
 - **Platform Support**: Android and iOS with proper native configurations
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 - Flutter SDK (stable version)
-- Android Studio / Xcode for platform-specific development
+- Android Studio / Xcode for platform-specific development  
 - Physical device with Bluetooth capabilities (BLE scanning requires hardware)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 ```bash
 git clone <repository-url>
 cd smart_ble
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 ```bash
 flutter pub get
 ```
 
-3. Run the application:
+3. **Run the application:**
 
 **For development flavor:**
 ```bash
@@ -71,6 +94,42 @@ flutter build apk --flavor dev --debug
 flutter build apk --flavor prod --release
 ```
 
+### 📖 Usage Guide
+
+1. **First Launch**: Grant Bluetooth and Location permissions when prompted
+2. **Scanning**: Tap the scan button to discover nearby BLE devices
+3. **Filtering**: Use the search bar or filter buttons to find specific devices
+4. **Device Connection**: Tap any discovered device to view details and connect
+5. **Settings**: Access the settings via the gear icon to customize:
+   - Theme preference (Light/Dark/System)
+   - BLE timeouts and behavior
+   - Scanning preferences
+   - RSSI filtering thresholds
+
+## 🏗 Architecture & Recent Updates
+
+### Major Features Added (October 2025)
+
+#### 🎨 Modern UI/UX Overhaul
+- **CupertinoSearchTextField**: Replaced standard search with iOS-style search field
+- **Google Fonts Integration**: Implemented Lato font family across the entire app
+- **Comprehensive Theme System**: 
+  - Material 3 design implementation
+  - Custom brand colors (purple #6139F7, pink #DA79E5)
+  - Complete light/dark theme support with system preference detection
+
+#### ⚙️ Settings & Preferences System
+- **Settings Screen**: Full-featured configuration panel with organized sections
+- **Theme Control**: Light/Dark/System mode switching with instant preview
+- **BLE Configuration**: Customizable scan (5-60s) and connection timeouts
+- **Scanning Options**: Auto-scan toggle, unknown device visibility, RSSI filtering
+- **Persistent Storage**: SharedPreferences integration for settings persistence
+
+#### 🛠 Technical Improvements  
+- **BLoC Architecture**: Implemented proper state management for settings
+- **Clean Code**: Fixed all deprecation warnings, updated to latest Material 3 APIs
+- **Feature Organization**: Modular structure with clear separation of concerns
+
 ### Platform Configuration
 
 #### Android
@@ -78,11 +137,11 @@ flutter build apk --flavor prod --release
 - Supports Android 12+ permission model (BLUETOOTH_SCAN, BLUETOOTH_CONNECT)
 - Location permissions for BLE scanning
 
-#### iOS
+#### iOS  
 - Info.plist configured with Bluetooth usage descriptions
 - Background modes for maintaining BLE connections
 
-## App Flavors
+## 📁 App Flavors
 
 The project is configured with three flavors for different environments:
 
@@ -90,7 +149,7 @@ The project is configured with three flavors for different environments:
   - Package ID: `dev.ogaroh.smart_ble.dev`
   - For development and testing
 
-- **stag**: Staging environment (`SmartBLE Stag`)
+- **stag**: Staging environment (`SmartBLE Stag`) 
   - Package ID: `dev.ogaroh.smart_ble.stag`
   - For pre-production testing
 
@@ -98,32 +157,36 @@ The project is configured with three flavors for different environments:
   - Package ID: `dev.ogaroh.smart_ble`
   - For app store releases
 
-## State Management
+## 🏛 State Management & Architecture
 
-The application uses **Flutter BLoC (Business Logic Component)** pattern for state management, providing a predictable and testable architecture for handling complex BLE operations.
+The application uses **Flutter BLoC (Business Logic Component)** pattern for predictable state management, ensuring clean separation between UI and business logic.
 
 ### Architecture Overview
 
-The app follows a feature-based architecture with clear separation of concerns:
+The app follows a clean, feature-based architecture with clear separation of concerns:
 
 ```
 lib/
 ├── core/
 │   ├── models/           # Domain models (BLE devices, services, characteristics)
+│   ├── theme/           # App-wide theming (AppTheme, AppColors)
 │   └── repositories/     # Data access layer (BLE repository)
 ├── features/
 │   ├── ble_scan/        # BLE scanning feature
 │   │   ├── bloc/        # State management (BleScanBloc)
 │   │   └── view/        # UI components (BleScanScreen)
-│   └── device_detail/   # Device connection feature  
-│       ├── bloc/        # State management (DeviceDetailBloc)
-│       └── view/        # UI components (DeviceDetailScreen)
-└── app.dart            # App configuration
+│   ├── device_detail/   # Device connection feature  
+│   │   ├── bloc/        # State management (DeviceDetailBloc)
+│   │   └── view/        # UI components (DeviceDetailScreen)
+│   └── settings/        # Settings & preferences feature
+│       ├── bloc/        # State management (SettingsBloc)
+│       └── view/        # UI components (SettingsScreen)
+└── app.dart            # App configuration with theme management
 ```
 
 ### BLoC Implementation
 
-#### 1. BLE Scan BLoC (`BleScanBloc`)
+#### 1. **BLE Scan BLoC** (`BleScanBloc`)
 - **Purpose**: Manages device discovery, filtering, and scanning state
 - **Key Events**:
   - `StartScanEvent` - Initiates BLE scanning
@@ -137,78 +200,122 @@ lib/
   - `BleScanPermissionsDenied` - Missing required permissions
   - `BleScanError` - Error occurred during scanning
 
-#### 2. Device Detail BLoC (`DeviceDetailBloc`) 
+#### 2. **Device Detail BLoC** (`DeviceDetailBloc`) 
 - **Purpose**: Manages device connection, service discovery, and characteristic operations
+
+#### 3. **Settings BLoC** (`SettingsBloc`) ⭐ *New*
+- **Purpose**: Manages app settings, theme preferences, and BLE configuration
+- **Key Features**:
+  - SharedPreferences integration for persistence
+  - Theme mode management (Light/Dark/System)
+  - BLE timeout configurations
+  - Scanning preferences and RSSI filtering
 - **Key Events**:
-  - `ConnectToDeviceEvent` - Connects to selected device
-  - `DisconnectFromDeviceEvent` - Disconnects from device
-  - `DiscoverServicesEvent` - Discovers device services/characteristics
-  - `ReadCharacteristicEvent` - Reads characteristic values
-- **Key States**:
-  - `DeviceDetailLoaded` - Device loaded, disconnected
-  - `DeviceDetailConnecting` - Connection in progress
-  - `DeviceDetailConnected` - Connected with services available
-  - `DeviceDetailDiscoveringServices` - Discovering services
+  - `LoadSettingsEvent` - Loads saved settings
+  - `UpdateThemeModeEvent` - Changes app theme
+  - `UpdateScanTimeoutEvent` - Configures scan duration
+  - `ResetSettingsEvent` - Restores defaults
+
+## 📦 Dependencies
+
+### Core Dependencies
+```yaml
+dependencies:
+  flutter_blue_plus: ^1.32.12     # BLE operations
+  flutter_bloc: ^8.1.6            # State management
+  google_fonts: ^6.2.1            # Typography (Lato font)
+  shared_preferences: ^2.3.2      # Settings persistence
+  permission_handler: ^11.3.1     # Platform permissions
+  equatable: ^2.0.5               # Value equality
+  
+dev_dependencies:
+  flutter_lints: ^5.0.0           # Dart/Flutter linting
+  flutter_native_splash: ^2.4.4   # Splash screen generation
+  flavorizr: ^2.2.3               # App flavors configuration
+```
+
+### Recent Additions (October 2025)
+- **google_fonts**: Added for Lato font family integration
+- **shared_preferences**: Added for settings persistence
+- **Enhanced theming**: Updated to latest Material 3 APIs
+
+## 🔧 Key Features & Implementation
 
 ### Repository Pattern
+- **BLE Repository**: Centralized BLE operations management
+- **Permission Handling**: Android 12+ and iOS permission management  
+- **Real-time Streams**: Reactive BLE device discovery
+- **Connection Management**: Robust connection state handling
 
-#### BLE Repository (`BleRepository`)
-- **Singleton**: Single source of truth for BLE operations
-- **Responsibilities**:
-  - Permission management (Android 12+ and iOS)
-  - Bluetooth status monitoring
-  - Device scanning with real-time updates
-  - Connection management
-  - Service discovery and characteristic operations
-- **Streams**: Provides reactive streams for scan results and connection state
-- **Error Handling**: Comprehensive error handling with meaningful error messages
+### Error Handling & Reliability
+- Bluetooth permission denials with user guidance
+- Connection failure recovery and retry logic
+- Service discovery error handling
+- Bluetooth adapter state monitoring
+- Graceful handling of unexpected disconnections
 
-### Key Benefits
+## 📈 Recent Updates & Improvements
 
-1. **Predictable State**: BLoC pattern ensures predictable state transitions
-2. **Testability**: Clear separation allows easy unit and widget testing
-3. **Reactive UI**: Streams provide real-time UI updates
-4. **Error Handling**: Robust error handling at all levels
-5. **Platform Compatibility**: Handles Android 12+ permissions and iOS requirements
-6. **Performance**: Efficient state management prevents unnecessary rebuilds
+### October 2025 Major Release
+- ✅ **UI Modernization**: CupertinoSearchTextField, Google Fonts (Lato)
+- ✅ **Comprehensive Theming**: Material 3 with Light/Dark/System modes
+- ✅ **Settings System**: Complete preferences management with BLoC
+- ✅ **Code Quality**: Fixed all deprecation warnings, updated APIs
+- ✅ **Architecture Enhancement**: Improved separation of concerns
 
-## Recent Fixes
+### Build & Performance Fixes
+- **Kotlin Compatibility**: Updated from 1.8.22 to 2.1.0+
+- **Flavor Configuration**: Properly configured dev/stag/prod builds
+- **Material 3 Migration**: Updated deprecated color properties
+- **Performance Optimization**: Efficient state management and rebuilds
 
-### Build Configuration
-- **Kotlin Version**: Updated from 1.8.22 to 2.1.0 to maintain Flutter compatibility
-- **Flavor Configuration**: Properly configured Android product flavors using flutter_flavorizr
-- **Build Tasks**: Fixed `assembleDevDebug` task availability through proper flavor setup
+## 🧪 Development & Testing
 
-## Error Handling
+### Code Quality
+- **Flutter Lints**: Strict linting rules for consistent code quality
+- **No Issues Found**: All deprecation warnings resolved ✅
+- **Material 3 Compliance**: Updated to latest design APIs
+- **BLoC Testing**: Testable architecture for business logic
 
-The app implements robust error handling for:
-- Bluetooth permission denials
-- Connection failures
-- Service discovery errors
-- Bluetooth adapter state changes
-- Unexpected disconnections
+### Build Verification
+```bash
+# Verify code quality
+flutter analyze
+# Result: No issues found! ✅
 
-## Implementation Approach
+# Build verification
+flutter build apk --debug
+# Result: ✓ Built successfully ✅
+```
 
-### Development Strategy
-This BLE scanner was implemented following modern Flutter best practices:
+## 🚀 Future Enhancements
 
-1. **Feature-First Architecture**: Each major feature (scanning, device details) is self-contained with its own BLoC, UI, and models
-2. **Domain-Driven Design**: Core business logic separated from UI concerns through repository pattern
-3. **Reactive Programming**: Leverages Dart streams for real-time BLE events and state updates
-4. **Material 3 Design**: Modern, accessible UI following Google's latest design guidelines
-5. **Platform Integration**: Proper handling of native Android and iOS BLE requirements
+### Planned Features
+- **Characteristic Operations**: Read/Write/Notify functionality
+- **Connection History**: Remember previously connected devices
+- **Export Functionality**: Save scan results and device information
+- **Advanced Filtering**: More sophisticated device filtering options
+- **Testing Suite**: Comprehensive unit and widget tests
 
-### Technical Decisions
+## 📱 Screenshots
 
-#### State Management Choice: Flutter BLoC
-- **Why BLoC?** Provides excellent separation of concerns, testability, and handles complex async operations well
-- **Event-Driven**: Natural fit for BLE operations which are inherently event-driven (scan results, connection changes)
-- **Stream-Based**: Aligns perfectly with flutter_blue_plus's stream-based API
-- **Testing**: Easy to test business logic independently of UI components
+*[Screenshots would be added here showing the modern UI with different themes]*
 
-#### Repository Pattern
-- **Single Source of Truth**: BleRepository manages all flutter_blue_plus interactions
+## 🤝 Contributing
+
+Contributions are welcome! Please ensure:
+- Follow the established BLoC pattern
+- Maintain the feature-based architecture
+- Update tests for any new functionality
+- Follow Flutter/Dart style guidelines
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**SmartBLE** - A modern, comprehensive Flutter BLE scanner with advanced theming and settings management.
 - **Abstraction**: UI components don't directly depend on flutter_blue_plus
 - **Error Handling**: Centralized error handling and permission management
 - **Caching**: Maintains discovered devices list and connection state
