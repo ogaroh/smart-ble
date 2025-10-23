@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_ble/core/theme/app_theme.dart';
 import '../../../core/models/ble_device.dart';
 import '../../../core/models/ble_models.dart';
 import '../bloc/device_detail_bloc.dart';
@@ -18,7 +19,8 @@ class DeviceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DeviceDetailBloc()..add(InitializeDeviceEvent(device)),
+      create: (context) =>
+          DeviceDetailBloc()..add(InitializeDeviceEvent(device)),
       child: const DeviceDetailView(),
     );
   }
@@ -39,15 +41,22 @@ class DeviceDetailView extends StatelessWidget {
           if (state is DeviceDetailError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
+                content: Text(
+                  state.message,
+                  style: TextStyle(color: AppColors.lightSurface),
+                ),
+                backgroundColor: AppColors.error,
               ),
             );
-          } else if (state is DeviceDetailLoaded && state.errorMessage != null) {
+          } else if (state is DeviceDetailLoaded &&
+              state.errorMessage != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage!),
-                backgroundColor: Colors.orange,
+                content: Text(
+                  state.errorMessage ?? "Error",
+                  style: TextStyle(color: AppColors.lightSurface),
+                ),
+                backgroundColor: AppColors.warning,
               ),
             );
           }
@@ -147,7 +156,8 @@ class DeviceDetailView extends StatelessWidget {
             _buildInfoRow('Address', state.device.address),
             _buildInfoRow('RSSI', '${state.device.rssi} dBm'),
             if (state.device.serviceUuids.isNotEmpty)
-              _buildInfoRow('Advertised Services', '${state.device.serviceUuids.length} service(s)'),
+              _buildInfoRow('Advertised Services',
+                  '${state.device.serviceUuids.length} service(s)'),
           ],
         ),
       ),
@@ -178,7 +188,8 @@ class DeviceDetailView extends StatelessWidget {
   Widget _buildConnectionCard(BuildContext context, DeviceDetailLoaded state) {
     final isConnected = state.connectionState == BleConnectionState.connected;
     final isConnecting = state.connectionState == BleConnectionState.connecting;
-    final isDisconnecting = state.connectionState == BleConnectionState.disconnecting;
+    final isDisconnecting =
+        state.connectionState == BleConnectionState.disconnecting;
 
     return Card(
       child: Padding(
@@ -237,13 +248,18 @@ class DeviceDetailView extends StatelessWidget {
                     ? null
                     : () {
                         if (isConnected) {
-                          context.read<DeviceDetailBloc>().add(const DisconnectFromDeviceEvent());
+                          context
+                              .read<DeviceDetailBloc>()
+                              .add(const DisconnectFromDeviceEvent());
                         } else {
-                          context.read<DeviceDetailBloc>().add(const ConnectToDeviceEvent());
+                          context
+                              .read<DeviceDetailBloc>()
+                              .add(const ConnectToDeviceEvent());
                         }
                       },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isConnected ? Colors.red : Colors.blue,
+                  backgroundColor:
+                      isConnected ? AppColors.error : AppColors.primaryBlue,
                   foregroundColor: Colors.white,
                 ),
                 child: Text(isConnected ? 'Disconnect' : 'Connect'),
@@ -336,13 +352,15 @@ class DeviceDetailView extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: ExpansionTile(
+        dense: true,
+        visualDensity: VisualDensity.compact,
         leading: Icon(
           Icons.settings_bluetooth,
-          color: service.isPrimary ? Colors.blue : Colors.grey,
+          color: service.isPrimary ? AppColors.primaryBlue : Colors.grey,
         ),
         title: Text(
           service.displayName,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
           service.uuid,
@@ -358,14 +376,15 @@ class DeviceDetailView extends StatelessWidget {
               ),
             )
           else
-            ...service.characteristics.map((characteristic) => 
+            ...service.characteristics.map((characteristic) =>
                 _buildCharacteristicTile(context, service, characteristic)),
         ],
       ),
     );
   }
 
-  Widget _buildCharacteristicTile(BuildContext context, BleServiceModel service, BleCharacteristicModel characteristic) {
+  Widget _buildCharacteristicTile(BuildContext context, BleServiceModel service,
+      BleCharacteristicModel characteristic) {
     return ListTile(
       leading: const Icon(Icons.data_object, color: Colors.green),
       title: Text(characteristic.displayName),
@@ -379,15 +398,16 @@ class DeviceDetailView extends StatelessWidget {
           const SizedBox(height: 4),
           Wrap(
             spacing: 4,
-            children: characteristic.properties.map((property) => 
-                Chip(
-                  label: Text(
-                    property.displayName,
-                    style: const TextStyle(fontSize: 10),
-                  ),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: VisualDensity.compact,
-                )).toList(),
+            children: characteristic.properties
+                .map((property) => Chip(
+                      label: Text(
+                        property.displayName,
+                        style: const TextStyle(fontSize: 10),
+                      ),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity.compact,
+                    ))
+                .toList(),
           ),
           if (characteristic.value != null) ...[
             const SizedBox(height: 4),
@@ -398,22 +418,27 @@ class DeviceDetailView extends StatelessWidget {
           ],
         ],
       ),
-      trailing: characteristic.properties.contains(BleCharacteristicProperty.read)
-          ? IconButton(
-              icon: const Icon(Icons.download),
-              onPressed: () {
-                context.read<DeviceDetailBloc>().add(
-                  ReadCharacteristicEvent(service.uuid, characteristic.uuid),
-                );
-              },
-            )
-          : null,
+      trailing:
+          characteristic.properties.contains(BleCharacteristicProperty.read)
+              ? IconButton(
+                  icon: const Icon(
+                    Icons.download,
+                    color: AppColors.primaryBlue,
+                  ),
+                  onPressed: () {
+                    context.read<DeviceDetailBloc>().add(
+                          ReadCharacteristicEvent(
+                              service.uuid, characteristic.uuid),
+                        );
+                  },
+                )
+              : null,
     );
   }
 
   String _formatCharacteristicValue(List<int> value) {
     if (value.isEmpty) return 'Empty';
-    
+
     // Try to decode as UTF-8 string first
     try {
       final string = String.fromCharCodes(value);
@@ -423,34 +448,66 @@ class DeviceDetailView extends StatelessWidget {
     } catch (e) {
       // Fall back to hex representation
     }
-    
+
     // Show as hex bytes
-    return value.map((byte) => byte.toRadixString(16).padLeft(2, '0').toUpperCase()).join(' ');
+    return value
+        .map((byte) => byte.toRadixString(16).padLeft(2, '0').toUpperCase())
+        .join(' ');
   }
 
   IconData _getDeviceTypeIcon(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Icons.headphones;
-      case BleDeviceType.smartwatch:
+      case BleDeviceType.watch:
         return Icons.watch;
       case BleDeviceType.other:
         return Icons.device_unknown;
       case BleDeviceType.unknown:
         return Icons.bluetooth;
+      case BleDeviceType.computer:
+        return Icons.computer;
+      case BleDeviceType.sportsWatch:
+        return Icons.fitness_center;
+      case BleDeviceType.clock:
+        return Icons.access_time;
+      case BleDeviceType.display:
+        return Icons.monitor;
+      case BleDeviceType.remoteControl:
+        return Icons.settings_remote;
+      case BleDeviceType.glasses:
+        return Icons.visibility;
+      case BleDeviceType.tag:
+        return Icons.local_offer;
+      case BleDeviceType.keyring:
+        return Icons.vpn_key;
+      case BleDeviceType.phone:
+        return Icons.smartphone;
     }
   }
 
   Color _getDeviceTypeColor(BleDeviceType deviceType) {
     switch (deviceType) {
-      case BleDeviceType.audioDevice:
+      case BleDeviceType.audio:
         return Colors.purple;
-      case BleDeviceType.smartwatch:
-        return Colors.blue;
+      case BleDeviceType.watch:
+        return AppColors.primaryBlue;
       case BleDeviceType.other:
         return Colors.orange;
       case BleDeviceType.unknown:
         return Colors.grey;
+      case BleDeviceType.computer:
+        return Colors.pink;
+      case BleDeviceType.sportsWatch:
+        return Colors.green;
+      case BleDeviceType.clock:
+        return Colors.teal;
+      case BleDeviceType.display:
+        return Colors.indigo;
+      case BleDeviceType.remoteControl:
+        return Colors.deepPurpleAccent;
+      default:
+        return Colors.pink;
     }
   }
 }

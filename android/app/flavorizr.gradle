@@ -1,0 +1,21 @@
+android {
+    flavorDimensions += "flavor-type"
+
+    productFlavors {
+        dev {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble.dev"
+            resValue "string", "app_name", "SmartBLE Dev"
+        }
+        stag {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble.stag"
+            resValue "string", "app_name", "SmartBLE Stag"
+        }
+        prod {
+            dimension "flavor-type"
+            applicationId "dev.ogaroh.smart_ble"
+            resValue "string", "app_name", "SmartBLE"
+        }
+    }
+}

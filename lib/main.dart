@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_ble/app.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/services.dart';
+import 'features/settings/settings.dart';
 
 Future<void> runMainApp() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,8 @@ Future<void> runMainApp() async {
 
   ErrorWidget.builder = errorBuilderWidget;
 
-  // Add your initialization code here
+  // Initialize settings
+  await globalSettingsBloc.initializeSettings();
 
   FlutterNativeSplash.remove();
 

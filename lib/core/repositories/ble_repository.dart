@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,18 +14,21 @@ class BleRepository {
 
   StreamSubscription<List<ScanResult>>? _scanSubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionSubscription;
-  final StreamController<List<BleDevice>> _scanResultsController = StreamController<List<BleDevice>>.broadcast();
-  final StreamController<BleConnectionState> _connectionStateController = StreamController<BleConnectionState>.broadcast();
-  
+  final StreamController<List<BleDevice>> _scanResultsController =
+      StreamController<List<BleDevice>>.broadcast();
+  final StreamController<BleConnectionState> _connectionStateController =
+      StreamController<BleConnectionState>.broadcast();
+
   final List<BleDevice> _discoveredDevices = [];
   BluetoothDevice? _connectedDevice;
 
   /// Stream of discovered devices during scanning
   Stream<List<BleDevice>> get scanResults => _scanResultsController.stream;
-  
+
   /// Stream of connection state changes
-  Stream<BleConnectionState> get connectionState => _connectionStateController.stream;
-  
+  Stream<BleConnectionState> get connectionState =>
+      _connectionStateController.stream;
+
   /// Get the currently connected device
   BluetoothDevice? get connectedDevice => _connectedDevice;
 
@@ -79,8 +83,8 @@ class BleRepository {
     }
 
     // Check if all permissions are granted
-    return permissions.values.every((status) => 
-        status == PermissionStatus.granted || 
+    return permissions.values.every((status) =>
+        status == PermissionStatus.granted ||
         status == PermissionStatus.limited);
   }
 
@@ -118,7 +122,6 @@ class BleRepository {
           _scanResultsController.addError('Scan error: $error');
         },
       );
-
     } catch (e) {
       throw Exception('Failed to start scan: $e');
     }
@@ -142,12 +145,12 @@ class BleRepository {
   void _updateDiscoveredDevices(List<ScanResult> results) {
     for (final result in results) {
       final bleDevice = BleDevice.fromScanResult(result);
-      
+
       // Check if device already exists
       final existingIndex = _discoveredDevices.indexWhere(
         (device) => device.id == bleDevice.id,
       );
-      
+
       if (existingIndex != -1) {
         // Update existing device (mainly RSSI)
         _discoveredDevices[existingIndex] = bleDevice;
@@ -156,10 +159,10 @@ class BleRepository {
         _discoveredDevices.add(bleDevice);
       }
     }
-    
+
     // Sort devices by RSSI (stronger signal first)
     _discoveredDevices.sort((a, b) => b.rssi.compareTo(a.rssi));
-    
+
     // Emit updated list
     _scanResultsController.add(List.from(_discoveredDevices));
   }
@@ -178,7 +181,7 @@ class BleRepository {
         (state) {
           final bleState = _mapConnectionState(state);
           _connectionStateController.add(bleState);
-          
+
           if (bleState == BleConnectionState.connected) {
             _connectedDevice = device.platformDevice;
           } else if (bleState == BleConnectionState.disconnected) {
@@ -195,7 +198,6 @@ class BleRepository {
         timeout: const Duration(seconds: 15),
         autoConnect: false,
       );
-
     } catch (e) {
       _connectionStateController.add(BleConnectionState.disconnected);
       throw Exception('Failed to connect to device: $e');
@@ -222,26 +224,49 @@ class BleRepository {
       }
 
       final services = await _connectedDevice!.discoverServices();
-      return services.map((service) => BleServiceModel.fromBluetoothService(service)).toList();
 
+      final bleServices = <BleServiceModel>[];
+
+      for (int i = 0; i < services.length; i++) {
+        try {
+          final service = services[i];
+          log("Processing service $i: ${service.uuid}");
+
+          final bleService = BleServiceModel.fromBluetoothService(service);
+          bleServices.add(bleService);
+
+          log("Successfully processed service: ${bleService.displayName}");
+        } catch (e) {
+          log("Error processing service $i: $e");
+          // Continue processing other services even if one fails
+          continue;
+        }
+      }
+
+      log("Successfully processed ${bleServices.length} out of ${services.length} services");
+      return bleServices;
     } catch (e) {
+      log("Failed to discover services: $e");
       throw Exception('Failed to discover services: $e');
     }
   }
 
   /// Read a characteristic value
-  Future<List<int>> readCharacteristic(String serviceUuid, String characteristicUuid) async {
+  Future<List<int>> readCharacteristic(
+      String serviceUuid, String characteristicUuid) async {
     try {
       if (_connectedDevice == null) {
         throw Exception('No device connected');
       }
 
       final services = await _connectedDevice!.discoverServices();
-      
+
       for (final service in services) {
-        if (service.uuid.toString().toLowerCase() == serviceUuid.toLowerCase()) {
+        if (service.uuid.toString().toLowerCase() ==
+            serviceUuid.toLowerCase()) {
           for (final characteristic in service.characteristics) {
-            if (characteristic.uuid.toString().toLowerCase() == characteristicUuid.toLowerCase()) {
+            if (characteristic.uuid.toString().toLowerCase() ==
+                characteristicUuid.toLowerCase()) {
               if (characteristic.properties.read) {
                 return await characteristic.read();
               } else {
@@ -251,7 +276,7 @@ class BleRepository {
           }
         }
       }
-      
+
       throw Exception('Characteristic not found');
     } catch (e) {
       throw Exception('Failed to read characteristic: $e');
@@ -266,9 +291,13 @@ class BleRepository {
       case BluetoothConnectionState.connected:
         return BleConnectionState.connected;
       // Note: connecting and disconnecting states are deprecated in flutter_blue_plus
-      // as Android & iOS don't stream these intermediate states reliably
-      default:
-        return BleConnectionState.disconnected;
+      // They don't stream these states on Android & iOS, but we still need to handle them
+      // ignore: deprecated_member_use
+      case BluetoothConnectionState.connecting:
+        return BleConnectionState.connecting;
+      // ignore: deprecated_member_use  
+      case BluetoothConnectionState.disconnecting:
+        return BleConnectionState.disconnecting;
     }
   }
 
