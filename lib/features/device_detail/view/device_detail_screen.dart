@@ -188,10 +188,14 @@ class DeviceDetailView extends StatelessWidget {
   }
 
   Widget _buildConnectionCard(BuildContext context, DeviceDetailLoaded state) {
-    final isConnected = state.connectionState == BleConnectionState.connected;
-    final isConnecting = state.connectionState == BleConnectionState.connecting;
+    final isConnected = state.connectionState == BleConnectionState.connected ||
+        state is DeviceDetailConnected;
+    final isConnecting =
+        state.connectionState == BleConnectionState.connecting ||
+            state is DeviceDetailConnecting;
     final isDisconnecting =
-        state.connectionState == BleConnectionState.disconnecting;
+        state.connectionState == BleConnectionState.disconnecting ||
+            state is DeviceDetailDisconnecting;
 
     return Card(
       child: Padding(

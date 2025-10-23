@@ -50,8 +50,18 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
 
     final currentState = state as DeviceDetailLoaded;
 
+    // Immediately emit connecting state for instant UI feedback
+    emit(DeviceDetailConnecting(
+      device: currentState.device,
+      connectionState: BleConnectionState.connecting,
+      services: currentState.services,
+      errorMessage: currentState.errorMessage,
+      manufacturerStatus: currentState.manufacturerStatus,
+      manufacturerName: currentState.manufacturerName,
+    ));
+
     try {
-      // Connect to device - the connection state stream will handle state updates
+      // Connect to device - the connection state stream will handle further updates
       await _bleRepository.connectToDevice(currentState.device);
     } catch (e) {
       emit(DeviceDetailError(
@@ -68,8 +78,18 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     if (state is! DeviceDetailLoaded) return;
     final currentState = state as DeviceDetailLoaded;
 
+    // Immediately emit disconnecting state for instant UI feedback
+    emit(DeviceDetailDisconnecting(
+      device: currentState.device,
+      connectionState: BleConnectionState.disconnecting,
+      services: currentState.services,
+      errorMessage: currentState.errorMessage,
+      manufacturerStatus: currentState.manufacturerStatus,
+      manufacturerName: currentState.manufacturerName,
+    ));
+
     try {
-      // Disconnect from device - the connection state stream will handle state updates
+      // Disconnect from device - the connection state stream will handle further updates
       await _bleRepository.disconnectFromDevice();
     } catch (e) {
       emit(DeviceDetailError(

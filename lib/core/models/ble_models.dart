@@ -40,7 +40,7 @@ class BleServiceModel extends Equatable {
   /// Get display name for common service UUIDs
   static String _getServiceDisplayName(String uuid) {
     final uuidLower = uuid.toLowerCase();
-    
+
     // Common service UUIDs
     if (uuidLower.contains('180a')) return 'Device Information';
     if (uuidLower.contains('180f')) return 'Battery Service';
@@ -49,7 +49,7 @@ class BleServiceModel extends Equatable {
     if (uuidLower.contains('181c')) return 'User Data';
     if (uuidLower.contains('110b')) return 'Audio Sink';
     if (uuidLower.contains('110a')) return 'Audio Source';
-    
+
     // Safely get UUID prefix - handle short UUIDs
     final displayUuid = uuid.length >= 8 ? uuid.substring(0, 8) : uuid;
     return 'Service $displayUuid...';
@@ -74,18 +74,25 @@ class BleCharacteristicModel extends Equatable {
   });
 
   /// Create BleCharacteristicModel from flutter_blue_plus BluetoothCharacteristic
-  factory BleCharacteristicModel.fromBluetoothCharacteristic(BluetoothCharacteristic characteristic) {
+  factory BleCharacteristicModel.fromBluetoothCharacteristic(
+      BluetoothCharacteristic characteristic) {
     final properties = <BleCharacteristicProperty>[];
-    
-    if (characteristic.properties.read) properties.add(BleCharacteristicProperty.read);
-    if (characteristic.properties.write) properties.add(BleCharacteristicProperty.write);
-    if (characteristic.properties.writeWithoutResponse) properties.add(BleCharacteristicProperty.writeWithoutResponse);
-    if (characteristic.properties.notify) properties.add(BleCharacteristicProperty.notify);
-    if (characteristic.properties.indicate) properties.add(BleCharacteristicProperty.indicate);
+
+    if (characteristic.properties.read)
+      properties.add(BleCharacteristicProperty.read);
+    if (characteristic.properties.write)
+      properties.add(BleCharacteristicProperty.write);
+    if (characteristic.properties.writeWithoutResponse)
+      properties.add(BleCharacteristicProperty.writeWithoutResponse);
+    if (characteristic.properties.notify)
+      properties.add(BleCharacteristicProperty.notify);
+    if (characteristic.properties.indicate)
+      properties.add(BleCharacteristicProperty.indicate);
 
     return BleCharacteristicModel(
       uuid: characteristic.uuid.toString(),
-      displayName: _getCharacteristicDisplayName(characteristic.uuid.toString()),
+      displayName:
+          _getCharacteristicDisplayName(characteristic.uuid.toString()),
       properties: properties,
     );
   }
@@ -93,7 +100,7 @@ class BleCharacteristicModel extends Equatable {
   /// Get display name for common characteristic UUIDs
   static String _getCharacteristicDisplayName(String uuid) {
     final uuidLower = uuid.toLowerCase();
-    
+
     // Common characteristic UUIDs
     if (uuidLower.contains('2a29')) return 'Manufacturer Name';
     if (uuidLower.contains('2a24')) return 'Model Number';
@@ -104,7 +111,7 @@ class BleCharacteristicModel extends Equatable {
     if (uuidLower.contains('2a19')) return 'Battery Level';
     if (uuidLower.contains('2a00')) return 'Device Name';
     if (uuidLower.contains('2a01')) return 'Appearance';
-    
+
     // Safely get UUID prefix - handle short UUIDs
     final displayUuid = uuid.length >= 8 ? uuid.substring(0, 8) : uuid;
     return 'Characteristic $displayUuid...';
