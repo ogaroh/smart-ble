@@ -200,6 +200,7 @@ Services Found → DeviceDetailConnected (with services)
   - Smooth animations and transitions
   - Consistent iconography and spacing
   - Responsive layout design
+  - full localization support for 4 languages (English, Swahili, French & Spanish). The language conforms to the system language
 
 ### ✅ **Challenge #2: Manufacturer Information Reading**
 
@@ -244,7 +245,7 @@ Services Found → DeviceDetailConnected (with services)
 
 ### 🔗 **Functional APK**
 
-[Download Smart BLE APK](https://github.com/ogaroh/smart-ble/releases/download/v1.0.0/smart-ble-app-prod-release.apk)
+[Download Smart BLE APK](https://github.com/ogaroh/smart-ble/releases/download/v1.0.1/smart-ble-app-prod-release.apk)
 _Production build with release optimizations_
 
 ### 🎥 **Demo Video**
