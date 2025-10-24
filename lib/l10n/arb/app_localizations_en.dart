@@ -39,7 +39,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get initializingBluetooth => 'Initializing Bluetooth...';
 
   @override
-  String get checkingBluetoothPermissions => 'Checking Bluetooth permissions...';
+  String get checkingBluetoothPermissions =>
+      'Checking Bluetooth permissions...';
 
   @override
   String get bluetoothPermissionsRequired => 'Bluetooth permissions required';
@@ -97,7 +98,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discoveringServices => 'Discovering services...';
 
   @override
-  String get connectToDiscoverServices => 'Connect to this device to discover its services and characteristics';
+  String get connectToDiscoverServices =>
+      'Connect to this device to discover its services and characteristics';
 
   @override
   String get noServicesFound => 'No services found on this device';
@@ -151,7 +153,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resetSettings => 'Reset Settings';
 
   @override
-  String get resetSettingsConfirmation => 'Are you sure you want to reset all settings to their default values? This action cannot be undone.';
+  String get resetSettingsConfirmation =>
+      'Are you sure you want to reset all settings to their default values? This action cannot be undone.';
 
   @override
   String get cancel => 'Cancel';
@@ -244,7 +247,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanningForDevices => 'Scanning for devices...';
 
   @override
-  String get tapStartToScan => 'Tap \"Start Scan\" to discover nearby BLE devices';
+  String get tapStartToScan =>
+      'Tap \"Start Scan\" to discover nearby BLE devices';
 
   @override
   String get readyToScan => 'Ready to scan';
@@ -262,10 +266,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToStopScan => 'Failed to stop scan';
 
   @override
-  String get bluetoothNotAvailable => 'Bluetooth is not available on this device';
+  String get bluetoothNotAvailable =>
+      'Bluetooth is not available on this device';
 
   @override
-  String get bluetoothPermissionsDenied => 'Bluetooth permissions are required to scan for devices';
+  String get bluetoothPermissionsDenied =>
+      'Bluetooth permissions are required to scan for devices';
 
   @override
   String get failedToCheckBluetooth => 'Failed to check Bluetooth status';
@@ -298,13 +304,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get autoScanOnStart => 'Auto-scan on Start';
 
   @override
-  String get autoScanOnStartSubtitle => 'Automatically start scanning when app opens';
+  String get autoScanOnStartSubtitle =>
+      'Automatically start scanning when app opens';
 
   @override
   String get showUnknownDevices => 'Show Unknown Devices';
 
   @override
-  String get showUnknownDevicesSubtitle => 'Display devices without advertised names';
+  String get showUnknownDevicesSubtitle =>
+      'Display devices without advertised names';
 
   @override
   String get signalStrengthFilter => 'Signal Strength Filter';

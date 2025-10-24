@@ -97,10 +97,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get discoveringServices => 'Kugundua huduma...';
 
   @override
-  String get connectToDiscoverServices => 'Unganisha kifaa hiki ili kugundua huduma na sifa zake';
+  String get connectToDiscoverServices =>
+      'Unganisha kifaa hiki ili kugundua huduma na sifa zake';
 
   @override
-  String get noServicesFound => 'Hakuna huduma zilizopatikana kwenye kifaa hiki';
+  String get noServicesFound =>
+      'Hakuna huduma zilizopatikana kwenye kifaa hiki';
 
   @override
   String get servicesAndCharacteristics => 'Huduma na Sifa';
@@ -151,7 +153,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get resetSettings => 'Rudisha Mipangilio';
 
   @override
-  String get resetSettingsConfirmation => 'Una uhakika unataka kurudisha mipangilio yote kwa maadili ya chaguo-msingi? Kitendo hiki hakiwezi kubatilishwa.';
+  String get resetSettingsConfirmation =>
+      'Una uhakika unataka kurudisha mipangilio yote kwa maadili ya chaguo-msingi? Kitendo hiki hakiwezi kubatilishwa.';
 
   @override
   String get cancel => 'Ghairi';
@@ -244,7 +247,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get scanningForDevices => 'Kutafuta vifaa...';
 
   @override
-  String get tapStartToScan => 'Gusa \"Anza Kutafuta\" ili kugundua vifaa vya BLE vinavyoko karibu';
+  String get tapStartToScan =>
+      'Gusa \"Anza Kutafuta\" ili kugundua vifaa vya BLE vinavyoko karibu';
 
   @override
   String get readyToScan => 'Tayari kutafuta';
@@ -265,7 +269,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get bluetoothNotAvailable => 'Bluetooth haipatikani kwenye kifaa hiki';
 
   @override
-  String get bluetoothPermissionsDenied => 'Ruhusa za Bluetooth zinahitajika ili kutafuta vifaa';
+  String get bluetoothPermissionsDenied =>
+      'Ruhusa za Bluetooth zinahitajika ili kutafuta vifaa';
 
   @override
   String get failedToCheckBluetooth => 'Imeshindwa kuangalia hali ya Bluetooth';
@@ -298,13 +303,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get autoScanOnStart => 'Tafuta Kiotomatiki Mwanzoni';
 
   @override
-  String get autoScanOnStartSubtitle => 'Anza kutafuta kiotomatiki wakati programu inapofunguka';
+  String get autoScanOnStartSubtitle =>
+      'Anza kutafuta kiotomatiki wakati programu inapofunguka';
 
   @override
   String get showUnknownDevices => 'Onyesha Vifaa Visivyojulikana';
 
   @override
-  String get showUnknownDevicesSubtitle => 'Onyesha vifaa bila majina ya utangazaji';
+  String get showUnknownDevicesSubtitle =>
+      'Onyesha vifaa bila majina ya utangazaji';
 
   @override
   String get signalStrengthFilter => 'Kichuja cha Nguvu ya Ishara';
