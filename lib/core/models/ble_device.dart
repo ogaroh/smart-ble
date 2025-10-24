@@ -351,4 +351,6 @@ extension BleDeviceTypeExtension on BleDeviceType {
         return 'Phone';
     }
   }
+
+
 }
