@@ -190,7 +190,8 @@ class SettingsView extends StatelessWidget {
           color: AppColors.error,
         ),
         Divider(
-          color: AppColors.lightPink,
+          color: AppColors.lightOnSurfaceVariant,
+          thickness: 1.0,
         ),
         InkWell(
           child: Center(
@@ -200,7 +201,7 @@ class SettingsView extends StatelessWidget {
                 "© $year Erick Ogaro. All rights reserved.",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 10.0,
+                  fontSize: 12.0,
                 ),
               );
             }),
