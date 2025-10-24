@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:smart_ble/l10n/arb/app_localizations.dart';
 
 /// Enum representing different connection states
 enum BleConnectionState {
@@ -166,6 +167,22 @@ extension BleCharacteristicPropertyExtension on BleCharacteristicProperty {
         return 'Indicate';
     }
   }
+
+  /// Get localized display name using app localizations
+  String localizedDisplayName(AppLocalizations l10n) {
+    switch (this) {
+      case BleCharacteristicProperty.read:
+        return l10n.characteristicRead;
+      case BleCharacteristicProperty.write:
+        return l10n.characteristicWrite;
+      case BleCharacteristicProperty.writeWithoutResponse:
+        return l10n.characteristicWriteNoResponse;
+      case BleCharacteristicProperty.notify:
+        return l10n.characteristicNotify;
+      case BleCharacteristicProperty.indicate:
+        return l10n.characteristicIndicate;
+    }
+  }
 }
 
 /// Extension to get connection state display names
@@ -180,6 +197,22 @@ extension BleConnectionStateExtension on BleConnectionState {
         return 'Connected';
       case BleConnectionState.disconnecting:
         return 'Disconnecting...';
+    }
+  }
+}
+
+// Helper methods for localized connection state names
+extension BleConnectionStateLocalization on BleConnectionState {
+  String localizedDisplayName(AppLocalizations l10n) {
+    switch (this) {
+      case BleConnectionState.disconnected:
+        return l10n.disconnected;
+      case BleConnectionState.connecting:
+        return l10n.connecting;
+      case BleConnectionState.connected:
+        return l10n.connected;
+      case BleConnectionState.disconnecting:
+        return l10n.disconnecting;
     }
   }
 }

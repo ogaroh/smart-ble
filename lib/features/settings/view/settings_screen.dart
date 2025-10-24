@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/l10n.dart';
 import '../bloc/settings_bloc.dart';
 import '../bloc/settings_event.dart';
 import '../bloc/settings_state.dart';
@@ -26,7 +27,7 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(context.l10n.settings),
         backgroundColor: Theme.of(context).colorScheme.surface,
         elevation: 0,
       ),
@@ -52,8 +53,8 @@ class SettingsView extends StatelessWidget {
           }
 
           if (state is! SettingsLoaded) {
-            return const Center(
-              child: Text('Unable to load settings'),
+            return Center(
+              child: Text(context.l10n.unableToLoadSettings),
             );
           }
 
@@ -63,12 +64,13 @@ class SettingsView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildAppearanceSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildBluetoothSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildScanningSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildAdvancedSection(context, state),
+                const SizedBox(height: 12),
               ],
             ),
           );
@@ -80,7 +82,7 @@ class SettingsView extends StatelessWidget {
   Widget _buildAppearanceSection(BuildContext context, SettingsLoaded state) {
     return _buildSection(
       context,
-      title: 'Appearance',
+      title: context.l10n.appearance,
       icon: Icons.palette,
       children: [
         _buildThemeTile(context, state),
@@ -91,25 +93,25 @@ class SettingsView extends StatelessWidget {
   Widget _buildBluetoothSection(BuildContext context, SettingsLoaded state) {
     return _buildSection(
       context,
-      title: 'Bluetooth',
+      title: context.l10n.bluetooth,
       icon: Icons.bluetooth,
       children: [
         _buildTimeoutTile(
           context,
-          title: 'Scan Timeout',
-          subtitle: 'How long to scan for devices',
+          title: context.l10n.scanTimeout,
+          subtitle: context.l10n.scanTimeoutSubtitle,
           value: state.scanTimeoutSeconds,
-          unit: 'seconds',
+          unit: context.l10n.seconds,
           onChanged: (value) {
             context.read<SettingsBloc>().add(UpdateScanTimeoutEvent(value));
           },
         ),
         _buildTimeoutTile(
           context,
-          title: 'Connection Timeout',
-          subtitle: 'How long to wait for connections',
+          title: context.l10n.connectionTimeout,
+          subtitle: context.l10n.connectionTimeoutSubtitle,
           value: state.connectionTimeoutSeconds,
-          unit: 'seconds',
+          unit: context.l10n.seconds,
           onChanged: (value) {
             context
                 .read<SettingsBloc>()
@@ -123,13 +125,13 @@ class SettingsView extends StatelessWidget {
   Widget _buildScanningSection(BuildContext context, SettingsLoaded state) {
     return _buildSection(
       context,
-      title: 'Scanning',
+      title: context.l10n.scanning,
       icon: Icons.search,
       children: [
         _buildSwitchTile(
           context,
-          title: 'Auto-scan on Start',
-          subtitle: 'Automatically start scanning when app opens',
+          title: context.l10n.autoScanOnStart,
+          subtitle: context.l10n.autoScanOnStartSubtitle,
           value: state.autoScanOnStart,
           onChanged: (value) {
             context.read<SettingsBloc>().add(UpdateAutoScanEvent(value));
@@ -137,8 +139,8 @@ class SettingsView extends StatelessWidget {
         ),
         _buildSwitchTile(
           context,
-          title: 'Show Unknown Devices',
-          subtitle: 'Display devices without advertised names',
+          title: context.l10n.showUnknownDevices,
+          subtitle: context.l10n.showUnknownDevicesSubtitle,
           value: state.showUnknownDevices,
           onChanged: (value) {
             context
@@ -148,8 +150,8 @@ class SettingsView extends StatelessWidget {
         ),
         _buildSliderTile(
           context,
-          title: 'Signal Strength Filter',
-          subtitle: 'Minimum RSSI: ${state.rssiThreshold} dBm',
+          title: context.l10n.signalStrengthFilter,
+          subtitle: '${context.l10n.minimumRssi}: ${state.rssiThreshold} dBm',
           value: state.rssiThreshold.toDouble(),
           min: -100,
           max: -30,
@@ -167,13 +169,13 @@ class SettingsView extends StatelessWidget {
   Widget _buildAdvancedSection(BuildContext context, SettingsLoaded state) {
     return _buildSection(
       context,
-      title: 'Advanced',
+      title: context.l10n.advanced,
       icon: Icons.settings_applications,
       children: [
         _buildSwitchTile(
           context,
-          title: 'Auto-connect',
-          subtitle: 'Automatically connect to last device',
+          title: context.l10n.autoConnect,
+          subtitle: context.l10n.autoConnectSubtitle,
           value: state.autoConnect,
           onChanged: (value) {
             context.read<SettingsBloc>().add(UpdateAutoConnectEvent(value));
@@ -181,12 +183,32 @@ class SettingsView extends StatelessWidget {
         ),
         _buildActionTile(
           context,
-          title: 'Reset Settings',
-          subtitle: 'Restore all settings to defaults',
+          title: context.l10n.resetSettings,
+          subtitle: context.l10n.resetSettingsSubtitle,
           icon: Icons.restore,
           onTap: () => _showResetDialog(context),
           color: AppColors.error,
         ),
+        Divider(
+          color: AppColors.lightOnSurfaceVariant,
+          thickness: 1.0,
+        ),
+        InkWell(
+          child: Center(
+            child: Builder(builder: (context) {
+              final year = DateTime.now().year;
+              return Text(
+                "© $year Erick Ogaro. All rights reserved.",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                ),
+              );
+            }),
+          ),
+          onTap: () => showLicensePage(context: context),
+        ),
+  
       ],
     );
   }
@@ -231,15 +253,15 @@ class SettingsView extends StatelessWidget {
   Widget _buildThemeTile(BuildContext context, SettingsLoaded state) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: const Text('Theme'),
-      subtitle: Text(state.themeMode.description),
+      title: Text(context.l10n.theme),
+      subtitle: Text(state.themeMode.localizedDescription(context.l10n)),
       trailing: DropdownButton<AppThemeMode>(
         value: state.themeMode,
         underline: const SizedBox.shrink(),
         items: AppThemeMode.values.map((mode) {
           return DropdownMenuItem<AppThemeMode>(
             value: mode,
-            child: Text(mode.displayName),
+            child: Text(mode.localizedDisplayName(context.l10n)),
           );
         }).toList(),
         onChanged: (mode) {
@@ -365,14 +387,12 @@ class SettingsView extends StatelessWidget {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Reset Settings'),
-        content: const Text(
-          'Are you sure you want to reset all settings to their default values? This action cannot be undone.',
-        ),
+        title: Text(context.l10n.resetSettings),
+        content: Text(context.l10n.resetSettingsConfirmation),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.cancel),
           ),
           FilledButton(
             onPressed: () {
@@ -382,7 +402,7 @@ class SettingsView extends StatelessWidget {
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.error,
             ),
-            child: const Text('Reset'),
+            child: Text(context.l10n.reset),
           ),
         ],
       ),

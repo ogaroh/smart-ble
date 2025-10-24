@@ -1,67 +1,67 @@
 {
-  "@@locale": "fr",
+  "@@locale": "sw",
   
   "appTitle": "SmartBLE",
   "@appTitle": {
     "description": "The main application title"
   },
   
-  "deviceDetails": "Détails du Périphérique",
+  "deviceDetails": "Maelezo ya Kifaa",
   "@deviceDetails": {
     "description": "Title for device details screen"
   },
   
-  "settings": "Paramètres",
+  "settings": "Mipangilio",
   "@settings": {
     "description": "Settings screen title"
   },
   
-  "stopScan": "Arrêter la Recherche",
+  "stopScan": "Acha Kutafuta",
   "@stopScan": {
     "description": "Button text to stop BLE scanning"
   },
   
-  "startScan": "Démarrer la Recherche",
+  "startScan": "Anza Kutafuta",
   "@startScan": {
     "description": "Button text to start BLE scanning"
   },
   
-  "checkBluetooth": "Vérifier Bluetooth",
+  "checkBluetooth": "Angalia Bluetooth",
   "@checkBluetooth": {
     "description": "Button text when Bluetooth needs to be enabled"
   },
   
-  "type": "Type :",
+  "type": "Aina:",
   "@type": {
     "description": "Label for device type filter"
   },
   
-  "all": "Tout",
+  "all": "Zote",
   "@all": {
     "description": "Filter option to show all device types"
   },
   
-  "searchDevices": "Rechercher des appareils par nom...",
+  "searchDevices": "Tafuta vifaa kwa jina...",
   "@searchDevices": {
     "description": "Placeholder text for device search field"
   },
   
-  "initializingBluetooth": "Initialisation Bluetooth...",
+  "initializingBluetooth": "Kuanzisha Bluetooth...",
   "@initializingBluetooth": {
     "description": "Status message while Bluetooth is being initialized"
   },
   
-  "checkingBluetoothPermissions": "Vérification des permissions Bluetooth...",
+  "checkingBluetoothPermissions": "Kukagua ruhusa za Bluetooth...",
   "@checkingBluetoothPermissions": {
     "description": "Status message while checking Bluetooth permissions"
   },
   
-  "bluetoothPermissionsRequired": "Permissions Bluetooth requises",
+  "bluetoothPermissionsRequired": "Ruhusa za Bluetooth zinahitajika",
   "@bluetoothPermissionsRequired": {
     "description": "Error message when Bluetooth permissions are missing"
   },
   
-  "scanningDevicesFound": "Recherche en cours... ({count} {count, plural, =1{appareil} other{appareils}} trouvé(s))",
+  "scanningDevicesFound": "Kutafuta... ({count} {count, plural, =1{kifaa} other{vifaa}} vimepatikana)",
   "@scanningDevicesFound": {
     "description": "Status message showing scanning progress",
     "placeholders": {
@@ -71,7 +71,7 @@
     }
   },
   
-  "devicesFound": "{count} {count, plural, =1{appareil} other{appareils}} trouvé(s)",
+  "devicesFound": "{count} {count, plural, =1{kifaa} other{vifaa}} vimepatikana",
   "@devicesFound": {
     "description": "Status message showing number of devices found",
     "placeholders": {
@@ -81,77 +81,77 @@
     }
   },
   
-  "retry": "Réessayer",
+  "retry": "Jaribu Tena",
   "@retry": {
     "description": "Button text to retry an action"
   },
   
-  "goBack": "Retour",
+  "goBack": "Rudi Nyuma",
   "@goBack": {
     "description": "Button text to go back"
   },
   
-  "connection": "Connexion",
+  "connection": "Muunganisho",
   "@connection": {
     "description": "Connection status section title"
   },
   
-  "connect": "Connecter",
+  "connect": "Unganisha",
   "@connect": {
     "description": "Button text to connect to a device"
   },
   
-  "disconnect": "Déconnecter",
+  "disconnect": "Tengua",
   "@disconnect": {
     "description": "Button text to disconnect from a device"
   },
   
-  "connecting": "Connexion...",
+  "connecting": "Kuunganisha...",
   "@connecting": {
     "description": "Connection status when connecting"
   },
   
-  "connected": "Connecté",
+  "connected": "Imeunganishwa",
   "@connected": {
     "description": "Connection status when connected"
   },
   
-  "disconnected": "Déconnecté",
+  "disconnected": "Haijaungana",
   "@disconnected": {
     "description": "Connection status when disconnected"
   },
   
-  "disconnecting": "Déconnexion...",
+  "disconnecting": "Kutenganisha...",
   "@disconnecting": {
     "description": "Connection status when disconnecting"
   },
   
-  "discoveringServices": "Découverte des services...",
+  "discoveringServices": "Kugundua huduma...",
   "@discoveringServices": {
     "description": "Status message while discovering BLE services"
   },
   
-  "connectToDiscoverServices": "Connectez-vous à cet appareil pour découvrir ses services et caractéristiques",
+  "connectToDiscoverServices": "Unganisha kifaa hiki ili kugundua huduma na sifa zake",
   "@connectToDiscoverServices": {
     "description": "Instructions to connect device for service discovery"
   },
   
-  "noServicesFound": "Aucun service trouvé sur cet appareil",
+  "noServicesFound": "Hakuna huduma zilizopatikana kwenye kifaa hiki",
   "@noServicesFound": {
     "description": "Message when no BLE services are found"
   },
   
-  "servicesAndCharacteristics": "Services et Caractéristiques",
+  "servicesAndCharacteristics": "Huduma na Sifa",
   "@servicesAndCharacteristics": {
     "description": "Title for services and characteristics section"
   },
   
-  "noCharacteristicsAvailable": "Aucune caractéristique disponible",
+  "noCharacteristicsAvailable": "Hakuna sifa zinazopatikana",
   "@noCharacteristicsAvailable": {
     "description": "Message when no characteristics are available for a service"
   },
   
-  "bytes": "Octets : {value}",
+  "bytes": "Bytes: {value}",
   "@bytes": {
     "description": "Label showing characteristic byte value",
     "placeholders": {
@@ -161,22 +161,22 @@
     }
   },
   
-  "empty": "Vide",
+  "empty": "Tupu",
   "@empty": {
     "description": "Text shown when a characteristic value is empty"
   },
   
-  "address": "Adresse",
+  "address": "Anwani",
   "@address": {
     "description": "Label for device MAC address"
   },
   
-  "advertisedServices": "Services Annoncés",
+  "advertisedServices": "Huduma Zilizotangazwa",
   "@advertisedServices": {
     "description": "Label for number of advertised services"
   },
   
-  "serviceCount": "{count} service(s)",
+  "serviceCount": "{count} huduma",
   "@serviceCount": {
     "description": "Text showing number of services",
     "placeholders": {
@@ -186,7 +186,7 @@
     }
   },
   
-  "manufacturer": "Fabricant : {name}",
+  "manufacturer": "Mtengenezaji: {name}",
   "@manufacturer": {
     "description": "Label showing manufacturer name",
     "placeholders": {
@@ -196,237 +196,237 @@
     }
   },
   
-  "manufacturerUnavailable": "Fabricant : Non disponible",
+  "manufacturerUnavailable": "Mtengenezaji: Haupatikani",
   "@manufacturerUnavailable": {
     "description": "Label when manufacturer info is unavailable"
   },
   
-  "readingManufacturer": "Lecture du fabricant...",
+  "readingManufacturer": "Kusoma mtengenezaji...",
   "@readingManufacturer": {
     "description": "Status message while reading manufacturer info"
   },
   
-  "manufacturerError": "Fabricant : Erreur de lecture",
+  "manufacturerError": "Mtengenezaji: Hitilafu ya kusoma",
   "@manufacturerError": {
     "description": "Error message when manufacturer info cannot be read"
   },
   
-  "theme": "Thème",
+  "theme": "Mandhari",
   "@theme": {
     "description": "Theme settings label"
   },
   
-  "unableToLoadSettings": "Impossible de charger les paramètres",
+  "unableToLoadSettings": "Haikuweza kupakia mipangilio",
   "@unableToLoadSettings": {
     "description": "Error message when settings cannot be loaded"
   },
   
-  "resetSettings": "Réinitialiser les Paramètres",
+  "resetSettings": "Rudisha Mipangilio",
   "@resetSettings": {
     "description": "Action to reset all settings"
   },
   
-  "resetSettingsConfirmation": "Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut ? Cette action ne peut pas être annulée.",
+  "resetSettingsConfirmation": "Una uhakika unataka kurudisha mipangilio yote kwa maadili ya chaguo-msingi? Kitendo hiki hakiwezi kubatilishwa.",
   "@resetSettingsConfirmation": {
     "description": "Confirmation dialog message for resetting settings"
   },
   
-  "cancel": "Annuler",
+  "cancel": "Ghairi",
   "@cancel": {
     "description": "Cancel action button"
   },
   
-  "reset": "Réinitialiser",
+  "reset": "Rudisha",
   "@reset": {
     "description": "Reset action button"
   },
   
-  "light": "Clair",
+  "light": "Mwanga",
   "@light": {
     "description": "Light theme option"
   },
   
-  "dark": "Sombre", 
+  "dark": "Giza", 
   "@dark": {
     "description": "Dark theme option"
   },
   
-  "system": "Système",
+  "system": "Mfumo",
   "@system": {
     "description": "System theme option"
   },
   
-  "followSystemTheme": "Suivre le thème du système",
+  "followSystemTheme": "Fuata muundo wa mfumo",
   "@followSystemTheme": {
     "description": "Theme description for system mode"
   },
   
-  "alwaysUseLightTheme": "Toujours utiliser le thème clair",
+  "alwaysUseLightTheme": "Tumia muundo mwanga kila wakati",
   "@alwaysUseLightTheme": {
     "description": "Theme description for light mode"
   },
   
-  "alwaysUseDarkTheme": "Toujours utiliser le thème sombre",
+  "alwaysUseDarkTheme": "Tumia muundo wa giza kila wakati",
   "@alwaysUseDarkTheme": {
     "description": "Theme description for dark mode"
   },
   
-  "deviceTypeAudio": "Appareil Audio",
+  "deviceTypeAudio": "Kifaa cha Sauti",
   "@deviceTypeAudio": {
     "description": "BLE device type: Audio Device"
   },
   
-  "deviceTypeWatch": "Montre",
+  "deviceTypeWatch": "Saa",
   "@deviceTypeWatch": {
     "description": "BLE device type: Watch"
   },
   
-  "deviceTypeOther": "Autre",
+  "deviceTypeOther": "Kingine",
   "@deviceTypeOther": {
     "description": "BLE device type: Other"
   },
   
-  "deviceTypeUnknown": "Inconnu",
+  "deviceTypeUnknown": "Haijulikani",
   "@deviceTypeUnknown": {
     "description": "BLE device type: Unknown"
   },
   
-  "deviceTypeComputer": "Ordinateur",
+  "deviceTypeComputer": "Kompyuta",
   "@deviceTypeComputer": {
     "description": "BLE device type: Computer"
   },
   
-  "deviceTypeSportsWatch": "Montre de Sport",
+  "deviceTypeSportsWatch": "Saa ya Michezo",
   "@deviceTypeSportsWatch": {
     "description": "BLE device type: Sports Watch"
   },
   
-  "deviceTypeClock": "Horloge",
+  "deviceTypeClock": "Saa ya Ukutani",
   "@deviceTypeClock": {
     "description": "BLE device type: Clock"
   },
   
-  "deviceTypeDisplay": "Écran",
+  "deviceTypeDisplay": "Skrini",
   "@deviceTypeDisplay": {
     "description": "BLE device type: Display"
   },
   
-  "deviceTypeRemoteControl": "Télécommande",
+  "deviceTypeRemoteControl": "Udhibiti wa Mbali",
   "@deviceTypeRemoteControl": {
     "description": "BLE device type: Remote Control"
   },
   
-  "deviceTypeGlasses": "Lunettes Intelligentes",
+  "deviceTypeGlasses": "Miwani Mahiri",
   "@deviceTypeGlasses": {
     "description": "BLE device type: Smart Glasses"
   },
   
-  "deviceTypeTag": "Étiquette",
+  "deviceTypeTag": "Lebo",
   "@deviceTypeTag": {
     "description": "BLE device type: Tag"
   },
   
-  "deviceTypeKeyring": "Porte-clés",
+  "deviceTypeKeyring": "Ukanda wa Funguo",
   "@deviceTypeKeyring": {
     "description": "BLE device type: Keyring"
   },
   
-  "deviceTypePhone": "Téléphone",
+  "deviceTypePhone": "Simu",
   "@deviceTypePhone": {
     "description": "BLE device type: Phone"
   },
   
-  "characteristicRead": "Lire",
+  "characteristicRead": "Soma",
   "@characteristicRead": {
     "description": "BLE characteristic property: Read"
   },
   
-  "characteristicWrite": "Écrire",
+  "characteristicWrite": "Andika",
   "@characteristicWrite": {
     "description": "BLE characteristic property: Write"
   },
   
-  "characteristicWriteNoResponse": "Écrire (Sans Réponse)",
+  "characteristicWriteNoResponse": "Andika (Bila Jibu)",
   "@characteristicWriteNoResponse": {
     "description": "BLE characteristic property: Write without response"
   },
   
-  "characteristicNotify": "Notifier",
+  "characteristicNotify": "Arifu",
   "@characteristicNotify": {
     "description": "BLE characteristic property: Notify"
   },
   
-  "characteristicIndicate": "Indiquer",
+  "characteristicIndicate": "Onyesha",
   "@characteristicIndicate": {
     "description": "BLE characteristic property: Indicate"
   },
   
-  "seconds": "secondes",
+  "seconds": "sekunde",
   "@seconds": {
     "description": "Time unit: seconds"
   },
   
-  "minutes": "minutes", 
+  "minutes": "dakika", 
   "@minutes": {
     "description": "Time unit: minutes"
   },
   
-  "noDevicesFound": "Aucun appareil trouvé",
+  "noDevicesFound": "Hakuna vifaa vilivyopatikana",
   "@noDevicesFound": {
     "description": "Message when no BLE devices are found"
   },
   
-  "scanningForDevices": "Recherche d''appareils...",
+  "scanningForDevices": "Kutafuta vifaa...",
   "@scanningForDevices": {
     "description": "Message shown while actively scanning for devices"
   },
   
-  "tapStartToScan": "Appuyez sur \"Démarrer l''analyse\" pour découvrir les appareils BLE à proximité",
+  "tapStartToScan": "Gusa \"Anza Kutafuta\" ili kugundua vifaa vya BLE vinavyoko karibu",
   "@tapStartToScan": {
     "description": "Instruction text when not scanning"
   },
   
-  "readyToScan": "Prêt à analyser",
+  "readyToScan": "Tayari kutafuta",
   "@readyToScan": {
     "description": "Status message when ready to start scanning"
   },
   
-  "scanError": "Erreur d''analyse",
+  "scanError": "Kosa la kutafuta",
   "@scanError": {
     "description": "Prefix for scan error messages"
   },
   
-  "errorPrefix": "Erreur",
+  "errorPrefix": "Kosa",
   "@errorPrefix": {
     "description": "Generic error prefix"
   },
   
-  "failedToStartScan": "Échec du démarrage de l''analyse",
+  "failedToStartScan": "Imeshindwa kuanza kutafuta",
   "@failedToStartScan": {
     "description": "Error message when scan fails to start"
   },
   
-  "failedToStopScan": "Échec de l''arrêt de l''analyse",
+  "failedToStopScan": "Imeshindwa kuacha kutafuta",
   "@failedToStopScan": {
     "description": "Error message when scan fails to stop"
   },
   
-  "bluetoothNotAvailable": "Bluetooth n''est pas disponible sur cet appareil",
+  "bluetoothNotAvailable": "Bluetooth haipatikani kwenye kifaa hiki",
   "@bluetoothNotAvailable": {
     "description": "Error when Bluetooth hardware is not available"
   },
   
-  "bluetoothPermissionsDenied": "Les autorisations Bluetooth sont requises pour rechercher des appareils",
+  "bluetoothPermissionsDenied": "Ruhusa za Bluetooth zinahitajika ili kutafuta vifaa",
   "@bluetoothPermissionsDenied": {
     "description": "Error when Bluetooth permissions are denied"
   },
   
-  "failedToCheckBluetooth": "Échec de la vérification de l''état Bluetooth",
+  "failedToCheckBluetooth": "Imeshindwa kuangalia hali ya Bluetooth",
   "@failedToCheckBluetooth": {
     "description": "Error when unable to check Bluetooth status"
   },
   
-  "appearance": "Apparence",
+  "appearance": "Muonekano",
   "@appearance": {
     "description": "Settings section title for appearance settings"
   },
@@ -436,77 +436,77 @@
     "description": "Settings section title for Bluetooth settings"
   },
   
-  "scanning": "Analyse",
+  "scanning": "Kutafuta",
   "@scanning": {
     "description": "Settings section title for scanning preferences"
   },
   
-  "advanced": "Avancé",
+  "advanced": "Kwa Utaalamu",
   "@advanced": {
     "description": "Settings section title for advanced settings"
   },
   
-  "scanTimeout": "Délai d''Analyse",
+  "scanTimeout": "Muda wa Kutafuta",
   "@scanTimeout": {
     "description": "Setting for scan timeout duration"
   },
   
-  "scanTimeoutSubtitle": "Durée d''analyse des appareils",
+  "scanTimeoutSubtitle": "Muda wa kutafuta vifaa",
   "@scanTimeoutSubtitle": {
     "description": "Subtitle explaining scan timeout setting"
   },
   
-  "connectionTimeout": "Délai de Connexion",
+  "connectionTimeout": "Muda wa Kuunganisha",
   "@connectionTimeout": {
     "description": "Setting for connection timeout duration"
   },
   
-  "connectionTimeoutSubtitle": "Durée d''attente des connexions",
+  "connectionTimeoutSubtitle": "Muda wa kusubiri miunganisho",
   "@connectionTimeoutSubtitle": {
     "description": "Subtitle explaining connection timeout setting"
   },
   
-  "autoScanOnStart": "Analyse Automatique au Démarrage",
+  "autoScanOnStart": "Tafuta Kiotomatiki Mwanzoni",
   "@autoScanOnStart": {
     "description": "Setting to enable automatic scanning on app start"
   },
   
-  "autoScanOnStartSubtitle": "Démarrer l''analyse automatiquement à l''ouverture de l''application",
+  "autoScanOnStartSubtitle": "Anza kutafuta kiotomatiki wakati programu inapofunguka",
   "@autoScanOnStartSubtitle": {
     "description": "Subtitle explaining auto-scan setting"
   },
   
-  "showUnknownDevices": "Afficher les Appareils Inconnus",
+  "showUnknownDevices": "Onyesha Vifaa Visivyojulikana",
   "@showUnknownDevices": {
     "description": "Setting to show/hide unknown devices"
   },
   
-  "showUnknownDevicesSubtitle": "Afficher les appareils sans noms annoncés",
+  "showUnknownDevicesSubtitle": "Onyesha vifaa bila majina ya utangazaji",
   "@showUnknownDevicesSubtitle": {
     "description": "Subtitle explaining unknown devices setting"
   },
   
-  "signalStrengthFilter": "Filtre d''Intensité du Signal",
+  "signalStrengthFilter": "Kichuja cha Nguvu ya Ishara",
   "@signalStrengthFilter": {
     "description": "Setting for signal strength filtering"
   },
   
-  "minimumRssi": "RSSI Minimum",
+  "minimumRssi": "Kiwango cha Chini cha RSSI",
   "@minimumRssi": {
     "description": "Label for minimum RSSI value"
   },
   
-  "autoConnect": "Connexion Automatique",
+  "autoConnect": "Unganisha Kiotomatiki",
   "@autoConnect": {
     "description": "Setting for automatic device connection"
   },
   
-  "autoConnectSubtitle": "Se connecter automatiquement au dernier appareil",
+  "autoConnectSubtitle": "Unganisha kiotomatiki na kifaa cha mwisho",
   "@autoConnectSubtitle": {
     "description": "Subtitle explaining auto-connect setting"
   },
   
-  "resetSettingsSubtitle": "Restaurer tous les paramètres par défaut",
+  "resetSettingsSubtitle": "Rejesha mipangilio yote kwa msingi",
   "@resetSettingsSubtitle": {
     "description": "Subtitle for reset settings action"
   }
