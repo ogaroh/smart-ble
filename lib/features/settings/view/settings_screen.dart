@@ -64,12 +64,13 @@ class SettingsView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildAppearanceSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildBluetoothSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildScanningSection(context, state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 _buildAdvancedSection(context, state),
+                const SizedBox(height: 12),
               ],
             ),
           );
@@ -188,6 +189,25 @@ class SettingsView extends StatelessWidget {
           onTap: () => _showResetDialog(context),
           color: AppColors.error,
         ),
+        Divider(
+          color: AppColors.lightPink,
+        ),
+        InkWell(
+          child: Center(
+            child: Builder(builder: (context) {
+              final year = DateTime.now().year;
+              return Text(
+                "© $year Erick Ogaro. All rights reserved.",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10.0,
+                ),
+              );
+            }),
+          ),
+          onTap: () => showLicensePage(context: context),
+        ),
+  
       ],
     );
   }

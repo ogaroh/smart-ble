@@ -1,66 +1,53 @@
 {
   "@@locale": "en",
-  
   "appTitle": "SmartBLE",
   "@appTitle": {
     "description": "The main application title"
   },
-  
   "deviceDetails": "Device Details",
   "@deviceDetails": {
     "description": "Title for device details screen"
   },
-  
   "settings": "Settings",
   "@settings": {
     "description": "Settings screen title"
   },
-  
   "stopScan": "Stop Scan",
   "@stopScan": {
     "description": "Button text to stop BLE scanning"
   },
-  
   "startScan": "Start Scan",
   "@startScan": {
     "description": "Button text to start BLE scanning"
   },
-  
   "checkBluetooth": "Check Bluetooth",
   "@checkBluetooth": {
     "description": "Button text when Bluetooth needs to be enabled"
   },
-  
   "type": "Type:",
   "@type": {
     "description": "Label for device type filter"
   },
-  
   "all": "All",
   "@all": {
     "description": "Filter option to show all device types"
   },
-  
   "searchDevices": "Search devices by name...",
   "@searchDevices": {
     "description": "Placeholder text for device search field"
   },
-  
   "initializingBluetooth": "Initializing Bluetooth...",
   "@initializingBluetooth": {
     "description": "Status message while Bluetooth is being initialized"
   },
-  
   "checkingBluetoothPermissions": "Checking Bluetooth permissions...",
   "@checkingBluetoothPermissions": {
     "description": "Status message while checking Bluetooth permissions"
   },
-  
   "bluetoothPermissionsRequired": "Bluetooth permissions required",
   "@bluetoothPermissionsRequired": {
     "description": "Error message when Bluetooth permissions are missing"
   },
-  
   "scanningDevicesFound": "Scanning... ({count} {count, plural, =1{device} other{devices}} found)",
   "@scanningDevicesFound": {
     "description": "Status message showing scanning progress",
@@ -70,7 +57,6 @@
       }
     }
   },
-  
   "devicesFound": "{count} {count, plural, =1{device} other{devices}} found",
   "@devicesFound": {
     "description": "Status message showing number of devices found",
@@ -80,77 +66,62 @@
       }
     }
   },
-  
   "retry": "Retry",
   "@retry": {
     "description": "Button text to retry an action"
   },
-  
   "goBack": "Go Back",
   "@goBack": {
     "description": "Button text to go back"
   },
-  
   "connection": "Connection",
   "@connection": {
     "description": "Connection status section title"
   },
-  
   "connect": "Connect",
   "@connect": {
     "description": "Button text to connect to a device"
   },
-  
   "disconnect": "Disconnect",
   "@disconnect": {
     "description": "Button text to disconnect from a device"
   },
-  
   "connecting": "Connecting...",
   "@connecting": {
     "description": "Connection status when connecting"
   },
-  
   "connected": "Connected",
   "@connected": {
     "description": "Connection status when connected"
   },
-  
   "disconnected": "Disconnected",
   "@disconnected": {
     "description": "Connection status when disconnected"
   },
-  
   "disconnecting": "Disconnecting...",
   "@disconnecting": {
     "description": "Connection status when disconnecting"
   },
-  
   "discoveringServices": "Discovering services...",
   "@discoveringServices": {
     "description": "Status message while discovering BLE services"
   },
-  
   "connectToDiscoverServices": "Connect to this device to discover its services and characteristics",
   "@connectToDiscoverServices": {
     "description": "Instructions to connect device for service discovery"
   },
-  
   "noServicesFound": "No services found on this device",
   "@noServicesFound": {
     "description": "Message when no BLE services are found"
   },
-  
   "servicesAndCharacteristics": "Services & Characteristics",
   "@servicesAndCharacteristics": {
     "description": "Title for services and characteristics section"
   },
-  
   "noCharacteristicsAvailable": "No characteristics available",
   "@noCharacteristicsAvailable": {
     "description": "Message when no characteristics are available for a service"
   },
-  
   "bytes": "Bytes: {value}",
   "@bytes": {
     "description": "Label showing characteristic byte value",
@@ -160,22 +131,18 @@
       }
     }
   },
-  
   "empty": "Empty",
   "@empty": {
     "description": "Text shown when a characteristic value is empty"
   },
-  
   "address": "Address",
   "@address": {
     "description": "Label for device MAC address"
   },
-  
   "advertisedServices": "Advertised Services",
   "@advertisedServices": {
     "description": "Label for number of advertised services"
   },
-  
   "serviceCount": "{count} service(s)",
   "@serviceCount": {
     "description": "Text showing number of services",
@@ -185,7 +152,6 @@
       }
     }
   },
-  
   "manufacturer": "Manufacturer: {name}",
   "@manufacturer": {
     "description": "Label showing manufacturer name",
@@ -195,317 +161,254 @@
       }
     }
   },
-  
   "manufacturerUnavailable": "Manufacturer: Unavailable",
   "@manufacturerUnavailable": {
     "description": "Label when manufacturer info is unavailable"
   },
-  
   "readingManufacturer": "Reading manufacturer...",
   "@readingManufacturer": {
     "description": "Status message while reading manufacturer info"
   },
-  
   "manufacturerError": "Manufacturer: Error reading",
   "@manufacturerError": {
     "description": "Error message when manufacturer info cannot be read"
   },
-  
   "theme": "Theme",
   "@theme": {
     "description": "Theme settings label"
   },
-  
   "unableToLoadSettings": "Unable to load settings",
   "@unableToLoadSettings": {
     "description": "Error message when settings cannot be loaded"
   },
-  
   "resetSettings": "Reset Settings",
   "@resetSettings": {
     "description": "Action to reset all settings"
   },
-  
   "resetSettingsConfirmation": "Are you sure you want to reset all settings to their default values? This action cannot be undone.",
   "@resetSettingsConfirmation": {
     "description": "Confirmation dialog message for resetting settings"
   },
-  
   "cancel": "Cancel",
   "@cancel": {
     "description": "Cancel action button"
   },
-  
   "reset": "Reset",
   "@reset": {
     "description": "Reset action button"
   },
-  
   "light": "Light",
   "@light": {
     "description": "Light theme option"
   },
-  
-  "dark": "Dark", 
+  "dark": "Dark",
   "@dark": {
     "description": "Dark theme option"
   },
-  
   "system": "System",
   "@system": {
     "description": "System theme option"
   },
-  
   "followSystemTheme": "Follow system theme",
   "@followSystemTheme": {
     "description": "Theme description for system mode"
   },
-  
   "alwaysUseLightTheme": "Always use light theme",
   "@alwaysUseLightTheme": {
     "description": "Theme description for light mode"
   },
-  
   "alwaysUseDarkTheme": "Always use dark theme",
   "@alwaysUseDarkTheme": {
     "description": "Theme description for dark mode"
   },
-  
   "deviceTypeAudio": "Audio Device",
   "@deviceTypeAudio": {
     "description": "BLE device type: Audio Device"
   },
-  
   "deviceTypeWatch": "Watch",
   "@deviceTypeWatch": {
     "description": "BLE device type: Watch"
   },
-  
   "deviceTypeOther": "Other",
   "@deviceTypeOther": {
     "description": "BLE device type: Other"
   },
-  
   "deviceTypeUnknown": "Unknown",
   "@deviceTypeUnknown": {
     "description": "BLE device type: Unknown"
   },
-  
   "deviceTypeComputer": "Computer",
   "@deviceTypeComputer": {
     "description": "BLE device type: Computer"
   },
-  
   "deviceTypeSportsWatch": "Sports Watch",
   "@deviceTypeSportsWatch": {
     "description": "BLE device type: Sports Watch"
   },
-  
   "deviceTypeClock": "Clock",
   "@deviceTypeClock": {
     "description": "BLE device type: Clock"
   },
-  
   "deviceTypeDisplay": "Display",
   "@deviceTypeDisplay": {
     "description": "BLE device type: Display"
   },
-  
   "deviceTypeRemoteControl": "Remote Control",
   "@deviceTypeRemoteControl": {
     "description": "BLE device type: Remote Control"
   },
-  
   "deviceTypeGlasses": "Smart Glasses",
   "@deviceTypeGlasses": {
     "description": "BLE device type: Smart Glasses"
   },
-  
   "deviceTypeTag": "Tag",
   "@deviceTypeTag": {
     "description": "BLE device type: Tag"
   },
-  
   "deviceTypeKeyring": "Keyring",
   "@deviceTypeKeyring": {
     "description": "BLE device type: Keyring"
   },
-  
   "deviceTypePhone": "Phone",
   "@deviceTypePhone": {
     "description": "BLE device type: Phone"
   },
-  
   "characteristicRead": "Read",
   "@characteristicRead": {
     "description": "BLE characteristic property: Read"
   },
-  
   "characteristicWrite": "Write",
   "@characteristicWrite": {
     "description": "BLE characteristic property: Write"
   },
-  
   "characteristicWriteNoResponse": "Write (No Response)",
   "@characteristicWriteNoResponse": {
     "description": "BLE characteristic property: Write without response"
   },
-  
   "characteristicNotify": "Notify",
   "@characteristicNotify": {
     "description": "BLE characteristic property: Notify"
   },
-  
   "characteristicIndicate": "Indicate",
   "@characteristicIndicate": {
     "description": "BLE characteristic property: Indicate"
   },
-  
   "seconds": "seconds",
   "@seconds": {
     "description": "Time unit: seconds"
   },
-  
-  "minutes": "minutes", 
+  "minutes": "minutes",
   "@minutes": {
     "description": "Time unit: minutes"
   },
-  
   "noDevicesFound": "No devices found",
   "@noDevicesFound": {
     "description": "Message when no BLE devices are found"
   },
-  
   "scanningForDevices": "Scanning for devices...",
   "@scanningForDevices": {
     "description": "Message shown while actively scanning for devices"
   },
-  
   "tapStartToScan": "Tap \"Start Scan\" to discover nearby BLE devices",
   "@tapStartToScan": {
     "description": "Instruction text when not scanning"
   },
-  
   "readyToScan": "Ready to scan",
   "@readyToScan": {
     "description": "Status message when ready to start scanning"
   },
-  
   "scanError": "Scan error",
   "@scanError": {
     "description": "Prefix for scan error messages"
   },
-  
   "errorPrefix": "Error",
   "@errorPrefix": {
     "description": "Generic error prefix"
   },
-  
   "failedToStartScan": "Failed to start scan",
   "@failedToStartScan": {
     "description": "Error message when scan fails to start"
   },
-  
   "failedToStopScan": "Failed to stop scan",
   "@failedToStopScan": {
     "description": "Error message when scan fails to stop"
   },
-  
   "bluetoothNotAvailable": "Bluetooth is not available on this device",
   "@bluetoothNotAvailable": {
     "description": "Error when Bluetooth hardware is not available"
   },
-  
   "bluetoothPermissionsDenied": "Bluetooth permissions are required to scan for devices",
   "@bluetoothPermissionsDenied": {
     "description": "Error when Bluetooth permissions are denied"
   },
-  
   "failedToCheckBluetooth": "Failed to check Bluetooth status",
   "@failedToCheckBluetooth": {
     "description": "Error when unable to check Bluetooth status"
   },
-  
   "appearance": "Appearance",
   "@appearance": {
     "description": "Settings section title for appearance settings"
   },
-  
   "bluetooth": "Bluetooth",
   "@bluetooth": {
     "description": "Settings section title for Bluetooth settings"
   },
-  
   "scanning": "Scanning",
   "@scanning": {
     "description": "Settings section title for scanning preferences"
   },
-  
   "advanced": "Advanced",
   "@advanced": {
     "description": "Settings section title for advanced settings"
   },
-  
   "scanTimeout": "Scan Timeout",
   "@scanTimeout": {
     "description": "Setting for scan timeout duration"
   },
-  
   "scanTimeoutSubtitle": "How long to scan for devices",
   "@scanTimeoutSubtitle": {
     "description": "Subtitle explaining scan timeout setting"
   },
-  
   "connectionTimeout": "Connection Timeout",
   "@connectionTimeout": {
     "description": "Setting for connection timeout duration"
   },
-  
   "connectionTimeoutSubtitle": "How long to wait for connections",
   "@connectionTimeoutSubtitle": {
     "description": "Subtitle explaining connection timeout setting"
   },
-  
   "autoScanOnStart": "Auto-scan on Start",
   "@autoScanOnStart": {
     "description": "Setting to enable automatic scanning on app start"
   },
-  
   "autoScanOnStartSubtitle": "Automatically start scanning when app opens",
   "@autoScanOnStartSubtitle": {
     "description": "Subtitle explaining auto-scan setting"
   },
-  
   "showUnknownDevices": "Show Unknown Devices",
   "@showUnknownDevices": {
     "description": "Setting to show/hide unknown devices"
   },
-  
   "showUnknownDevicesSubtitle": "Display devices without advertised names",
   "@showUnknownDevicesSubtitle": {
     "description": "Subtitle explaining unknown devices setting"
   },
-  
   "signalStrengthFilter": "Signal Strength Filter",
   "@signalStrengthFilter": {
     "description": "Setting for signal strength filtering"
   },
-  
   "minimumRssi": "Minimum RSSI",
   "@minimumRssi": {
     "description": "Label for minimum RSSI value"
   },
-  
   "autoConnect": "Auto-connect",
   "@autoConnect": {
     "description": "Setting for automatic device connection"
   },
-  
   "autoConnectSubtitle": "Automatically connect to last device",
   "@autoConnectSubtitle": {
     "description": "Subtitle explaining auto-connect setting"
   },
-  
   "resetSettingsSubtitle": "Restore all settings to defaults",
   "@resetSettingsSubtitle": {
     "description": "Subtitle for reset settings action"
