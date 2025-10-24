@@ -6,6 +6,7 @@ class AppColors {
   // Brand colors
   static const Color primaryBlue = Color(0xFF6139F7);
   static const Color primaryPink = Color(0xFFDA79E5);
+  static const Color lightPink = Color.fromARGB(255, 252, 223, 255);
 
   // Light theme colors
   static const Color lightBackground = Color(0xFFFAFAFA);
@@ -188,11 +189,11 @@ class AppTheme {
         ),
       ),
       cardTheme: CardThemeData(
-        elevation: 2,
+        elevation: 1.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        color: colorScheme.surface,
+        color: const Color.fromARGB(255, 253, 240, 254),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

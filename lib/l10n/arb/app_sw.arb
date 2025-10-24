@@ -319,5 +319,90 @@
   "failedToCheckBluetooth": "Imeshindwa kuangalia hali ya Bluetooth",
   "@failedToCheckBluetooth": {
     "description": "Error when unable to check Bluetooth status"
+  },
+  
+  "appearance": "Muonekano",
+  "@appearance": {
+    "description": "Settings section title for appearance settings"
+  },
+  
+  "bluetooth": "Bluetooth",
+  "@bluetooth": {
+    "description": "Settings section title for Bluetooth settings"
+  },
+  
+  "scanning": "Kutafuta",
+  "@scanning": {
+    "description": "Settings section title for scanning preferences"
+  },
+  
+  "advanced": "Kwa Utaalamu",
+  "@advanced": {
+    "description": "Settings section title for advanced settings"
+  },
+  
+  "scanTimeout": "Muda wa Kutafuta",
+  "@scanTimeout": {
+    "description": "Setting for scan timeout duration"
+  },
+  
+  "scanTimeoutSubtitle": "Muda wa kutafuta vifaa",
+  "@scanTimeoutSubtitle": {
+    "description": "Subtitle explaining scan timeout setting"
+  },
+  
+  "connectionTimeout": "Muda wa Kuunganisha",
+  "@connectionTimeout": {
+    "description": "Setting for connection timeout duration"
+  },
+  
+  "connectionTimeoutSubtitle": "Muda wa kusubiri miunganisho",
+  "@connectionTimeoutSubtitle": {
+    "description": "Subtitle explaining connection timeout setting"
+  },
+  
+  "autoScanOnStart": "Tafuta Kiotomatiki Mwanzoni",
+  "@autoScanOnStart": {
+    "description": "Setting to enable automatic scanning on app start"
+  },
+  
+  "autoScanOnStartSubtitle": "Anza kutafuta kiotomatiki wakati programu inapofunguka",
+  "@autoScanOnStartSubtitle": {
+    "description": "Subtitle explaining auto-scan setting"
+  },
+  
+  "showUnknownDevices": "Onyesha Vifaa Visivyojulikana",
+  "@showUnknownDevices": {
+    "description": "Setting to show/hide unknown devices"
+  },
+  
+  "showUnknownDevicesSubtitle": "Onyesha vifaa bila majina ya utangazaji",
+  "@showUnknownDevicesSubtitle": {
+    "description": "Subtitle explaining unknown devices setting"
+  },
+  
+  "signalStrengthFilter": "Kichuja cha Nguvu ya Ishara",
+  "@signalStrengthFilter": {
+    "description": "Setting for signal strength filtering"
+  },
+  
+  "minimumRssi": "Kiwango cha Chini cha RSSI",
+  "@minimumRssi": {
+    "description": "Label for minimum RSSI value"
+  },
+  
+  "autoConnect": "Unganisha Kiotomatiki",
+  "@autoConnect": {
+    "description": "Setting for automatic device connection"
+  },
+  
+  "autoConnectSubtitle": "Unganisha kiotomatiki na kifaa cha mwisho",
+  "@autoConnectSubtitle": {
+    "description": "Subtitle explaining auto-connect setting"
+  },
+  
+  "resetSettingsSubtitle": "Rejesha mipangilio yote kwa msingi",
+  "@resetSettingsSubtitle": {
+    "description": "Subtitle for reset settings action"
   }
 }

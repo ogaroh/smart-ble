@@ -455,6 +455,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to check Bluetooth status'**
   String get failedToCheckBluetooth;
+
+  /// Settings section title for appearance settings
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// Settings section title for Bluetooth settings
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth'**
+  String get bluetooth;
+
+  /// Settings section title for scanning preferences
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning'**
+  String get scanning;
+
+  /// Settings section title for advanced settings
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advanced;
+
+  /// Setting for scan timeout duration
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Timeout'**
+  String get scanTimeout;
+
+  /// Subtitle explaining scan timeout setting
+  ///
+  /// In en, this message translates to:
+  /// **'How long to scan for devices'**
+  String get scanTimeoutSubtitle;
+
+  /// Setting for connection timeout duration
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Timeout'**
+  String get connectionTimeout;
+
+  /// Subtitle explaining connection timeout setting
+  ///
+  /// In en, this message translates to:
+  /// **'How long to wait for connections'**
+  String get connectionTimeoutSubtitle;
+
+  /// Setting to enable automatic scanning on app start
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-scan on Start'**
+  String get autoScanOnStart;
+
+  /// Subtitle explaining auto-scan setting
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically start scanning when app opens'**
+  String get autoScanOnStartSubtitle;
+
+  /// Setting to show/hide unknown devices
+  ///
+  /// In en, this message translates to:
+  /// **'Show Unknown Devices'**
+  String get showUnknownDevices;
+
+  /// Subtitle explaining unknown devices setting
+  ///
+  /// In en, this message translates to:
+  /// **'Display devices without advertised names'**
+  String get showUnknownDevicesSubtitle;
+
+  /// Setting for signal strength filtering
+  ///
+  /// In en, this message translates to:
+  /// **'Signal Strength Filter'**
+  String get signalStrengthFilter;
+
+  /// Label for minimum RSSI value
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum RSSI'**
+  String get minimumRssi;
+
+  /// Setting for automatic device connection
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-connect'**
+  String get autoConnect;
+
+  /// Subtitle explaining auto-connect setting
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically connect to last device'**
+  String get autoConnectSubtitle;
+
+  /// Subtitle for reset settings action
+  ///
+  /// In en, this message translates to:
+  /// **'Restore all settings to defaults'**
+  String get resetSettingsSubtitle;
 }
 
 class _AppLocalizationsDelegate

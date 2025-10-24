@@ -211,4 +211,57 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get failedToCheckBluetooth => 'Imeshindwa kuangalia hali ya Bluetooth';
+
+  @override
+  String get appearance => 'Muonekano';
+
+  @override
+  String get bluetooth => 'Bluetooth';
+
+  @override
+  String get scanning => 'Kutafuta';
+
+  @override
+  String get advanced => 'Kwa Utaalamu';
+
+  @override
+  String get scanTimeout => 'Muda wa Kutafuta';
+
+  @override
+  String get scanTimeoutSubtitle => 'Muda wa kutafuta vifaa';
+
+  @override
+  String get connectionTimeout => 'Muda wa Kuunganisha';
+
+  @override
+  String get connectionTimeoutSubtitle => 'Muda wa kusubiri miunganisho';
+
+  @override
+  String get autoScanOnStart => 'Tafuta Kiotomatiki Mwanzoni';
+
+  @override
+  String get autoScanOnStartSubtitle =>
+      'Anza kutafuta kiotomatiki wakati programu inapofunguka';
+
+  @override
+  String get showUnknownDevices => 'Onyesha Vifaa Visivyojulikana';
+
+  @override
+  String get showUnknownDevicesSubtitle =>
+      'Onyesha vifaa bila majina ya utangazaji';
+
+  @override
+  String get signalStrengthFilter => 'Kichuja cha Nguvu ya Ishara';
+
+  @override
+  String get minimumRssi => 'Kiwango cha Chini cha RSSI';
+
+  @override
+  String get autoConnect => 'Unganisha Kiotomatiki';
+
+  @override
+  String get autoConnectSubtitle => 'Unganisha kiotomatiki na kifaa cha mwisho';
+
+  @override
+  String get resetSettingsSubtitle => 'Rejesha mipangilio yote kwa msingi';
 }

@@ -213,4 +213,59 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get failedToCheckBluetooth =>
       'Échec de la vérification de l\'état Bluetooth';
+
+  @override
+  String get appearance => 'Apparence';
+
+  @override
+  String get bluetooth => 'Bluetooth';
+
+  @override
+  String get scanning => 'Analyse';
+
+  @override
+  String get advanced => 'Avancé';
+
+  @override
+  String get scanTimeout => 'Délai d\'Analyse';
+
+  @override
+  String get scanTimeoutSubtitle => 'Durée d\'analyse des appareils';
+
+  @override
+  String get connectionTimeout => 'Délai de Connexion';
+
+  @override
+  String get connectionTimeoutSubtitle => 'Durée d\'attente des connexions';
+
+  @override
+  String get autoScanOnStart => 'Analyse Automatique au Démarrage';
+
+  @override
+  String get autoScanOnStartSubtitle =>
+      'Démarrer l\'analyse automatiquement à l\'ouverture de l\'application';
+
+  @override
+  String get showUnknownDevices => 'Afficher les Appareils Inconnus';
+
+  @override
+  String get showUnknownDevicesSubtitle =>
+      'Afficher les appareils sans noms annoncés';
+
+  @override
+  String get signalStrengthFilter => 'Filtre d\'Intensité du Signal';
+
+  @override
+  String get minimumRssi => 'RSSI Minimum';
+
+  @override
+  String get autoConnect => 'Connexion Automatique';
+
+  @override
+  String get autoConnectSubtitle =>
+      'Se connecter automatiquement au dernier appareil';
+
+  @override
+  String get resetSettingsSubtitle =>
+      'Restaurer tous les paramètres par défaut';
 }

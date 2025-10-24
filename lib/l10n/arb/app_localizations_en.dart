@@ -212,4 +212,57 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failedToCheckBluetooth => 'Failed to check Bluetooth status';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get bluetooth => 'Bluetooth';
+
+  @override
+  String get scanning => 'Scanning';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get scanTimeout => 'Scan Timeout';
+
+  @override
+  String get scanTimeoutSubtitle => 'How long to scan for devices';
+
+  @override
+  String get connectionTimeout => 'Connection Timeout';
+
+  @override
+  String get connectionTimeoutSubtitle => 'How long to wait for connections';
+
+  @override
+  String get autoScanOnStart => 'Auto-scan on Start';
+
+  @override
+  String get autoScanOnStartSubtitle =>
+      'Automatically start scanning when app opens';
+
+  @override
+  String get showUnknownDevices => 'Show Unknown Devices';
+
+  @override
+  String get showUnknownDevicesSubtitle =>
+      'Display devices without advertised names';
+
+  @override
+  String get signalStrengthFilter => 'Signal Strength Filter';
+
+  @override
+  String get minimumRssi => 'Minimum RSSI';
+
+  @override
+  String get autoConnect => 'Auto-connect';
+
+  @override
+  String get autoConnectSubtitle => 'Automatically connect to last device';
+
+  @override
+  String get resetSettingsSubtitle => 'Restore all settings to defaults';
 }

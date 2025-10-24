@@ -319,5 +319,90 @@
   "failedToCheckBluetooth": "Échec de la vérification de l''état Bluetooth",
   "@failedToCheckBluetooth": {
     "description": "Error when unable to check Bluetooth status"
+  },
+  
+  "appearance": "Apparence",
+  "@appearance": {
+    "description": "Settings section title for appearance settings"
+  },
+  
+  "bluetooth": "Bluetooth",
+  "@bluetooth": {
+    "description": "Settings section title for Bluetooth settings"
+  },
+  
+  "scanning": "Analyse",
+  "@scanning": {
+    "description": "Settings section title for scanning preferences"
+  },
+  
+  "advanced": "Avancé",
+  "@advanced": {
+    "description": "Settings section title for advanced settings"
+  },
+  
+  "scanTimeout": "Délai d''Analyse",
+  "@scanTimeout": {
+    "description": "Setting for scan timeout duration"
+  },
+  
+  "scanTimeoutSubtitle": "Durée d''analyse des appareils",
+  "@scanTimeoutSubtitle": {
+    "description": "Subtitle explaining scan timeout setting"
+  },
+  
+  "connectionTimeout": "Délai de Connexion",
+  "@connectionTimeout": {
+    "description": "Setting for connection timeout duration"
+  },
+  
+  "connectionTimeoutSubtitle": "Durée d''attente des connexions",
+  "@connectionTimeoutSubtitle": {
+    "description": "Subtitle explaining connection timeout setting"
+  },
+  
+  "autoScanOnStart": "Analyse Automatique au Démarrage",
+  "@autoScanOnStart": {
+    "description": "Setting to enable automatic scanning on app start"
+  },
+  
+  "autoScanOnStartSubtitle": "Démarrer l''analyse automatiquement à l''ouverture de l''application",
+  "@autoScanOnStartSubtitle": {
+    "description": "Subtitle explaining auto-scan setting"
+  },
+  
+  "showUnknownDevices": "Afficher les Appareils Inconnus",
+  "@showUnknownDevices": {
+    "description": "Setting to show/hide unknown devices"
+  },
+  
+  "showUnknownDevicesSubtitle": "Afficher les appareils sans noms annoncés",
+  "@showUnknownDevicesSubtitle": {
+    "description": "Subtitle explaining unknown devices setting"
+  },
+  
+  "signalStrengthFilter": "Filtre d''Intensité du Signal",
+  "@signalStrengthFilter": {
+    "description": "Setting for signal strength filtering"
+  },
+  
+  "minimumRssi": "RSSI Minimum",
+  "@minimumRssi": {
+    "description": "Label for minimum RSSI value"
+  },
+  
+  "autoConnect": "Connexion Automatique",
+  "@autoConnect": {
+    "description": "Setting for automatic device connection"
+  },
+  
+  "autoConnectSubtitle": "Se connecter automatiquement au dernier appareil",
+  "@autoConnectSubtitle": {
+    "description": "Subtitle explaining auto-connect setting"
+  },
+  
+  "resetSettingsSubtitle": "Restaurer tous les paramètres par défaut",
+  "@resetSettingsSubtitle": {
+    "description": "Subtitle for reset settings action"
   }
 }
