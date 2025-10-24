@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_ble/core/theme/app_theme.dart';
 import '../../../core/models/ble_device.dart';
+import '../../../l10n/l10n.dart';
 import '../../device_detail/view/device_detail_screen.dart';
 import '../../settings/view/settings_screen.dart';
 import '../bloc/ble_scan_bloc.dart';
@@ -62,7 +63,7 @@ class _BleScanViewState extends State<BleScanView> {
             fit: BoxFit.contain,
           ),
         ),
-        title: const Text('SmartBLE'),
+        title: Text(context.l10n.appTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -158,8 +159,8 @@ class _BleScanViewState extends State<BleScanView> {
               )
             : Icon(canScan ? Icons.search : Icons.bluetooth_disabled),
         label: Text(isScanning
-            ? 'Stop Scan'
-            : (canScan ? 'Start Scan' : 'Check Bluetooth')),
+            ? context.l10n.stopScan
+            : (canScan ? context.l10n.startScan : context.l10n.checkBluetooth)),
         style: ElevatedButton.styleFrom(
           backgroundColor: isScanning
               ? AppColors.error
@@ -176,22 +177,21 @@ class _BleScanViewState extends State<BleScanView> {
     Color statusColor;
 
     if (state is BleScanCheckingPermissions) {
-      statusText = 'Checking Bluetooth permissions...';
+      statusText = context.l10n.checkingBluetoothPermissions;
       statusColor = Colors.orange;
     } else if (state is BleScanPermissionsDenied) {
-      statusText = 'Bluetooth permissions required';
+      statusText = context.l10n.bluetoothPermissionsRequired;
       statusColor = AppColors.error;
     } else if (state is BleScanBluetoothUnavailable) {
       statusText = state.message;
       statusColor = AppColors.error;
     } else if (state is BleScanScanning) {
       final deviceCount = state.filteredDevices.length;
-      statusText =
-          'Scanning... ($deviceCount device${deviceCount != 1 ? 's' : ''} found)';
+      statusText = context.l10n.scanningDevicesFound(deviceCount);
       statusColor = AppColors.primaryBlue;
     } else if (state is BleScanReady) {
       final deviceCount = state.filteredDevices.length;
-      statusText = '$deviceCount device${deviceCount != 1 ? 's' : ''} found';
+      statusText = context.l10n.devicesFound(deviceCount);
       statusColor = Colors.pinkAccent;
     } else if (state is BleScanError) {
       statusText = 'Error: ${state.message}';
@@ -230,7 +230,7 @@ class _BleScanViewState extends State<BleScanView> {
           // Name filter
           CupertinoSearchTextField(
             controller: _filterController,
-            placeholder: 'Search devices by name...',
+            placeholder: context.l10n.searchDevices,
             borderRadius: BorderRadius.circular(12),
             style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
@@ -241,8 +241,8 @@ class _BleScanViewState extends State<BleScanView> {
           // Device type filter
           Row(
             children: [
-              const Text('Type:',
-                  style: TextStyle(fontWeight: FontWeight.w500)),
+              Text(context.l10n.type,
+                  style: const TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(width: 8),
               Expanded(
                 child: SingleChildScrollView(
@@ -250,7 +250,7 @@ class _BleScanViewState extends State<BleScanView> {
                   child: Row(
                     children: [
                       FilterChip(
-                        label: const Text('All'),
+                        label: Text(context.l10n.all),
                         selected: _selectedDeviceType == null,
                         onSelected: (selected) {
                           if (selected) {
@@ -283,13 +283,13 @@ class _BleScanViewState extends State<BleScanView> {
 
   Widget _buildBody(BuildContext context, BleScanState state) {
     if (state is BleScanInitial || state is BleScanCheckingPermissions) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16),
-            Text('Initializing Bluetooth...'),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            Text(context.l10n.initializingBluetooth),
           ],
         ),
       );
@@ -321,7 +321,7 @@ class _BleScanViewState extends State<BleScanView> {
                     .read<BleScanBloc>()
                     .add(const RefreshBluetoothStatusEvent());
               },
-              child: const Text('Retry'),
+              child: Text(context.l10n.retry),
             ),
           ],
         ),

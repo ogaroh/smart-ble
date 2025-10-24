@@ -9,64 +9,171 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get counterAppBarTitle => 'Application Codika';
+  String get appTitle => 'SmartBLE';
 
   @override
-  String get youHavePushedTheButtonThisManyTimes =>
-      'Vous avez appuyé sur le bouton ce nombre de fois :';
+  String get deviceDetails => 'Détails du Périphérique';
 
   @override
-  String hello(String userName) {
-    return 'Bonjour $userName';
-  }
+  String get settings => 'Paramètres';
 
   @override
-  String nWombats(num count) {
-    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
-      locale: localeName,
-    );
-    final String countString = countNumberFormat.format(count);
+  String get stopScan => 'Arrêter la Recherche';
 
+  @override
+  String get startScan => 'Démarrer la Recherche';
+
+  @override
+  String get checkBluetooth => 'Vérifier Bluetooth';
+
+  @override
+  String get type => 'Type :';
+
+  @override
+  String get all => 'Tout';
+
+  @override
+  String get searchDevices => 'Rechercher des appareils par nom...';
+
+  @override
+  String get initializingBluetooth => 'Initialisation Bluetooth...';
+
+  @override
+  String get checkingBluetoothPermissions =>
+      'Vérification des permissions Bluetooth...';
+
+  @override
+  String get bluetoothPermissionsRequired => 'Permissions Bluetooth requises';
+
+  @override
+  String scanningDevicesFound(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$countString wombats',
-      one: '1 wombat',
-      zero: 'aucun wombat',
+      other: 'appareils',
+      one: 'appareil',
     );
-    return '$_temp0';
+    return 'Recherche en cours... ($count $_temp0 trouvé(s))';
   }
 
   @override
-  String pronoun(String gender) {
-    String _temp0 = intl.Intl.selectLogic(
-      gender,
-      {
-        'male': 'il',
-        'female': 'elle',
-        'other': 'iel',
-      },
+  String devicesFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'appareils',
+      one: 'appareil',
     );
-    return '$_temp0';
+    return '$count $_temp0 trouvé(s)';
   }
 
   @override
-  String numberOfDataPoints(int value) {
-    final intl.NumberFormat valueNumberFormat =
-        intl.NumberFormat.compactCurrency(locale: localeName, decimalDigits: 2);
-    final String valueString = valueNumberFormat.format(value);
+  String get retry => 'Réessayer';
 
-    return 'Nombre de points de données : $valueString';
+  @override
+  String get goBack => 'Retour';
+
+  @override
+  String get connection => 'Connexion';
+
+  @override
+  String get connect => 'Connecter';
+
+  @override
+  String get disconnect => 'Déconnecter';
+
+  @override
+  String get connecting => 'Connexion...';
+
+  @override
+  String get connected => 'Connecté';
+
+  @override
+  String get disconnected => 'Déconnecté';
+
+  @override
+  String get disconnecting => 'Déconnexion...';
+
+  @override
+  String get discoveringServices => 'Découverte des services...';
+
+  @override
+  String get connectToDiscoverServices =>
+      'Connectez-vous à cet appareil pour découvrir ses services et caractéristiques';
+
+  @override
+  String get noServicesFound => 'Aucun service trouvé sur cet appareil';
+
+  @override
+  String get servicesAndCharacteristics => 'Services et Caractéristiques';
+
+  @override
+  String get noCharacteristicsAvailable => 'Aucune caractéristique disponible';
+
+  @override
+  String bytes(String value) {
+    return 'Octets : $value';
   }
 
   @override
-  String helloWorldOn(DateTime date) {
-    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
-    final String dateString = dateDateFormat.format(date);
+  String get empty => 'Vide';
 
-    return 'Bonjour le monde le $dateString';
+  @override
+  String get address => 'Adresse';
+
+  @override
+  String get advertisedServices => 'Services Annoncés';
+
+  @override
+  String serviceCount(int count) {
+    return '$count service(s)';
   }
 
   @override
-  String get escapedExample => 'Bonjour ! {N\'est-ce pas} une belle journée ?';
+  String manufacturer(String name) {
+    return 'Fabricant : $name';
+  }
+
+  @override
+  String get manufacturerUnavailable => 'Fabricant : Non disponible';
+
+  @override
+  String get readingManufacturer => 'Lecture du fabricant...';
+
+  @override
+  String get manufacturerError => 'Fabricant : Erreur de lecture';
+
+  @override
+  String get theme => 'Thème';
+
+  @override
+  String get unableToLoadSettings => 'Impossible de charger les paramètres';
+
+  @override
+  String get resetSettings => 'Réinitialiser les Paramètres';
+
+  @override
+  String get resetSettingsConfirmation =>
+      'Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut ? Cette action ne peut pas être annulée.';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get reset => 'Réinitialiser';
+
+  @override
+  String get light => 'Clair';
+
+  @override
+  String get dark => 'Sombre';
+
+  @override
+  String get system => 'Système';
+
+  @override
+  String get seconds => 'secondes';
+
+  @override
+  String get minutes => 'minutes';
 }

@@ -1,67 +1,268 @@
 {
   "@@locale": "fr",
-  "counterAppBarTitle": "Application Codika",
-  "@counterAppBarTitle": {
-    "description": "Texte affiché dans la barre d'applications de la page du compteur"
+  
+  "appTitle": "SmartBLE",
+  "@appTitle": {
+    "description": "The main application title"
   },
-  "youHavePushedTheButtonThisManyTimes": "Vous avez appuyé sur le bouton ce nombre de fois :",
-  "@youHavePushedTheButtonThisManyTimes": {
-    "description": "Texte affiché sur la page du compteur"
+  
+  "deviceDetails": "Détails du Périphérique",
+  "@deviceDetails": {
+    "description": "Title for device details screen"
   },
-  "hello": "Bonjour {userName}",
-  "@hello": {
-    "description": "Un message avec un seul paramètre",
-    "placeholders": {
-      "userName": {
-        "type": "String",
-        "example": "Bob"
-      }
-    }
+  
+  "settings": "Paramètres",
+  "@settings": {
+    "description": "Settings screen title"
   },
-  "nWombats": "{count, plural, =0{aucun wombat} =1{1 wombat} other{{count} wombats}}",
-  "@nWombats": {
-    "description": "Un message au pluriel",
+  
+  "stopScan": "Arrêter la Recherche",
+  "@stopScan": {
+    "description": "Button text to stop BLE scanning"
+  },
+  
+  "startScan": "Démarrer la Recherche",
+  "@startScan": {
+    "description": "Button text to start BLE scanning"
+  },
+  
+  "checkBluetooth": "Vérifier Bluetooth",
+  "@checkBluetooth": {
+    "description": "Button text when Bluetooth needs to be enabled"
+  },
+  
+  "type": "Type :",
+  "@type": {
+    "description": "Label for device type filter"
+  },
+  
+  "all": "Tout",
+  "@all": {
+    "description": "Filter option to show all device types"
+  },
+  
+  "searchDevices": "Rechercher des appareils par nom...",
+  "@searchDevices": {
+    "description": "Placeholder text for device search field"
+  },
+  
+  "initializingBluetooth": "Initialisation Bluetooth...",
+  "@initializingBluetooth": {
+    "description": "Status message while Bluetooth is being initialized"
+  },
+  
+  "checkingBluetoothPermissions": "Vérification des permissions Bluetooth...",
+  "@checkingBluetoothPermissions": {
+    "description": "Status message while checking Bluetooth permissions"
+  },
+  
+  "bluetoothPermissionsRequired": "Permissions Bluetooth requises",
+  "@bluetoothPermissionsRequired": {
+    "description": "Error message when Bluetooth permissions are missing"
+  },
+  
+  "scanningDevicesFound": "Recherche en cours... ({count} {count, plural, =1{appareil} other{appareils}} trouvé(s))",
+  "@scanningDevicesFound": {
+    "description": "Status message showing scanning progress",
     "placeholders": {
       "count": {
-        "type": "num",
-        "format": "compact"
+        "type": "int"
       }
     }
   },
-  "pronoun": "{gender, select, male{il} female{elle} other{iel}}",
-  "@pronoun": {
-    "description": "Un message avec genre",
+  
+  "devicesFound": "{count} {count, plural, =1{appareil} other{appareils}} trouvé(s)",
+  "@devicesFound": {
+    "description": "Status message showing number of devices found",
     "placeholders": {
-      "gender": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "retry": "Réessayer",
+  "@retry": {
+    "description": "Button text to retry an action"
+  },
+  
+  "goBack": "Retour",
+  "@goBack": {
+    "description": "Button text to go back"
+  },
+  
+  "connection": "Connexion",
+  "@connection": {
+    "description": "Connection status section title"
+  },
+  
+  "connect": "Connecter",
+  "@connect": {
+    "description": "Button text to connect to a device"
+  },
+  
+  "disconnect": "Déconnecter",
+  "@disconnect": {
+    "description": "Button text to disconnect from a device"
+  },
+  
+  "connecting": "Connexion...",
+  "@connecting": {
+    "description": "Connection status when connecting"
+  },
+  
+  "connected": "Connecté",
+  "@connected": {
+    "description": "Connection status when connected"
+  },
+  
+  "disconnected": "Déconnecté",
+  "@disconnected": {
+    "description": "Connection status when disconnected"
+  },
+  
+  "disconnecting": "Déconnexion...",
+  "@disconnecting": {
+    "description": "Connection status when disconnecting"
+  },
+  
+  "discoveringServices": "Découverte des services...",
+  "@discoveringServices": {
+    "description": "Status message while discovering BLE services"
+  },
+  
+  "connectToDiscoverServices": "Connectez-vous à cet appareil pour découvrir ses services et caractéristiques",
+  "@connectToDiscoverServices": {
+    "description": "Instructions to connect device for service discovery"
+  },
+  
+  "noServicesFound": "Aucun service trouvé sur cet appareil",
+  "@noServicesFound": {
+    "description": "Message when no BLE services are found"
+  },
+  
+  "servicesAndCharacteristics": "Services et Caractéristiques",
+  "@servicesAndCharacteristics": {
+    "description": "Title for services and characteristics section"
+  },
+  
+  "noCharacteristicsAvailable": "Aucune caractéristique disponible",
+  "@noCharacteristicsAvailable": {
+    "description": "Message when no characteristics are available for a service"
+  },
+  
+  "bytes": "Octets : {value}",
+  "@bytes": {
+    "description": "Label showing characteristic byte value",
+    "placeholders": {
+      "value": {
         "type": "String"
       }
     }
   },
-  "numberOfDataPoints": "Nombre de points de données : {value}",
-  "@numberOfDataPoints": {
-    "description": "Un message avec un paramètre int formaté",
+  
+  "empty": "Vide",
+  "@empty": {
+    "description": "Text shown when a characteristic value is empty"
+  },
+  
+  "address": "Adresse",
+  "@address": {
+    "description": "Label for device MAC address"
+  },
+  
+  "advertisedServices": "Services Annoncés",
+  "@advertisedServices": {
+    "description": "Label for number of advertised services"
+  },
+  
+  "serviceCount": "{count} service(s)",
+  "@serviceCount": {
+    "description": "Text showing number of services",
     "placeholders": {
-      "value": {
-        "type": "int",
-        "format": "compactCurrency",
-        "optionalParameters": {
-          "decimalDigits": 2
-        }
+      "count": {
+        "type": "int"
       }
     }
   },
-  "helloWorldOn": "Bonjour le monde le {date}",
-  "@helloWorldOn": {
-    "description": "Un message avec un paramètre de date",
+  
+  "manufacturer": "Fabricant : {name}",
+  "@manufacturer": {
+    "description": "Label showing manufacturer name",
     "placeholders": {
-      "date": {
-        "type": "DateTime",
-        "format": "yMd"
+      "name": {
+        "type": "String"
       }
     }
   },
-  "escapedExample": "Bonjour ! '{N''est-ce pas}' une belle journée ?",
-  "@escapedExample": {
-    "description": "Un exemple de texte échappé avec des apostrophes"
+  
+  "manufacturerUnavailable": "Fabricant : Non disponible",
+  "@manufacturerUnavailable": {
+    "description": "Label when manufacturer info is unavailable"
+  },
+  
+  "readingManufacturer": "Lecture du fabricant...",
+  "@readingManufacturer": {
+    "description": "Status message while reading manufacturer info"
+  },
+  
+  "manufacturerError": "Fabricant : Erreur de lecture",
+  "@manufacturerError": {
+    "description": "Error message when manufacturer info cannot be read"
+  },
+  
+  "theme": "Thème",
+  "@theme": {
+    "description": "Theme settings label"
+  },
+  
+  "unableToLoadSettings": "Impossible de charger les paramètres",
+  "@unableToLoadSettings": {
+    "description": "Error message when settings cannot be loaded"
+  },
+  
+  "resetSettings": "Réinitialiser les Paramètres",
+  "@resetSettings": {
+    "description": "Action to reset all settings"
+  },
+  
+  "resetSettingsConfirmation": "Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut ? Cette action ne peut pas être annulée.",
+  "@resetSettingsConfirmation": {
+    "description": "Confirmation dialog message for resetting settings"
+  },
+  
+  "cancel": "Annuler",
+  "@cancel": {
+    "description": "Cancel action button"
+  },
+  
+  "reset": "Réinitialiser",
+  "@reset": {
+    "description": "Reset action button"
+  },
+  
+  "light": "Clair",
+  "@light": {
+    "description": "Light theme option"
+  },
+  
+  "dark": "Sombre", 
+  "@dark": {
+    "description": "Dark theme option"
+  },
+  
+  "system": "Système",
+  "@system": {
+    "description": "System theme option"
+  },
+  
+  "seconds": "secondes",
+  "@seconds": {
+    "description": "Time unit: seconds"
+  },
+  
+  "minutes": "minutes", 
+  "@minutes": {
+    "description": "Time unit: minutes"
   }
 }

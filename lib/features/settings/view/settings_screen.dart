@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/l10n.dart';
 import '../bloc/settings_bloc.dart';
 import '../bloc/settings_event.dart';
 import '../bloc/settings_state.dart';
@@ -26,7 +27,7 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(context.l10n.settings),
         backgroundColor: Theme.of(context).colorScheme.surface,
         elevation: 0,
       ),
@@ -52,8 +53,8 @@ class SettingsView extends StatelessWidget {
           }
 
           if (state is! SettingsLoaded) {
-            return const Center(
-              child: Text('Unable to load settings'),
+            return Center(
+              child: Text(context.l10n.unableToLoadSettings),
             );
           }
 
@@ -231,7 +232,7 @@ class SettingsView extends StatelessWidget {
   Widget _buildThemeTile(BuildContext context, SettingsLoaded state) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: const Text('Theme'),
+      title: Text(context.l10n.theme),
       subtitle: Text(state.themeMode.description),
       trailing: DropdownButton<AppThemeMode>(
         value: state.themeMode,

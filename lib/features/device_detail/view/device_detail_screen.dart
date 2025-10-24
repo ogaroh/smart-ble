@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_ble/core/theme/app_theme.dart';
 import '../../../core/models/ble_device.dart';
 import '../../../core/models/ble_models.dart';
+import '../../../l10n/l10n.dart';
 import '../bloc/device_detail_bloc.dart';
 import '../bloc/device_detail_event.dart';
 import '../bloc/device_detail_state.dart';
@@ -33,7 +34,7 @@ class DeviceDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Device Details'),
+        title: Text(context.l10n.deviceDetails),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: BlocConsumer<DeviceDetailBloc, DeviceDetailState>(
@@ -85,7 +86,7 @@ class DeviceDetailView extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Go Back'),
+                    child: Text(context.l10n.goBack),
                   ),
                 ],
               ),
@@ -204,7 +205,7 @@ class DeviceDetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Connection',
+              context.l10n.connection,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -227,7 +228,7 @@ class DeviceDetailView extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    state.connectionState.displayName,
+                    state.connectionState.localizedDisplayName(context),
                     style: TextStyle(
                       color: isConnected
                           ? Colors.green
@@ -268,7 +269,9 @@ class DeviceDetailView extends StatelessWidget {
                       isConnected ? AppColors.error : AppColors.primaryBlue,
                   foregroundColor: Colors.white,
                 ),
-                child: Text(isConnected ? 'Disconnect' : 'Connect'),
+                child: Text(isConnected
+                    ? context.l10n.disconnect
+                    : context.l10n.connect),
               ),
             ),
           ],
@@ -290,10 +293,10 @@ class DeviceDetailView extends StatelessWidget {
                 color: Colors.grey[400],
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Connect to this device to discover its services and characteristics',
+              Text(
+                context.l10n.connectToDiscoverServices,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.grey),
               ),
             ],
           ),
@@ -302,14 +305,14 @@ class DeviceDetailView extends StatelessWidget {
     }
 
     if (state is DeviceDetailDiscoveringServices) {
-      return const Card(
+      return Card(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              CircularProgressIndicator(),
-              SizedBox(height: 16),
-              Text('Discovering services...'),
+              const CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              Text(context.l10n.discoveringServices),
             ],
           ),
         ),

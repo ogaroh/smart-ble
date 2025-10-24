@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_sw.dart';
 
 // ignore_for_file: type=lint
 
@@ -96,57 +97,298 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('sw'),
     Locale('es'),
     Locale('fr')
   ];
 
-  /// Text shown in the AppBar of the Counter Page
+  /// The main application title
   ///
   /// In en, this message translates to:
-  /// **'Codika App'**
-  String get counterAppBarTitle;
+  /// **'SmartBLE'**
+  String get appTitle;
 
-  /// Text shown in the Counter Page
+  /// Title for device details screen
   ///
   /// In en, this message translates to:
-  /// **'You have pushed the button this many times:'**
-  String get youHavePushedTheButtonThisManyTimes;
+  /// **'Device Details'**
+  String get deviceDetails;
 
-  /// A message with a single parameter
+  /// Settings screen title
   ///
   /// In en, this message translates to:
-  /// **'Hello {userName}'**
-  String hello(String userName);
+  /// **'Settings'**
+  String get settings;
 
-  /// A plural message
+  /// Button text to stop BLE scanning
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{no wombats} =1{1 wombat} other{{count} wombats}}'**
-  String nWombats(num count);
+  /// **'Stop Scan'**
+  String get stopScan;
 
-  /// A gendered message
+  /// Button text to start BLE scanning
   ///
   /// In en, this message translates to:
-  /// **'{gender, select, male{he} female{she} other{they}}'**
-  String pronoun(String gender);
+  /// **'Start Scan'**
+  String get startScan;
 
-  /// A message with a formatted int parameter
+  /// Button text when Bluetooth needs to be enabled
   ///
   /// In en, this message translates to:
-  /// **'Number of data points: {value}'**
-  String numberOfDataPoints(int value);
+  /// **'Check Bluetooth'**
+  String get checkBluetooth;
 
-  /// A message with a date parameter
+  /// Label for device type filter
   ///
   /// In en, this message translates to:
-  /// **'Hello World on {date}'**
-  String helloWorldOn(DateTime date);
+  /// **'Type:'**
+  String get type;
 
-  /// An example of escaped text with single quotes
+  /// Filter option to show all device types
   ///
   /// In en, this message translates to:
-  /// **'Hello! \'{Isn\'\'t}\' this a wonderful day?'**
-  String get escapedExample;
+  /// **'All'**
+  String get all;
+
+  /// Placeholder text for device search field
+  ///
+  /// In en, this message translates to:
+  /// **'Search devices by name...'**
+  String get searchDevices;
+
+  /// Status message while Bluetooth is being initialized
+  ///
+  /// In en, this message translates to:
+  /// **'Initializing Bluetooth...'**
+  String get initializingBluetooth;
+
+  /// Status message while checking Bluetooth permissions
+  ///
+  /// In en, this message translates to:
+  /// **'Checking Bluetooth permissions...'**
+  String get checkingBluetoothPermissions;
+
+  /// Error message when Bluetooth permissions are missing
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth permissions required'**
+  String get bluetoothPermissionsRequired;
+
+  /// Status message showing scanning progress
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning... ({count} {count, plural, =1{device} other{devices}} found)'**
+  String scanningDevicesFound(int count);
+
+  /// Status message showing number of devices found
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, =1{device} other{devices}} found'**
+  String devicesFound(int count);
+
+  /// Button text to retry an action
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Button text to go back
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get goBack;
+
+  /// Connection status section title
+  ///
+  /// In en, this message translates to:
+  /// **'Connection'**
+  String get connection;
+
+  /// Button text to connect to a device
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get connect;
+
+  /// Button text to disconnect from a device
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect'**
+  String get disconnect;
+
+  /// Connection status when connecting
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting...'**
+  String get connecting;
+
+  /// Connection status when connected
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get connected;
+
+  /// Connection status when disconnected
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnected'**
+  String get disconnected;
+
+  /// Connection status when disconnecting
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnecting...'**
+  String get disconnecting;
+
+  /// Status message while discovering BLE services
+  ///
+  /// In en, this message translates to:
+  /// **'Discovering services...'**
+  String get discoveringServices;
+
+  /// Instructions to connect device for service discovery
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to this device to discover its services and characteristics'**
+  String get connectToDiscoverServices;
+
+  /// Message when no BLE services are found
+  ///
+  /// In en, this message translates to:
+  /// **'No services found on this device'**
+  String get noServicesFound;
+
+  /// Title for services and characteristics section
+  ///
+  /// In en, this message translates to:
+  /// **'Services & Characteristics'**
+  String get servicesAndCharacteristics;
+
+  /// Message when no characteristics are available for a service
+  ///
+  /// In en, this message translates to:
+  /// **'No characteristics available'**
+  String get noCharacteristicsAvailable;
+
+  /// Label showing characteristic byte value
+  ///
+  /// In en, this message translates to:
+  /// **'Bytes: {value}'**
+  String bytes(String value);
+
+  /// Text shown when a characteristic value is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get empty;
+
+  /// Label for device MAC address
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// Label for number of advertised services
+  ///
+  /// In en, this message translates to:
+  /// **'Advertised Services'**
+  String get advertisedServices;
+
+  /// Text showing number of services
+  ///
+  /// In en, this message translates to:
+  /// **'{count} service(s)'**
+  String serviceCount(int count);
+
+  /// Label showing manufacturer name
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer: {name}'**
+  String manufacturer(String name);
+
+  /// Label when manufacturer info is unavailable
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer: Unavailable'**
+  String get manufacturerUnavailable;
+
+  /// Status message while reading manufacturer info
+  ///
+  /// In en, this message translates to:
+  /// **'Reading manufacturer...'**
+  String get readingManufacturer;
+
+  /// Error message when manufacturer info cannot be read
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer: Error reading'**
+  String get manufacturerError;
+
+  /// Theme settings label
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// Error message when settings cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load settings'**
+  String get unableToLoadSettings;
+
+  /// Action to reset all settings
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Settings'**
+  String get resetSettings;
+
+  /// Confirmation dialog message for resetting settings
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset all settings to their default values? This action cannot be undone.'**
+  String get resetSettingsConfirmation;
+
+  /// Cancel action button
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Reset action button
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// Light theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// Dark theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// System theme option
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// Time unit: seconds
+  ///
+  /// In en, this message translates to:
+  /// **'seconds'**
+  String get seconds;
+
+  /// Time unit: minutes
+  ///
+  /// In en, this message translates to:
+  /// **'minutes'**
+  String get minutes;
 }
 
 class _AppLocalizationsDelegate
@@ -160,7 +402,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'fr'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr', 'sw'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -175,6 +417,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'sw':
+      return AppLocalizationsSw();
   }
 
   throw FlutterError(

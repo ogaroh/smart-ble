@@ -1,67 +1,67 @@
 {
-  "@@locale": "es",
+  "@@locale": "sw",
   
   "appTitle": "SmartBLE",
   "@appTitle": {
     "description": "The main application title"
   },
   
-  "deviceDetails": "Detalles del Dispositivo",
+  "deviceDetails": "Maelezo ya Kifaa",
   "@deviceDetails": {
     "description": "Title for device details screen"
   },
   
-  "settings": "Configuración",
+  "settings": "Mipangilio",
   "@settings": {
     "description": "Settings screen title"
   },
   
-  "stopScan": "Detener Búsqueda",
+  "stopScan": "Acha Kutafuta",
   "@stopScan": {
     "description": "Button text to stop BLE scanning"
   },
   
-  "startScan": "Iniciar Búsqueda",
+  "startScan": "Anza Kutafuta",
   "@startScan": {
     "description": "Button text to start BLE scanning"
   },
   
-  "checkBluetooth": "Verificar Bluetooth",
+  "checkBluetooth": "Angalia Bluetooth",
   "@checkBluetooth": {
     "description": "Button text when Bluetooth needs to be enabled"
   },
   
-  "type": "Tipo:",
+  "type": "Aina:",
   "@type": {
     "description": "Label for device type filter"
   },
   
-  "all": "Todos",
+  "all": "Zote",
   "@all": {
     "description": "Filter option to show all device types"
   },
   
-  "searchDevices": "Buscar dispositivos por nombre...",
+  "searchDevices": "Tafuta vifaa kwa jina...",
   "@searchDevices": {
     "description": "Placeholder text for device search field"
   },
   
-  "initializingBluetooth": "Inicializando Bluetooth...",
+  "initializingBluetooth": "Kuanzisha Bluetooth...",
   "@initializingBluetooth": {
     "description": "Status message while Bluetooth is being initialized"
   },
   
-  "checkingBluetoothPermissions": "Verificando permisos de Bluetooth...",
+  "checkingBluetoothPermissions": "Kukagua ruhusa za Bluetooth...",
   "@checkingBluetoothPermissions": {
     "description": "Status message while checking Bluetooth permissions"
   },
   
-  "bluetoothPermissionsRequired": "Se requieren permisos de Bluetooth",
+  "bluetoothPermissionsRequired": "Ruhusa za Bluetooth zinahitajika",
   "@bluetoothPermissionsRequired": {
     "description": "Error message when Bluetooth permissions are missing"
   },
   
-  "scanningDevicesFound": "Buscando... ({count} {count, plural, =1{dispositivo} other{dispositivos}} encontrado(s))",
+  "scanningDevicesFound": "Kutafuta... ({count} {count, plural, =1{kifaa} other{vifaa}} vimepatikana)",
   "@scanningDevicesFound": {
     "description": "Status message showing scanning progress",
     "placeholders": {
@@ -71,7 +71,7 @@
     }
   },
   
-  "devicesFound": "{count} {count, plural, =1{dispositivo} other{dispositivos}} encontrado(s)",
+  "devicesFound": "{count} {count, plural, =1{kifaa} other{vifaa}} vimepatikana",
   "@devicesFound": {
     "description": "Status message showing number of devices found",
     "placeholders": {
@@ -81,72 +81,72 @@
     }
   },
   
-  "retry": "Reintentar",
+  "retry": "Jaribu Tena",
   "@retry": {
     "description": "Button text to retry an action"
   },
   
-  "goBack": "Volver",
+  "goBack": "Rudi Nyuma",
   "@goBack": {
     "description": "Button text to go back"
   },
   
-  "connection": "Conexión",
+  "connection": "Muunganisho",
   "@connection": {
     "description": "Connection status section title"
   },
   
-  "connect": "Conectar",
+  "connect": "Unganisha",
   "@connect": {
     "description": "Button text to connect to a device"
   },
   
-  "disconnect": "Desconectar",
+  "disconnect": "Tengua",
   "@disconnect": {
     "description": "Button text to disconnect from a device"
   },
   
-  "connecting": "Conectando...",
+  "connecting": "Kuunganisha...",
   "@connecting": {
     "description": "Connection status when connecting"
   },
   
-  "connected": "Conectado",
+  "connected": "Imeunganishwa",
   "@connected": {
     "description": "Connection status when connected"
   },
   
-  "disconnected": "Desconectado",
+  "disconnected": "Haijaungana",
   "@disconnected": {
     "description": "Connection status when disconnected"
   },
   
-  "disconnecting": "Desconectando...",
+  "disconnecting": "Kutenganisha...",
   "@disconnecting": {
     "description": "Connection status when disconnecting"
   },
   
-  "discoveringServices": "Descubriendo servicios...",
+  "discoveringServices": "Kugundua huduma...",
   "@discoveringServices": {
     "description": "Status message while discovering BLE services"
   },
   
-  "connectToDiscoverServices": "Conecta a este dispositivo para descubrir sus servicios y características",
+  "connectToDiscoverServices": "Unganisha kifaa hiki ili kugundua huduma na sifa zake",
   "@connectToDiscoverServices": {
     "description": "Instructions to connect device for service discovery"
   },
   
-  "noServicesFound": "No se encontraron servicios en este dispositivo",
+  "noServicesFound": "Hakuna huduma zilizopatikana kwenye kifaa hiki",
   "@noServicesFound": {
     "description": "Message when no BLE services are found"
   },
   
-  "servicesAndCharacteristics": "Servicios y Características",
+  "servicesAndCharacteristics": "Huduma na Sifa",
   "@servicesAndCharacteristics": {
     "description": "Title for services and characteristics section"
   },
   
-  "noCharacteristicsAvailable": "No hay características disponibles",
+  "noCharacteristicsAvailable": "Hakuna sifa zinazopatikana",
   "@noCharacteristicsAvailable": {
     "description": "Message when no characteristics are available for a service"
   },
@@ -161,22 +161,22 @@
     }
   },
   
-  "empty": "Vacío",
+  "empty": "Tupu",
   "@empty": {
     "description": "Text shown when a characteristic value is empty"
   },
   
-  "address": "Dirección",
+  "address": "Anwani",
   "@address": {
     "description": "Label for device MAC address"
   },
   
-  "advertisedServices": "Servicios Anunciados",
+  "advertisedServices": "Huduma Zilizotangazwa",
   "@advertisedServices": {
     "description": "Label for number of advertised services"
   },
   
-  "serviceCount": "{count} servicio(s)",
+  "serviceCount": "{count} huduma",
   "@serviceCount": {
     "description": "Text showing number of services",
     "placeholders": {
@@ -186,7 +186,7 @@
     }
   },
   
-  "manufacturer": "Fabricante: {name}",
+  "manufacturer": "Mtengenezaji: {name}",
   "@manufacturer": {
     "description": "Label showing manufacturer name",
     "placeholders": {
@@ -196,72 +196,72 @@
     }
   },
   
-  "manufacturerUnavailable": "Fabricante: No disponible",
+  "manufacturerUnavailable": "Mtengenezaji: Haupatikani",
   "@manufacturerUnavailable": {
     "description": "Label when manufacturer info is unavailable"
   },
   
-  "readingManufacturer": "Leyendo fabricante...",
+  "readingManufacturer": "Kusoma mtengenezaji...",
   "@readingManufacturer": {
     "description": "Status message while reading manufacturer info"
   },
   
-  "manufacturerError": "Fabricante: Error al leer",
+  "manufacturerError": "Mtengenezaji: Hitilafu ya kusoma",
   "@manufacturerError": {
     "description": "Error message when manufacturer info cannot be read"
   },
   
-  "theme": "Tema",
+  "theme": "Mandhari",
   "@theme": {
     "description": "Theme settings label"
   },
   
-  "unableToLoadSettings": "No se puede cargar la configuración",
+  "unableToLoadSettings": "Haikuweza kupakia mipangilio",
   "@unableToLoadSettings": {
     "description": "Error message when settings cannot be loaded"
   },
   
-  "resetSettings": "Restablecer Configuración",
+  "resetSettings": "Rudisha Mipangilio",
   "@resetSettings": {
     "description": "Action to reset all settings"
   },
   
-  "resetSettingsConfirmation": "¿Estás seguro de que quieres restablecer toda la configuración a sus valores predeterminados? Esta acción no se puede deshacer.",
+  "resetSettingsConfirmation": "Una uhakika unataka kurudisha mipangilio yote kwa maadili ya chaguo-msingi? Kitendo hiki hakiwezi kubatilishwa.",
   "@resetSettingsConfirmation": {
     "description": "Confirmation dialog message for resetting settings"
   },
   
-  "cancel": "Cancelar",
+  "cancel": "Ghairi",
   "@cancel": {
     "description": "Cancel action button"
   },
   
-  "reset": "Restablecer",
+  "reset": "Rudisha",
   "@reset": {
     "description": "Reset action button"
   },
   
-  "light": "Claro",
+  "light": "Mwanga",
   "@light": {
     "description": "Light theme option"
   },
   
-  "dark": "Oscuro", 
+  "dark": "Giza", 
   "@dark": {
     "description": "Dark theme option"
   },
   
-  "system": "Sistema",
+  "system": "Mfumo",
   "@system": {
     "description": "System theme option"
   },
   
-  "seconds": "segundos",
+  "seconds": "sekunde",
   "@seconds": {
     "description": "Time unit: seconds"
   },
   
-  "minutes": "minutos", 
+  "minutes": "dakika", 
   "@minutes": {
     "description": "Time unit: minutes"
   }

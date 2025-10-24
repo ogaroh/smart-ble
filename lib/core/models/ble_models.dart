@@ -183,3 +183,21 @@ extension BleConnectionStateExtension on BleConnectionState {
     }
   }
 }
+
+// Helper methods for localized connection state names
+extension BleConnectionStateLocalization on BleConnectionState {
+  String localizedDisplayName(dynamic context) {
+    // Import is dynamic to avoid circular dependency
+    final l10n = (context as dynamic).l10n;
+    switch (this) {
+      case BleConnectionState.disconnected:
+        return l10n.disconnected;
+      case BleConnectionState.connecting:
+        return l10n.connecting;
+      case BleConnectionState.connected:
+        return l10n.connected;
+      case BleConnectionState.disconnecting:
+        return l10n.disconnecting;
+    }
+  }
+}
