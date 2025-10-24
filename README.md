@@ -189,9 +189,9 @@ Services Found → DeviceDetailConnected (with services)
 
 ---
 
-## 🎯 Bonus Challenges Attempted
+## Bonus Challenges Attempted
 
-### ✅ **Challenge #1: Enhanced UI/UX**
+### **Challenge #1: Enhanced UI/UX**
 
 - **Implementation**: Full Material 3 design system with dynamic theming & custom settings
 - **Features**:
@@ -202,7 +202,7 @@ Services Found → DeviceDetailConnected (with services)
   - Responsive layout design
   - full localization support for 4 languages (English, Swahili, French & Spanish). The language conforms to the system language
 
-### ✅ **Challenge #2: Manufacturer Information Reading**
+### **Challenge #2: Manufacturer Information Reading**
 
 - **Implementation**: Automatic manufacturer name detection via the Device Information Service (0x180A)
 - **Features**:
@@ -211,7 +211,7 @@ Services Found → DeviceDetailConnected (with services)
   - Error handling for unsupported devices
   - Graceful fallback for unavailable information
 
-### 📋 **Additional Enhancements Implemented**
+### **Additional Enhancements Implemented**
 
 #### **Multi-Environment Support**
 
@@ -241,21 +241,21 @@ Services Found → DeviceDetailConnected (with services)
 
 ---
 
-## 📁 Download Links
+## Download Links
 
-### 🔗 **Functional APK**
+### **Functional APK**
 
 [Download Smart BLE APK](https://github.com/ogaroh/smart-ble/releases/download/v1.0.1/smart-ble-app-prod-release.apk)
 _Production build with release optimizations_
 
-### 🎥 **Demo Video**
+### **Demo Video**
 
 [Watch Application Demo](https://drive.google.com/file/d/1Y5KLVzOvpAhhDievRVR9xLYuCB8zUcct/view?usp=sharing)
 _Complete walkthrough of BLE scanning, connection, and service discovery_
 
 ---
 
-## 📊 Technical Specifications
+## Technical Specifications
 
 - **Flutter Version**: 3.24.5
 - **Dart Version**: 3.5.4
@@ -272,7 +272,7 @@ _Complete walkthrough of BLE scanning, connection, and service discovery_
 
 ---
 
-## 🎉 Conclusion
+## Conclusion
 
 This Smart BLE application demonstrates a production-ready Flutter implementation with modern architecture patterns, comprehensive error handling, and user-centric design. The BLoC pattern provides excellent separation of concerns and maintainability, while the Material 3 design ensures a polished user experience across different devices and screen sizes.
 
