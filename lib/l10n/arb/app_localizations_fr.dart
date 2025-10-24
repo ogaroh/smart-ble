@@ -176,4 +176,41 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get minutes => 'minutes';
+
+  @override
+  String get noDevicesFound => 'Aucun appareil trouvé';
+
+  @override
+  String get scanningForDevices => 'Recherche d\'appareils...';
+
+  @override
+  String get tapStartToScan =>
+      'Appuyez sur \"Démarrer l\'analyse\" pour découvrir les appareils BLE à proximité';
+
+  @override
+  String get readyToScan => 'Prêt à analyser';
+
+  @override
+  String get scanError => 'Erreur d\'analyse';
+
+  @override
+  String get errorPrefix => 'Erreur';
+
+  @override
+  String get failedToStartScan => 'Échec du démarrage de l\'analyse';
+
+  @override
+  String get failedToStopScan => 'Échec de l\'arrêt de l\'analyse';
+
+  @override
+  String get bluetoothNotAvailable =>
+      'Bluetooth n\'est pas disponible sur cet appareil';
+
+  @override
+  String get bluetoothPermissionsDenied =>
+      'Les autorisations Bluetooth sont requises pour rechercher des appareils';
+
+  @override
+  String get failedToCheckBluetooth =>
+      'Échec de la vérification de l\'état Bluetooth';
 }

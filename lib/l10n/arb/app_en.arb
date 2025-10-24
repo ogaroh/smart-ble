@@ -264,5 +264,60 @@
   "minutes": "minutes", 
   "@minutes": {
     "description": "Time unit: minutes"
+  },
+  
+  "noDevicesFound": "No devices found",
+  "@noDevicesFound": {
+    "description": "Message when no BLE devices are found"
+  },
+  
+  "scanningForDevices": "Scanning for devices...",
+  "@scanningForDevices": {
+    "description": "Message shown while actively scanning for devices"
+  },
+  
+  "tapStartToScan": "Tap \"Start Scan\" to discover nearby BLE devices",
+  "@tapStartToScan": {
+    "description": "Instruction text when not scanning"
+  },
+  
+  "readyToScan": "Ready to scan",
+  "@readyToScan": {
+    "description": "Status message when ready to start scanning"
+  },
+  
+  "scanError": "Scan error",
+  "@scanError": {
+    "description": "Prefix for scan error messages"
+  },
+  
+  "errorPrefix": "Error",
+  "@errorPrefix": {
+    "description": "Generic error prefix"
+  },
+  
+  "failedToStartScan": "Failed to start scan",
+  "@failedToStartScan": {
+    "description": "Error message when scan fails to start"
+  },
+  
+  "failedToStopScan": "Failed to stop scan",
+  "@failedToStopScan": {
+    "description": "Error message when scan fails to stop"
+  },
+  
+  "bluetoothNotAvailable": "Bluetooth is not available on this device",
+  "@bluetoothNotAvailable": {
+    "description": "Error when Bluetooth hardware is not available"
+  },
+  
+  "bluetoothPermissionsDenied": "Bluetooth permissions are required to scan for devices",
+  "@bluetoothPermissionsDenied": {
+    "description": "Error when Bluetooth permissions are denied"
+  },
+  
+  "failedToCheckBluetooth": "Failed to check Bluetooth status",
+  "@failedToCheckBluetooth": {
+    "description": "Error when unable to check Bluetooth status"
   }
 }

@@ -53,7 +53,7 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
         },
         onError: (error) {
           emit(BleScanError(
-            'Scan error: $error',
+            'SCAN_ERROR: $error',
             devices: currentState.devices,
             filteredDevices: currentState.filteredDevices,
             nameFilter: currentState.nameFilter,
@@ -68,14 +68,14 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
       final currentState = state;
       if (currentState is BleScanReady) {
         emit(BleScanError(
-          'Failed to start scan: $e',
+          'FAILED_TO_START_SCAN: $e',
           devices: currentState.devices,
           filteredDevices: currentState.filteredDevices,
           nameFilter: currentState.nameFilter,
           typeFilter: currentState.typeFilter,
         ));
       } else {
-        emit(BleScanError('Failed to start scan: $e'));
+        emit(BleScanError('FAILED_TO_START_SCAN: $e'));
       }
     }
   }
@@ -103,14 +103,14 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
       final currentState = state;
       if (currentState is BleScanReady) {
         emit(BleScanError(
-          'Failed to stop scan: $e',
+          'FAILED_TO_STOP_SCAN: $e',
           devices: currentState.devices,
           filteredDevices: currentState.filteredDevices,
           nameFilter: currentState.nameFilter,
           typeFilter: currentState.typeFilter,
         ));
       } else {
-        emit(BleScanError('Failed to stop scan: $e'));
+        emit(BleScanError('FAILED_TO_STOP_SCAN: $e'));
       }
     }
   }
@@ -222,7 +222,7 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
       final isAvailable = await _bleRepository.isBluetoothAvailable();
       if (!isAvailable) {
         emit(const BleScanBluetoothUnavailable(
-            'Bluetooth is not available on this device'));
+            'BLUETOOTH_NOT_AVAILABLE'));
         return;
       }
 
@@ -230,7 +230,7 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
       final hasPermissions = await _bleRepository.requestPermissions();
       if (!hasPermissions) {
         emit(const BleScanPermissionsDenied(
-            'Bluetooth permissions are required to scan for devices'));
+            'BLUETOOTH_PERMISSIONS_DENIED'));
         return;
       }
 
@@ -248,7 +248,7 @@ class BleScanBloc extends Bloc<BleScanEvent, BleScanState> {
         filteredDevices: devices,
       ));
     } catch (e) {
-      emit(BleScanError('Failed to check Bluetooth status: $e'));
+      emit(BleScanError('FAILED_TO_CHECK_BLUETOOTH: $e'));
     }
   }
 

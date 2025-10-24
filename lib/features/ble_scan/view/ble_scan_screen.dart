@@ -180,10 +180,10 @@ class _BleScanViewState extends State<BleScanView> {
       statusText = context.l10n.checkingBluetoothPermissions;
       statusColor = Colors.orange;
     } else if (state is BleScanPermissionsDenied) {
-      statusText = context.l10n.bluetoothPermissionsRequired;
+      statusText = _translateErrorMessage(context, state.message);
       statusColor = AppColors.error;
     } else if (state is BleScanBluetoothUnavailable) {
-      statusText = state.message;
+      statusText = _translateErrorMessage(context, state.message);
       statusColor = AppColors.error;
     } else if (state is BleScanScanning) {
       final deviceCount = state.filteredDevices.length;
@@ -194,10 +194,11 @@ class _BleScanViewState extends State<BleScanView> {
       statusText = context.l10n.devicesFound(deviceCount);
       statusColor = Colors.pinkAccent;
     } else if (state is BleScanError) {
-      statusText = 'Error: ${state.message}';
+      statusText =
+          '${context.l10n.errorPrefix}: ${_translateErrorMessage(context, state.message)}';
       statusColor = AppColors.error;
     } else {
-      statusText = 'Ready to scan';
+      statusText = context.l10n.readyToScan;
       statusColor = Colors.grey;
     }
 
@@ -342,15 +343,15 @@ class _BleScanViewState extends State<BleScanView> {
               const SizedBox(height: 16),
               Text(
                 state is BleScanScanning
-                    ? 'Scanning for devices...'
-                    : 'No devices found',
+                    ? context.l10n.scanningForDevices
+                    : context.l10n.noDevicesFound,
                 style: const TextStyle(fontSize: 16),
               ),
               if (state is! BleScanScanning) ...[
                 const SizedBox(height: 8),
-                const Text(
-                  'Tap "Start Scan" to discover nearby BLE devices',
-                  style: TextStyle(color: Colors.grey),
+                Text(
+                  context.l10n.tapStartToScan,
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ],
             ],
@@ -547,5 +548,31 @@ class _BleScanViewState extends State<BleScanView> {
             .add(UpdateDeviceTypeFilterEvent(selectedType));
       },
     );
+  }
+
+  String _translateErrorMessage(BuildContext context, String errorKey) {
+    if (errorKey.startsWith('BLUETOOTH_NOT_AVAILABLE')) {
+      return context.l10n.bluetoothNotAvailable;
+    } else if (errorKey.startsWith('BLUETOOTH_PERMISSIONS_DENIED')) {
+      return context.l10n.bluetoothPermissionsDenied;
+    } else if (errorKey.startsWith('FAILED_TO_START_SCAN')) {
+      final details =
+          errorKey.contains(':') ? errorKey.split(':')[1].trim() : '';
+      return '${context.l10n.failedToStartScan}${details.isNotEmpty ? ': $details' : ''}';
+    } else if (errorKey.startsWith('FAILED_TO_STOP_SCAN')) {
+      final details =
+          errorKey.contains(':') ? errorKey.split(':')[1].trim() : '';
+      return '${context.l10n.failedToStopScan}${details.isNotEmpty ? ': $details' : ''}';
+    } else if (errorKey.startsWith('FAILED_TO_CHECK_BLUETOOTH')) {
+      final details =
+          errorKey.contains(':') ? errorKey.split(':')[1].trim() : '';
+      return '${context.l10n.failedToCheckBluetooth}${details.isNotEmpty ? ': $details' : ''}';
+    } else if (errorKey.startsWith('SCAN_ERROR')) {
+      final details =
+          errorKey.contains(':') ? errorKey.split(':')[1].trim() : '';
+      return '${context.l10n.scanError}${details.isNotEmpty ? ': $details' : ''}';
+    }
+    // Fallback for unknown error keys
+    return errorKey;
   }
 }

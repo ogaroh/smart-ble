@@ -389,6 +389,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'minutes'**
   String get minutes;
+
+  /// Message when no BLE devices are found
+  ///
+  /// In en, this message translates to:
+  /// **'No devices found'**
+  String get noDevicesFound;
+
+  /// Message shown while actively scanning for devices
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning for devices...'**
+  String get scanningForDevices;
+
+  /// Instruction text when not scanning
+  ///
+  /// In en, this message translates to:
+  /// **'Tap \"Start Scan\" to discover nearby BLE devices'**
+  String get tapStartToScan;
+
+  /// Status message when ready to start scanning
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to scan'**
+  String get readyToScan;
+
+  /// Prefix for scan error messages
+  ///
+  /// In en, this message translates to:
+  /// **'Scan error'**
+  String get scanError;
+
+  /// Generic error prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get errorPrefix;
+
+  /// Error message when scan fails to start
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to start scan'**
+  String get failedToStartScan;
+
+  /// Error message when scan fails to stop
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to stop scan'**
+  String get failedToStopScan;
+
+  /// Error when Bluetooth hardware is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth is not available on this device'**
+  String get bluetoothNotAvailable;
+
+  /// Error when Bluetooth permissions are denied
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth permissions are required to scan for devices'**
+  String get bluetoothPermissionsDenied;
+
+  /// Error when unable to check Bluetooth status
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to check Bluetooth status'**
+  String get failedToCheckBluetooth;
 }
 
 class _AppLocalizationsDelegate

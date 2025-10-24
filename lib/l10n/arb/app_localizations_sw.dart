@@ -176,4 +176,39 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get minutes => 'dakika';
+
+  @override
+  String get noDevicesFound => 'Hakuna vifaa vilivyopatikana';
+
+  @override
+  String get scanningForDevices => 'Kutafuta vifaa...';
+
+  @override
+  String get tapStartToScan =>
+      'Gusa \"Anza Kutafuta\" ili kugundua vifaa vya BLE vinavyoko karibu';
+
+  @override
+  String get readyToScan => 'Tayari kutafuta';
+
+  @override
+  String get scanError => 'Kosa la kutafuta';
+
+  @override
+  String get errorPrefix => 'Kosa';
+
+  @override
+  String get failedToStartScan => 'Imeshindwa kuanza kutafuta';
+
+  @override
+  String get failedToStopScan => 'Imeshindwa kuacha kutafuta';
+
+  @override
+  String get bluetoothNotAvailable => 'Bluetooth haipatikani kwenye kifaa hiki';
+
+  @override
+  String get bluetoothPermissionsDenied =>
+      'Ruhusa za Bluetooth zinahitajika ili kutafuta vifaa';
+
+  @override
+  String get failedToCheckBluetooth => 'Imeshindwa kuangalia hali ya Bluetooth';
 }

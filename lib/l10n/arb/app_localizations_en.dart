@@ -176,4 +176,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get minutes => 'minutes';
+
+  @override
+  String get noDevicesFound => 'No devices found';
+
+  @override
+  String get scanningForDevices => 'Scanning for devices...';
+
+  @override
+  String get tapStartToScan =>
+      'Tap \"Start Scan\" to discover nearby BLE devices';
+
+  @override
+  String get readyToScan => 'Ready to scan';
+
+  @override
+  String get scanError => 'Scan error';
+
+  @override
+  String get errorPrefix => 'Error';
+
+  @override
+  String get failedToStartScan => 'Failed to start scan';
+
+  @override
+  String get failedToStopScan => 'Failed to stop scan';
+
+  @override
+  String get bluetoothNotAvailable =>
+      'Bluetooth is not available on this device';
+
+  @override
+  String get bluetoothPermissionsDenied =>
+      'Bluetooth permissions are required to scan for devices';
+
+  @override
+  String get failedToCheckBluetooth => 'Failed to check Bluetooth status';
 }

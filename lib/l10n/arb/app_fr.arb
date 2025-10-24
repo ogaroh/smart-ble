@@ -264,5 +264,60 @@
   "minutes": "minutes", 
   "@minutes": {
     "description": "Time unit: minutes"
+  },
+  
+  "noDevicesFound": "Aucun appareil trouvé",
+  "@noDevicesFound": {
+    "description": "Message when no BLE devices are found"
+  },
+  
+  "scanningForDevices": "Recherche d''appareils...",
+  "@scanningForDevices": {
+    "description": "Message shown while actively scanning for devices"
+  },
+  
+  "tapStartToScan": "Appuyez sur \"Démarrer l''analyse\" pour découvrir les appareils BLE à proximité",
+  "@tapStartToScan": {
+    "description": "Instruction text when not scanning"
+  },
+  
+  "readyToScan": "Prêt à analyser",
+  "@readyToScan": {
+    "description": "Status message when ready to start scanning"
+  },
+  
+  "scanError": "Erreur d''analyse",
+  "@scanError": {
+    "description": "Prefix for scan error messages"
+  },
+  
+  "errorPrefix": "Erreur",
+  "@errorPrefix": {
+    "description": "Generic error prefix"
+  },
+  
+  "failedToStartScan": "Échec du démarrage de l''analyse",
+  "@failedToStartScan": {
+    "description": "Error message when scan fails to start"
+  },
+  
+  "failedToStopScan": "Échec de l''arrêt de l''analyse",
+  "@failedToStopScan": {
+    "description": "Error message when scan fails to stop"
+  },
+  
+  "bluetoothNotAvailable": "Bluetooth n''est pas disponible sur cet appareil",
+  "@bluetoothNotAvailable": {
+    "description": "Error when Bluetooth hardware is not available"
+  },
+  
+  "bluetoothPermissionsDenied": "Les autorisations Bluetooth sont requises pour rechercher des appareils",
+  "@bluetoothPermissionsDenied": {
+    "description": "Error when Bluetooth permissions are denied"
+  },
+  
+  "failedToCheckBluetooth": "Échec de la vérification de l''état Bluetooth",
+  "@failedToCheckBluetooth": {
+    "description": "Error when unable to check Bluetooth status"
   }
 }

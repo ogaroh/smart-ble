@@ -264,5 +264,60 @@
   "minutes": "dakika", 
   "@minutes": {
     "description": "Time unit: minutes"
+  },
+  
+  "noDevicesFound": "Hakuna vifaa vilivyopatikana",
+  "@noDevicesFound": {
+    "description": "Message when no BLE devices are found"
+  },
+  
+  "scanningForDevices": "Kutafuta vifaa...",
+  "@scanningForDevices": {
+    "description": "Message shown while actively scanning for devices"
+  },
+  
+  "tapStartToScan": "Gusa \"Anza Kutafuta\" ili kugundua vifaa vya BLE vinavyoko karibu",
+  "@tapStartToScan": {
+    "description": "Instruction text when not scanning"
+  },
+  
+  "readyToScan": "Tayari kutafuta",
+  "@readyToScan": {
+    "description": "Status message when ready to start scanning"
+  },
+  
+  "scanError": "Kosa la kutafuta",
+  "@scanError": {
+    "description": "Prefix for scan error messages"
+  },
+  
+  "errorPrefix": "Kosa",
+  "@errorPrefix": {
+    "description": "Generic error prefix"
+  },
+  
+  "failedToStartScan": "Imeshindwa kuanza kutafuta",
+  "@failedToStartScan": {
+    "description": "Error message when scan fails to start"
+  },
+  
+  "failedToStopScan": "Imeshindwa kuacha kutafuta",
+  "@failedToStopScan": {
+    "description": "Error message when scan fails to stop"
+  },
+  
+  "bluetoothNotAvailable": "Bluetooth haipatikani kwenye kifaa hiki",
+  "@bluetoothNotAvailable": {
+    "description": "Error when Bluetooth hardware is not available"
+  },
+  
+  "bluetoothPermissionsDenied": "Ruhusa za Bluetooth zinahitajika ili kutafuta vifaa",
+  "@bluetoothPermissionsDenied": {
+    "description": "Error when Bluetooth permissions are denied"
+  },
+  
+  "failedToCheckBluetooth": "Imeshindwa kuangalia hali ya Bluetooth",
+  "@failedToCheckBluetooth": {
+    "description": "Error when unable to check Bluetooth status"
   }
 }
