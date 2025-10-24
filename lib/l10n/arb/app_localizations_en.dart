@@ -172,6 +172,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get system => 'System';
 
   @override
+  String get followSystemTheme => 'Follow system theme';
+
+  @override
+  String get alwaysUseLightTheme => 'Always use light theme';
+
+  @override
+  String get alwaysUseDarkTheme => 'Always use dark theme';
+
+  @override
   String get seconds => 'seconds';
 
   @override

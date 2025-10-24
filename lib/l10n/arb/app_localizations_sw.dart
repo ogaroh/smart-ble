@@ -172,6 +172,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get system => 'Mfumo';
 
   @override
+  String get followSystemTheme => 'Fuata muundo wa mfumo';
+
+  @override
+  String get alwaysUseLightTheme => 'Tumia muundo mwanga kila wakati';
+
+  @override
+  String get alwaysUseDarkTheme => 'Tumia muundo wa giza kila wakati';
+
+  @override
   String get seconds => 'sekunde';
 
   @override

@@ -233,14 +233,14 @@ class SettingsView extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(context.l10n.theme),
-      subtitle: Text(state.themeMode.description),
+      subtitle: Text(state.themeMode.localizedDescription(context.l10n)),
       trailing: DropdownButton<AppThemeMode>(
         value: state.themeMode,
         underline: const SizedBox.shrink(),
         items: AppThemeMode.values.map((mode) {
           return DropdownMenuItem<AppThemeMode>(
             value: mode,
-            child: Text(mode.displayName),
+            child: Text(mode.localizedDisplayName(context.l10n)),
           );
         }).toList(),
         onChanged: (mode) {

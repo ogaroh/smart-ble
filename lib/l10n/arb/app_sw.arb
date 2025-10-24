@@ -256,6 +256,21 @@
     "description": "System theme option"
   },
   
+  "followSystemTheme": "Fuata muundo wa mfumo",
+  "@followSystemTheme": {
+    "description": "Theme description for system mode"
+  },
+  
+  "alwaysUseLightTheme": "Tumia muundo mwanga kila wakati",
+  "@alwaysUseLightTheme": {
+    "description": "Theme description for light mode"
+  },
+  
+  "alwaysUseDarkTheme": "Tumia muundo wa giza kila wakati",
+  "@alwaysUseDarkTheme": {
+    "description": "Theme description for dark mode"
+  },
+  
   "seconds": "sekunde",
   "@seconds": {
     "description": "Time unit: seconds"

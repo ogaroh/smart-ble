@@ -378,6 +378,24 @@ abstract class AppLocalizations {
   /// **'System'**
   String get system;
 
+  /// Theme description for system mode
+  ///
+  /// In en, this message translates to:
+  /// **'Follow system theme'**
+  String get followSystemTheme;
+
+  /// Theme description for light mode
+  ///
+  /// In en, this message translates to:
+  /// **'Always use light theme'**
+  String get alwaysUseLightTheme;
+
+  /// Theme description for dark mode
+  ///
+  /// In en, this message translates to:
+  /// **'Always use dark theme'**
+  String get alwaysUseDarkTheme;
+
   /// Time unit: seconds
   ///
   /// In en, this message translates to:

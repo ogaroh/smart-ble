@@ -256,6 +256,21 @@
     "description": "System theme option"
   },
   
+  "followSystemTheme": "Seguir tema del sistema",
+  "@followSystemTheme": {
+    "description": "Theme description for system mode"
+  },
+  
+  "alwaysUseLightTheme": "Usar siempre tema claro",
+  "@alwaysUseLightTheme": {
+    "description": "Theme description for light mode"
+  },
+  
+  "alwaysUseDarkTheme": "Usar siempre tema oscuro",
+  "@alwaysUseDarkTheme": {
+    "description": "Theme description for dark mode"
+  },
+  
   "seconds": "segundos",
   "@seconds": {
     "description": "Time unit: seconds"

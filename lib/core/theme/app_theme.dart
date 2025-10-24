@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_ble/l10n/arb/app_localizations.dart';
 
 /// App color scheme definitions
 class AppColors {
   // Brand colors
   static const Color primaryBlue = Color(0xFF6139F7);
   static const Color primaryPink = Color(0xFFDA79E5);
-  static const Color lightPink = Color.fromARGB(255, 252, 223, 255);
+  static const Color lightPink = Color.fromARGB(255, 249, 233, 251);
 
   // Light theme colors
   static const Color lightBackground = Color(0xFFFAFAFA);
@@ -69,6 +70,30 @@ extension AppThemeModeExtensions on AppThemeMode {
         return 'Always use light theme';
       case AppThemeMode.dark:
         return 'Always use dark theme';
+    }
+  }
+
+  /// Get localized display name using app localizations
+  String localizedDisplayName(AppLocalizations l10n) {
+    switch (this) {
+      case AppThemeMode.system:
+        return l10n.system;
+      case AppThemeMode.light:
+        return l10n.light;
+      case AppThemeMode.dark:
+        return l10n.dark;
+    }
+  }
+
+  /// Get localized description using app localizations
+  String localizedDescription(AppLocalizations l10n) {
+    switch (this) {
+      case AppThemeMode.system:
+        return l10n.followSystemTheme;
+      case AppThemeMode.light:
+        return l10n.alwaysUseLightTheme;
+      case AppThemeMode.dark:
+        return l10n.alwaysUseDarkTheme;
     }
   }
 
