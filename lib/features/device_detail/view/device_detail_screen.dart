@@ -229,7 +229,7 @@ class DeviceDetailView extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    state.connectionState.localizedDisplayName(context),
+                    state.connectionState.localizedDisplayName(context.l10n),
                     style: TextStyle(
                       color: isConnected
                           ? Colors.green
@@ -411,7 +411,7 @@ class DeviceDetailView extends StatelessWidget {
             children: characteristic.properties
                 .map((property) => Chip(
                       label: Text(
-                        property.displayName,
+                        property.localizedDisplayName(context.l10n),
                         style: const TextStyle(fontSize: 10),
                       ),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

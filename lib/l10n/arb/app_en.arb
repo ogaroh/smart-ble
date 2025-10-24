@@ -336,6 +336,31 @@
     "description": "BLE device type: Phone"
   },
   
+  "characteristicRead": "Read",
+  "@characteristicRead": {
+    "description": "BLE characteristic property: Read"
+  },
+  
+  "characteristicWrite": "Write",
+  "@characteristicWrite": {
+    "description": "BLE characteristic property: Write"
+  },
+  
+  "characteristicWriteNoResponse": "Write (No Response)",
+  "@characteristicWriteNoResponse": {
+    "description": "BLE characteristic property: Write without response"
+  },
+  
+  "characteristicNotify": "Notify",
+  "@characteristicNotify": {
+    "description": "BLE characteristic property: Notify"
+  },
+  
+  "characteristicIndicate": "Indicate",
+  "@characteristicIndicate": {
+    "description": "BLE characteristic property: Indicate"
+  },
+  
   "seconds": "seconds",
   "@seconds": {
     "description": "Time unit: seconds"

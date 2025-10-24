@@ -39,8 +39,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get initializingBluetooth => 'Initialisation Bluetooth...';
 
   @override
-  String get checkingBluetoothPermissions =>
-      'Vérification des permissions Bluetooth...';
+  String get checkingBluetoothPermissions => 'Vérification des permissions Bluetooth...';
 
   @override
   String get bluetoothPermissionsRequired => 'Permissions Bluetooth requises';
@@ -98,8 +97,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get discoveringServices => 'Découverte des services...';
 
   @override
-  String get connectToDiscoverServices =>
-      'Connectez-vous à cet appareil pour découvrir ses services et caractéristiques';
+  String get connectToDiscoverServices => 'Connectez-vous à cet appareil pour découvrir ses services et caractéristiques';
 
   @override
   String get noServicesFound => 'Aucun service trouvé sur cet appareil';
@@ -153,8 +151,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get resetSettings => 'Réinitialiser les Paramètres';
 
   @override
-  String get resetSettingsConfirmation =>
-      'Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut ? Cette action ne peut pas être annulée.';
+  String get resetSettingsConfirmation => 'Êtes-vous sûr de vouloir réinitialiser tous les paramètres à leurs valeurs par défaut ? Cette action ne peut pas être annulée.';
 
   @override
   String get cancel => 'Annuler';
@@ -220,6 +217,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get deviceTypePhone => 'Téléphone';
 
   @override
+  String get characteristicRead => 'Lire';
+
+  @override
+  String get characteristicWrite => 'Écrire';
+
+  @override
+  String get characteristicWriteNoResponse => 'Écrire (Sans Réponse)';
+
+  @override
+  String get characteristicNotify => 'Notifier';
+
+  @override
+  String get characteristicIndicate => 'Indiquer';
+
+  @override
   String get seconds => 'secondes';
 
   @override
@@ -232,8 +244,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scanningForDevices => 'Recherche d\'appareils...';
 
   @override
-  String get tapStartToScan =>
-      'Appuyez sur \"Démarrer l\'analyse\" pour découvrir les appareils BLE à proximité';
+  String get tapStartToScan => 'Appuyez sur \"Démarrer l\'analyse\" pour découvrir les appareils BLE à proximité';
 
   @override
   String get readyToScan => 'Prêt à analyser';
@@ -251,16 +262,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get failedToStopScan => 'Échec de l\'arrêt de l\'analyse';
 
   @override
-  String get bluetoothNotAvailable =>
-      'Bluetooth n\'est pas disponible sur cet appareil';
+  String get bluetoothNotAvailable => 'Bluetooth n\'est pas disponible sur cet appareil';
 
   @override
-  String get bluetoothPermissionsDenied =>
-      'Les autorisations Bluetooth sont requises pour rechercher des appareils';
+  String get bluetoothPermissionsDenied => 'Les autorisations Bluetooth sont requises pour rechercher des appareils';
 
   @override
-  String get failedToCheckBluetooth =>
-      'Échec de la vérification de l\'état Bluetooth';
+  String get failedToCheckBluetooth => 'Échec de la vérification de l\'état Bluetooth';
 
   @override
   String get appearance => 'Apparence';
@@ -290,15 +298,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get autoScanOnStart => 'Analyse Automatique au Démarrage';
 
   @override
-  String get autoScanOnStartSubtitle =>
-      'Démarrer l\'analyse automatiquement à l\'ouverture de l\'application';
+  String get autoScanOnStartSubtitle => 'Démarrer l\'analyse automatiquement à l\'ouverture de l\'application';
 
   @override
   String get showUnknownDevices => 'Afficher les Appareils Inconnus';
 
   @override
-  String get showUnknownDevicesSubtitle =>
-      'Afficher les appareils sans noms annoncés';
+  String get showUnknownDevicesSubtitle => 'Afficher les appareils sans noms annoncés';
 
   @override
   String get signalStrengthFilter => 'Filtre d\'Intensité du Signal';
@@ -310,10 +316,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get autoConnect => 'Connexion Automatique';
 
   @override
-  String get autoConnectSubtitle =>
-      'Se connecter automatiquement au dernier appareil';
+  String get autoConnectSubtitle => 'Se connecter automatiquement au dernier appareil';
 
   @override
-  String get resetSettingsSubtitle =>
-      'Restaurer tous les paramètres par défaut';
+  String get resetSettingsSubtitle => 'Restaurer tous les paramètres par défaut';
 }

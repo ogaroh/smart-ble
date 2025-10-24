@@ -39,12 +39,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get initializingBluetooth => 'Inicializando Bluetooth...';
 
   @override
-  String get checkingBluetoothPermissions =>
-      'Verificando permisos de Bluetooth...';
+  String get checkingBluetoothPermissions => 'Verificando permisos de Bluetooth...';
 
   @override
-  String get bluetoothPermissionsRequired =>
-      'Se requieren permisos de Bluetooth';
+  String get bluetoothPermissionsRequired => 'Se requieren permisos de Bluetooth';
 
   @override
   String scanningDevicesFound(int count) {
@@ -99,12 +97,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get discoveringServices => 'Descubriendo servicios...';
 
   @override
-  String get connectToDiscoverServices =>
-      'Conecta a este dispositivo para descubrir sus servicios y características';
+  String get connectToDiscoverServices => 'Conecta a este dispositivo para descubrir sus servicios y características';
 
   @override
-  String get noServicesFound =>
-      'No se encontraron servicios en este dispositivo';
+  String get noServicesFound => 'No se encontraron servicios en este dispositivo';
 
   @override
   String get servicesAndCharacteristics => 'Servicios y Características';
@@ -155,8 +151,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get resetSettings => 'Restablecer Configuración';
 
   @override
-  String get resetSettingsConfirmation =>
-      '¿Estás seguro de que quieres restablecer toda la configuración a sus valores predeterminados? Esta acción no se puede deshacer.';
+  String get resetSettingsConfirmation => '¿Estás seguro de que quieres restablecer toda la configuración a sus valores predeterminados? Esta acción no se puede deshacer.';
 
   @override
   String get cancel => 'Cancelar';
@@ -222,6 +217,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceTypePhone => 'Teléfono';
 
   @override
+  String get characteristicRead => 'Leer';
+
+  @override
+  String get characteristicWrite => 'Escribir';
+
+  @override
+  String get characteristicWriteNoResponse => 'Escribir (Sin Respuesta)';
+
+  @override
+  String get characteristicNotify => 'Notificar';
+
+  @override
+  String get characteristicIndicate => 'Indicar';
+
+  @override
   String get seconds => 'segundos';
 
   @override
@@ -234,8 +244,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scanningForDevices => 'Buscando dispositivos...';
 
   @override
-  String get tapStartToScan =>
-      'Toca \"Iniciar Búsqueda\" para descubrir dispositivos BLE cercanos';
+  String get tapStartToScan => 'Toca \"Iniciar Búsqueda\" para descubrir dispositivos BLE cercanos';
 
   @override
   String get readyToScan => 'Listo para escanear';
@@ -253,16 +262,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get failedToStopScan => 'Error al detener búsqueda';
 
   @override
-  String get bluetoothNotAvailable =>
-      'Bluetooth no está disponible en este dispositivo';
+  String get bluetoothNotAvailable => 'Bluetooth no está disponible en este dispositivo';
 
   @override
-  String get bluetoothPermissionsDenied =>
-      'Se requieren permisos de Bluetooth para buscar dispositivos';
+  String get bluetoothPermissionsDenied => 'Se requieren permisos de Bluetooth para buscar dispositivos';
 
   @override
-  String get failedToCheckBluetooth =>
-      'Error al verificar el estado del Bluetooth';
+  String get failedToCheckBluetooth => 'Error al verificar el estado del Bluetooth';
 
   @override
   String get appearance => 'Apariencia';
@@ -286,22 +292,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get connectionTimeout => 'Tiempo de Espera de Conexión';
 
   @override
-  String get connectionTimeoutSubtitle =>
-      'Cuánto tiempo esperar las conexiones';
+  String get connectionTimeoutSubtitle => 'Cuánto tiempo esperar las conexiones';
 
   @override
   String get autoScanOnStart => 'Escaneo Automático al Iniciar';
 
   @override
-  String get autoScanOnStartSubtitle =>
-      'Comenzar escaneo automáticamente al abrir la aplicación';
+  String get autoScanOnStartSubtitle => 'Comenzar escaneo automáticamente al abrir la aplicación';
 
   @override
   String get showUnknownDevices => 'Mostrar Dispositivos Desconocidos';
 
   @override
-  String get showUnknownDevicesSubtitle =>
-      'Mostrar dispositivos sin nombres anunciados';
+  String get showUnknownDevicesSubtitle => 'Mostrar dispositivos sin nombres anunciados';
 
   @override
   String get signalStrengthFilter => 'Filtro de Intensidad de Señal';
@@ -313,10 +316,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get autoConnect => 'Conexión Automática';
 
   @override
-  String get autoConnectSubtitle =>
-      'Conectar automáticamente al último dispositivo';
+  String get autoConnectSubtitle => 'Conectar automáticamente al último dispositivo';
 
   @override
-  String get resetSettingsSubtitle =>
-      'Restaurar todas las configuraciones por defecto';
+  String get resetSettingsSubtitle => 'Restaurar todas las configuraciones por defecto';
 }

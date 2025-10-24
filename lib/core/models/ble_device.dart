@@ -172,9 +172,12 @@ class BleDevice extends Equatable {
         lowerName.contains('speaker') ||
         lowerName.contains('earphone') ||
         lowerName.contains('earbud') ||
+        lowerName.contains('ear') ||
+        lowerName.contains('bud') ||
+        lowerName.contains('tune') ||
         lowerName.contains('airpods') ||
-        lowerName.contains('pods') ||
-        lowerName.contains('beats') ||
+        lowerName.contains('pod') ||
+        lowerName.contains('beat') ||
         lowerName.contains('audio') ||
         lowerName.contains('sound') ||
         lowerName.contains('music')) {
@@ -223,7 +226,7 @@ class BleDevice extends Equatable {
         lowerName.contains('desktop') ||
         lowerName.contains('pc') ||
         lowerName.contains('macbook') ||
-        lowerName.contains('imac') ||
+        lowerName.contains('mac') ||
         lowerName.contains('thinkpad') ||
         lowerName.contains('surface') ||
         lowerName.contains('dell') ||

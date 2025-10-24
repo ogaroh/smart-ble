@@ -336,6 +336,31 @@
     "description": "BLE device type: Phone"
   },
   
+  "characteristicRead": "Soma",
+  "@characteristicRead": {
+    "description": "BLE characteristic property: Read"
+  },
+  
+  "characteristicWrite": "Andika",
+  "@characteristicWrite": {
+    "description": "BLE characteristic property: Write"
+  },
+  
+  "characteristicWriteNoResponse": "Andika (Bila Jibu)",
+  "@characteristicWriteNoResponse": {
+    "description": "BLE characteristic property: Write without response"
+  },
+  
+  "characteristicNotify": "Arifu",
+  "@characteristicNotify": {
+    "description": "BLE characteristic property: Notify"
+  },
+  
+  "characteristicIndicate": "Onyesha",
+  "@characteristicIndicate": {
+    "description": "BLE characteristic property: Indicate"
+  },
+  
   "seconds": "sekunde",
   "@seconds": {
     "description": "Time unit: seconds"
