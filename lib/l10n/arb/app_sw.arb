@@ -271,6 +271,71 @@
     "description": "Theme description for dark mode"
   },
   
+  "deviceTypeAudio": "Kifaa cha Sauti",
+  "@deviceTypeAudio": {
+    "description": "BLE device type: Audio Device"
+  },
+  
+  "deviceTypeWatch": "Saa",
+  "@deviceTypeWatch": {
+    "description": "BLE device type: Watch"
+  },
+  
+  "deviceTypeOther": "Kingine",
+  "@deviceTypeOther": {
+    "description": "BLE device type: Other"
+  },
+  
+  "deviceTypeUnknown": "Haijulikani",
+  "@deviceTypeUnknown": {
+    "description": "BLE device type: Unknown"
+  },
+  
+  "deviceTypeComputer": "Kompyuta",
+  "@deviceTypeComputer": {
+    "description": "BLE device type: Computer"
+  },
+  
+  "deviceTypeSportsWatch": "Saa ya Michezo",
+  "@deviceTypeSportsWatch": {
+    "description": "BLE device type: Sports Watch"
+  },
+  
+  "deviceTypeClock": "Saa ya Ukutani",
+  "@deviceTypeClock": {
+    "description": "BLE device type: Clock"
+  },
+  
+  "deviceTypeDisplay": "Skrini",
+  "@deviceTypeDisplay": {
+    "description": "BLE device type: Display"
+  },
+  
+  "deviceTypeRemoteControl": "Udhibiti wa Mbali",
+  "@deviceTypeRemoteControl": {
+    "description": "BLE device type: Remote Control"
+  },
+  
+  "deviceTypeGlasses": "Miwani Mahiri",
+  "@deviceTypeGlasses": {
+    "description": "BLE device type: Smart Glasses"
+  },
+  
+  "deviceTypeTag": "Lebo",
+  "@deviceTypeTag": {
+    "description": "BLE device type: Tag"
+  },
+  
+  "deviceTypeKeyring": "Ukanda wa Funguo",
+  "@deviceTypeKeyring": {
+    "description": "BLE device type: Keyring"
+  },
+  
+  "deviceTypePhone": "Simu",
+  "@deviceTypePhone": {
+    "description": "BLE device type: Phone"
+  },
+  
   "seconds": "sekunde",
   "@seconds": {
     "description": "Time unit: seconds"

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:smart_ble/l10n/arb/app_localizations.dart';
 
 /// Enum representing different types of BLE devices for filtering
 enum BleDeviceType {
@@ -352,5 +353,35 @@ extension BleDeviceTypeExtension on BleDeviceType {
     }
   }
 
-
+  /// Get localized display name using app localizations
+  String localizedDisplayName(AppLocalizations l10n) {
+    switch (this) {
+      case BleDeviceType.audio:
+        return l10n.deviceTypeAudio;
+      case BleDeviceType.watch:
+        return l10n.deviceTypeWatch;
+      case BleDeviceType.other:
+        return l10n.deviceTypeOther;
+      case BleDeviceType.unknown:
+        return l10n.deviceTypeUnknown;
+      case BleDeviceType.computer:
+        return l10n.deviceTypeComputer;
+      case BleDeviceType.sportsWatch:
+        return l10n.deviceTypeSportsWatch;
+      case BleDeviceType.clock:
+        return l10n.deviceTypeClock;
+      case BleDeviceType.display:
+        return l10n.deviceTypeDisplay;
+      case BleDeviceType.remoteControl:
+        return l10n.deviceTypeRemoteControl;
+      case BleDeviceType.glasses:
+        return l10n.deviceTypeGlasses;
+      case BleDeviceType.tag:
+        return l10n.deviceTypeTag;
+      case BleDeviceType.keyring:
+        return l10n.deviceTypeKeyring;
+      case BleDeviceType.phone:
+        return l10n.deviceTypePhone;
+    }
+  }
 }

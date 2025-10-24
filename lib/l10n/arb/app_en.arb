@@ -271,6 +271,71 @@
     "description": "Theme description for dark mode"
   },
   
+  "deviceTypeAudio": "Audio Device",
+  "@deviceTypeAudio": {
+    "description": "BLE device type: Audio Device"
+  },
+  
+  "deviceTypeWatch": "Watch",
+  "@deviceTypeWatch": {
+    "description": "BLE device type: Watch"
+  },
+  
+  "deviceTypeOther": "Other",
+  "@deviceTypeOther": {
+    "description": "BLE device type: Other"
+  },
+  
+  "deviceTypeUnknown": "Unknown",
+  "@deviceTypeUnknown": {
+    "description": "BLE device type: Unknown"
+  },
+  
+  "deviceTypeComputer": "Computer",
+  "@deviceTypeComputer": {
+    "description": "BLE device type: Computer"
+  },
+  
+  "deviceTypeSportsWatch": "Sports Watch",
+  "@deviceTypeSportsWatch": {
+    "description": "BLE device type: Sports Watch"
+  },
+  
+  "deviceTypeClock": "Clock",
+  "@deviceTypeClock": {
+    "description": "BLE device type: Clock"
+  },
+  
+  "deviceTypeDisplay": "Display",
+  "@deviceTypeDisplay": {
+    "description": "BLE device type: Display"
+  },
+  
+  "deviceTypeRemoteControl": "Remote Control",
+  "@deviceTypeRemoteControl": {
+    "description": "BLE device type: Remote Control"
+  },
+  
+  "deviceTypeGlasses": "Smart Glasses",
+  "@deviceTypeGlasses": {
+    "description": "BLE device type: Smart Glasses"
+  },
+  
+  "deviceTypeTag": "Tag",
+  "@deviceTypeTag": {
+    "description": "BLE device type: Tag"
+  },
+  
+  "deviceTypeKeyring": "Keyring",
+  "@deviceTypeKeyring": {
+    "description": "BLE device type: Keyring"
+  },
+  
+  "deviceTypePhone": "Phone",
+  "@deviceTypePhone": {
+    "description": "BLE device type: Phone"
+  },
+  
   "seconds": "seconds",
   "@seconds": {
     "description": "Time unit: seconds"

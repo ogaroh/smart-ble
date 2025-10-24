@@ -7,7 +7,7 @@ class AppColors {
   // Brand colors
   static const Color primaryBlue = Color(0xFF6139F7);
   static const Color primaryPink = Color(0xFFDA79E5);
-  static const Color lightPink = Color.fromARGB(255, 249, 233, 251);
+  static const Color lightPink = Color.fromARGB(255, 249, 244, 249);
 
   // Light theme colors
   static const Color lightBackground = Color(0xFFFAFAFA);

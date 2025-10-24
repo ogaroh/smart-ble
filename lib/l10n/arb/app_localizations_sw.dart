@@ -181,6 +181,45 @@ class AppLocalizationsSw extends AppLocalizations {
   String get alwaysUseDarkTheme => 'Tumia muundo wa giza kila wakati';
 
   @override
+  String get deviceTypeAudio => 'Kifaa cha Sauti';
+
+  @override
+  String get deviceTypeWatch => 'Saa';
+
+  @override
+  String get deviceTypeOther => 'Kingine';
+
+  @override
+  String get deviceTypeUnknown => 'Haijulikani';
+
+  @override
+  String get deviceTypeComputer => 'Kompyuta';
+
+  @override
+  String get deviceTypeSportsWatch => 'Saa ya Michezo';
+
+  @override
+  String get deviceTypeClock => 'Saa ya Ukutani';
+
+  @override
+  String get deviceTypeDisplay => 'Skrini';
+
+  @override
+  String get deviceTypeRemoteControl => 'Udhibiti wa Mbali';
+
+  @override
+  String get deviceTypeGlasses => 'Miwani Mahiri';
+
+  @override
+  String get deviceTypeTag => 'Lebo';
+
+  @override
+  String get deviceTypeKeyring => 'Ukanda wa Funguo';
+
+  @override
+  String get deviceTypePhone => 'Simu';
+
+  @override
   String get seconds => 'sekunde';
 
   @override

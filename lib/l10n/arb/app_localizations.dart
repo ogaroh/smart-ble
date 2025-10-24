@@ -396,6 +396,84 @@ abstract class AppLocalizations {
   /// **'Always use dark theme'**
   String get alwaysUseDarkTheme;
 
+  /// BLE device type: Audio Device
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Device'**
+  String get deviceTypeAudio;
+
+  /// BLE device type: Watch
+  ///
+  /// In en, this message translates to:
+  /// **'Watch'**
+  String get deviceTypeWatch;
+
+  /// BLE device type: Other
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get deviceTypeOther;
+
+  /// BLE device type: Unknown
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get deviceTypeUnknown;
+
+  /// BLE device type: Computer
+  ///
+  /// In en, this message translates to:
+  /// **'Computer'**
+  String get deviceTypeComputer;
+
+  /// BLE device type: Sports Watch
+  ///
+  /// In en, this message translates to:
+  /// **'Sports Watch'**
+  String get deviceTypeSportsWatch;
+
+  /// BLE device type: Clock
+  ///
+  /// In en, this message translates to:
+  /// **'Clock'**
+  String get deviceTypeClock;
+
+  /// BLE device type: Display
+  ///
+  /// In en, this message translates to:
+  /// **'Display'**
+  String get deviceTypeDisplay;
+
+  /// BLE device type: Remote Control
+  ///
+  /// In en, this message translates to:
+  /// **'Remote Control'**
+  String get deviceTypeRemoteControl;
+
+  /// BLE device type: Smart Glasses
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Glasses'**
+  String get deviceTypeGlasses;
+
+  /// BLE device type: Tag
+  ///
+  /// In en, this message translates to:
+  /// **'Tag'**
+  String get deviceTypeTag;
+
+  /// BLE device type: Keyring
+  ///
+  /// In en, this message translates to:
+  /// **'Keyring'**
+  String get deviceTypeKeyring;
+
+  /// BLE device type: Phone
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get deviceTypePhone;
+
   /// Time unit: seconds
   ///
   /// In en, this message translates to:

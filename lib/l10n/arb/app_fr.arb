@@ -271,6 +271,71 @@
     "description": "Theme description for dark mode"
   },
   
+  "deviceTypeAudio": "Appareil Audio",
+  "@deviceTypeAudio": {
+    "description": "BLE device type: Audio Device"
+  },
+  
+  "deviceTypeWatch": "Montre",
+  "@deviceTypeWatch": {
+    "description": "BLE device type: Watch"
+  },
+  
+  "deviceTypeOther": "Autre",
+  "@deviceTypeOther": {
+    "description": "BLE device type: Other"
+  },
+  
+  "deviceTypeUnknown": "Inconnu",
+  "@deviceTypeUnknown": {
+    "description": "BLE device type: Unknown"
+  },
+  
+  "deviceTypeComputer": "Ordinateur",
+  "@deviceTypeComputer": {
+    "description": "BLE device type: Computer"
+  },
+  
+  "deviceTypeSportsWatch": "Montre de Sport",
+  "@deviceTypeSportsWatch": {
+    "description": "BLE device type: Sports Watch"
+  },
+  
+  "deviceTypeClock": "Horloge",
+  "@deviceTypeClock": {
+    "description": "BLE device type: Clock"
+  },
+  
+  "deviceTypeDisplay": "Écran",
+  "@deviceTypeDisplay": {
+    "description": "BLE device type: Display"
+  },
+  
+  "deviceTypeRemoteControl": "Télécommande",
+  "@deviceTypeRemoteControl": {
+    "description": "BLE device type: Remote Control"
+  },
+  
+  "deviceTypeGlasses": "Lunettes Intelligentes",
+  "@deviceTypeGlasses": {
+    "description": "BLE device type: Smart Glasses"
+  },
+  
+  "deviceTypeTag": "Étiquette",
+  "@deviceTypeTag": {
+    "description": "BLE device type: Tag"
+  },
+  
+  "deviceTypeKeyring": "Porte-clés",
+  "@deviceTypeKeyring": {
+    "description": "BLE device type: Keyring"
+  },
+  
+  "deviceTypePhone": "Téléphone",
+  "@deviceTypePhone": {
+    "description": "BLE device type: Phone"
+  },
+  
   "seconds": "secondes",
   "@seconds": {
     "description": "Time unit: seconds"

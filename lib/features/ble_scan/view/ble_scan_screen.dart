@@ -398,7 +398,7 @@ class _BleScanViewState extends State<BleScanView> {
           children: [
             Text(device.address),
             Text(
-              '${device.deviceType.displayName} • RSSI: ${device.rssi} dBm',
+              '${device.deviceType.localizedDisplayName(context.l10n)} • RSSI: ${device.rssi} dBm',
               style: TextStyle(
                 color: Colors.grey[600],
                 fontSize: 12,
@@ -538,7 +538,7 @@ class _BleScanViewState extends State<BleScanView> {
 
   Widget _buildDeviceTypeFilterChip(BleDeviceType deviceType) {
     return FilterChip(
-      label: Text(deviceType.displayName),
+      label: Text(deviceType.localizedDisplayName(context.l10n)),
       selected: _selectedDeviceType == deviceType,
       onSelected: (selected) {
         final selectedType = selected ? deviceType : null;

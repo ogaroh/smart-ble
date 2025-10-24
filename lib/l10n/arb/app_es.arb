@@ -271,6 +271,71 @@
     "description": "Theme description for dark mode"
   },
   
+  "deviceTypeAudio": "Dispositivo de Audio",
+  "@deviceTypeAudio": {
+    "description": "BLE device type: Audio Device"
+  },
+  
+  "deviceTypeWatch": "Reloj",
+  "@deviceTypeWatch": {
+    "description": "BLE device type: Watch"
+  },
+  
+  "deviceTypeOther": "Otro",
+  "@deviceTypeOther": {
+    "description": "BLE device type: Other"
+  },
+  
+  "deviceTypeUnknown": "Desconocido",
+  "@deviceTypeUnknown": {
+    "description": "BLE device type: Unknown"
+  },
+  
+  "deviceTypeComputer": "Computadora",
+  "@deviceTypeComputer": {
+    "description": "BLE device type: Computer"
+  },
+  
+  "deviceTypeSportsWatch": "Reloj Deportivo",
+  "@deviceTypeSportsWatch": {
+    "description": "BLE device type: Sports Watch"
+  },
+  
+  "deviceTypeClock": "Reloj de Pared",
+  "@deviceTypeClock": {
+    "description": "BLE device type: Clock"
+  },
+  
+  "deviceTypeDisplay": "Pantalla",
+  "@deviceTypeDisplay": {
+    "description": "BLE device type: Display"
+  },
+  
+  "deviceTypeRemoteControl": "Control Remoto",
+  "@deviceTypeRemoteControl": {
+    "description": "BLE device type: Remote Control"
+  },
+  
+  "deviceTypeGlasses": "Gafas Inteligentes",
+  "@deviceTypeGlasses": {
+    "description": "BLE device type: Smart Glasses"
+  },
+  
+  "deviceTypeTag": "Etiqueta",
+  "@deviceTypeTag": {
+    "description": "BLE device type: Tag"
+  },
+  
+  "deviceTypeKeyring": "Llavero",
+  "@deviceTypeKeyring": {
+    "description": "BLE device type: Keyring"
+  },
+  
+  "deviceTypePhone": "Teléfono",
+  "@deviceTypePhone": {
+    "description": "BLE device type: Phone"
+  },
+  
   "seconds": "segundos",
   "@seconds": {
     "description": "Time unit: seconds"

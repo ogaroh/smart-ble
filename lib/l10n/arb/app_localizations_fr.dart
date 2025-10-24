@@ -181,6 +181,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String get alwaysUseDarkTheme => 'Toujours utiliser le thème sombre';
 
   @override
+  String get deviceTypeAudio => 'Appareil Audio';
+
+  @override
+  String get deviceTypeWatch => 'Montre';
+
+  @override
+  String get deviceTypeOther => 'Autre';
+
+  @override
+  String get deviceTypeUnknown => 'Inconnu';
+
+  @override
+  String get deviceTypeComputer => 'Ordinateur';
+
+  @override
+  String get deviceTypeSportsWatch => 'Montre de Sport';
+
+  @override
+  String get deviceTypeClock => 'Horloge';
+
+  @override
+  String get deviceTypeDisplay => 'Écran';
+
+  @override
+  String get deviceTypeRemoteControl => 'Télécommande';
+
+  @override
+  String get deviceTypeGlasses => 'Lunettes Intelligentes';
+
+  @override
+  String get deviceTypeTag => 'Étiquette';
+
+  @override
+  String get deviceTypeKeyring => 'Porte-clés';
+
+  @override
+  String get deviceTypePhone => 'Téléphone';
+
+  @override
   String get seconds => 'secondes';
 
   @override

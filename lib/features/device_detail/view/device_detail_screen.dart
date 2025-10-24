@@ -141,7 +141,8 @@ class DeviceDetailView extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        state.device.deviceType.displayName,
+                        state.device.deviceType
+                            .localizedDisplayName(context.l10n),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: Colors.grey[600],
                             ),
