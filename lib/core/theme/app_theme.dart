@@ -212,6 +212,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: colorScheme.onSurface,
         ),
+        scrolledUnderElevation: 0,
       ),
       cardTheme: CardThemeData(
         elevation: 1.0,
@@ -373,6 +374,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: colorScheme.onSurface,
         ),
+        scrolledUnderElevation: 0,
       ),
       cardTheme: CardThemeData(
         elevation: 8,
